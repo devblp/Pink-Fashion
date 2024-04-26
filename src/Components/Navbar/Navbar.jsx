@@ -5,7 +5,12 @@ import { styled, alpha } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+import { Fragment } from "react";
+import "./style.css";
 
 export default function Footer() {
   const Search = styled("div")(({ theme }) => ({
@@ -32,9 +37,9 @@ export default function Footer() {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    right:0,
-    background:"#FFAFCF",
-    borderRadius:100
+    right: 0,
+    background: "#FFAFCF",
+    borderRadius: 100,
   }));
 
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -53,73 +58,120 @@ export default function Footer() {
   }));
 
   return (
-    <Box>
-      <AppBar
-        position="static"
-        sx={{
-          backgroundColor: "black",
-          boxShadow: "none",
-          paddingTop:2
-        }}
-      >
-        <Toolbar
-          sx={{
-            boxShadow: "none",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
+    <PopupState variant="popover" popupId="demo-popup-menu">
+      {(PopupState) => (
+        <Fragment>
           <Box>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              logo
-            </Typography>
+            <AppBar
+              position="static"
+              sx={{
+                backgroundColor: "black",
+                boxShadow: "none",
+                paddingTop: 2,
+              }}
+            >
+              <Toolbar
+                sx={{
+                  boxShadow: "none",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Box>
+                  <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
+                    logo
+                  </Typography>
+                </Box>
+                <Box sx={{ display: "flex",background:"#323232d6", borderRadius:18, padding:"0px 50px 0px 50px" }}>
+                  <Button
+                    disableRipple
+                    sx={{
+                      my: 2,
+                      margin:0,
+                      padding:2,
+                      color: "white",
+                      display: "block",
+                      ":hover": { color: "#FFAFCF" },
+                    }}
+                  >
+                    Home
+                  </Button>
+                  <Button
+                    disableRipple
+                    sx={{
+                      my: 2,
+                      margin:0,
+                      padding:2,
+                      color: "white",
+                      display: "block",
+                      ":hover": {
+                        color: "#FFAFCF",
+                      },
+                    }}
+                    {...bindTrigger(PopupState)}
+                  >
+                    Shop
+                  </Button>
+                  <Menu {...bindMenu(PopupState)}>
+                    <MenuItem
+                      onClick={PopupState.close}
+                    >
+                      Profile
+                    </MenuItem>
+                    <MenuItem  onClick={PopupState.close}>My account</MenuItem>
+                    <MenuItem onClick={PopupState.close}>Logout</MenuItem>
+                    <MenuItem onClick={PopupState.close}>Logout</MenuItem>
+                    <MenuItem onClick={PopupState.close}>Logout</MenuItem>
+                    <MenuItem onClick={PopupState.close}>Logout</MenuItem>
+                    <MenuItem onClick={PopupState.close}>Logout</MenuItem>
+                    <MenuItem onClick={PopupState.close}>Logout</MenuItem>
+                    <MenuItem onClick={PopupState.close}>Logout</MenuItem>
+                    <MenuItem onClick={PopupState.close}>Logout</MenuItem>
+                    <MenuItem onClick={PopupState.close}>Logout</MenuItem>
+                  </Menu>
+                  <Button
+                    disableRipple
+                    sx={{
+                      my: 2,
+                      margin:0,
+                      padding:2,
+                      color: "white",
+                      display: "block",
+                      ":hover": { color: "#FFAFCF" },
+                    }}
+                  >
+                    Abous us
+                  </Button>
+                  <Button
+                    disableRipple
+                    sx={{
+                      my: 2,
+                      margin:0,
+                      padding:2,
+                      color: "white",
+                      display: "block",
+                      ":hover": { color: "#FFAFCF" },
+                    }}
+                  >
+                    Contact
+                  </Button>
+                </Box>
+                <Box>
+                  <Search>
+                    <SearchIconWrapper>
+                      <SearchIcon />
+                    </SearchIconWrapper>
+                    <StyledInputBase
+                      placeholder="Search..."
+                      inputProps={{ "aria-label": "search" }}
+                    />
+                  </Search>
+                </Box>
+              </Toolbar>
+            </AppBar>
           </Box>
-          <Box sx={{ display: "flex" }}>
-            <Button
-              disableRipple
-              sx={{ my: 2, color: "white", display: "block", ":hover" :{color:"#FFAFCF"} }}
-            >
-              Home
-            </Button>
-            <Button
-              disableRipple
-              sx={{ 
-                my: 2, 
-                color: "white", 
-                display: "block",
-                ":hover" :{
-                  color:"#FFAFCF"
-                }
-               }}
-            >
-              Shop
-            </Button>
-            <Button
-              disableRipple
-              sx={{ my: 2, color: "white", display: "block", ":hover" :{color:"#FFAFCF"}}}
-            >
-              Abous us
-            </Button>
-            <Button
-              disableRipple
-              sx={{ my: 2, color: "white", display: "block", ":hover" :{color:"#FFAFCF"} }}
-            >
-              Contact
-            </Button>
-          </Box>
-          <Box>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search..."
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
-          </Box>
-        </Toolbar>
-      </AppBar>
-    </Box>
+        </Fragment>
+      )}
+    </PopupState>
   );
 }

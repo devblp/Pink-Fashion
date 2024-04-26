@@ -1,0 +1,6 @@
+.MuiMenu-list {
+    padding: 20px !important;
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+}
