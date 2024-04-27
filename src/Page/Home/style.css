@@ -1,7 +1,7 @@
 .mySwiper  {
     text-align: center;
     height: 796px;
-    background-color: black;
+    background-color: #1F1F1F;
     position: relative;
     color: white;
 }
@@ -42,4 +42,9 @@
     width: 100px;
     height: 100px;
     opacity: 0 !important;
+}
+
+.swiper-slide1 video {
+    width: 100%;
+    height: 100%;
 }

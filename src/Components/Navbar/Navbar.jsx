@@ -5,7 +5,7 @@ import { styled, alpha } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import { Button, IconButton } from "@mui/material";
+import { Button } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
@@ -65,9 +65,9 @@ export default function Footer() {
             <AppBar
               position="static"
               sx={{
-                backgroundColor: "black",
+                backgroundColor: "#1F1F1F",
                 boxShadow: "none",
-                paddingTop: 2,
+                padding: 2,
               }}
             >
               <Toolbar
@@ -82,7 +82,7 @@ export default function Footer() {
                     logo
                   </Typography>
                 </Box>
-                <Box sx={{ display: "flex",background:"#323232d6", borderRadius:18, padding:"0px 50px 0px 50px" }}>
+                <Box sx={{ display: "flex",background:"#323232d7", borderRadius:18, padding:"0px 50px 0px 50px" }}>
                   <Button
                     disableRipple
                     sx={{
@@ -91,7 +91,7 @@ export default function Footer() {
                       padding:2,
                       color: "white",
                       display: "block",
-                      ":hover": { color: "#FFAFCF" },
+                      ":hover": { color: "#FFAFCF",backgroundColor:"rgba(0, 0, 0, 0)", },
                     }}
                   >
                     Home
@@ -106,6 +106,7 @@ export default function Footer() {
                       display: "block",
                       ":hover": {
                         color: "#FFAFCF",
+                        backgroundColor:"rgba(0, 0, 0, 0)",
                       },
                     }}
                     {...bindTrigger(PopupState)}
@@ -137,7 +138,7 @@ export default function Footer() {
                       padding:2,
                       color: "white",
                       display: "block",
-                      ":hover": { color: "#FFAFCF" },
+                      ":hover": { color: "#FFAFCF",backgroundColor:"rgba(0, 0, 0, 0)", },
                     }}
                   >
                     Abous us
@@ -150,7 +151,7 @@ export default function Footer() {
                       padding:2,
                       color: "white",
                       display: "block",
-                      ":hover": { color: "#FFAFCF" },
+                      ":hover": { color: "#FFAFCF",backgroundColor:"rgba(0, 0, 0, 0)", },
                     }}
                   >
                     Contact
