@@ -44,7 +44,7 @@
     opacity: 0 !important;
 }
 
-.swiper-slide1 video {
+.swiper-slide1 video,.swiper-slide2 video {
     width: 100%;
     height: 100%;
 }
