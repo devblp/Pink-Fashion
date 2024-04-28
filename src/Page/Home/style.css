@@ -1,10 +1,15 @@
-.mySwiper  {
-    text-align: center;
+.slider-swiper  {
     height: 796px;
     background-color: #1F1F1F;
     position: relative;
     color: white;
 }
+.brand-swiper .brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 /* .mySwiper .swiper-slide {
     margin-top: 
@@ -18,7 +23,6 @@
     left: 96% !important; 
 }
 .swiper-pagination-bullet {
-    text-align: center;
     padding-top: 5px;
     margin-top: 10px !important;
     background-color: rgba(255, 255, 255, 0);
@@ -44,7 +48,7 @@
     opacity: 0 !important;
 }
 
-.swiper-slide1 video,.swiper-slide2 video {
+.swiper-slide1 video,.swiper-slide2 video,.swiper-slide3 video ,.swiper-slide4 video  {
     width: 100%;
     height: 100%;
 }

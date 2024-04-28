@@ -1,17 +1,23 @@
 import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
 import { Avatar, Box, Typography, Button } from "@mui/material";
-import "./style.css";
-import "swiper/less/pagination";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/less/pagination";
+import "./style.css";
+
 import img1 from "../../img/img1.png";
 import img2 from "../../img/img2.png";
 import img3 from "../../img/img3.png";
 import img4 from "../../img/img4.png";
+import brand1 from "../../img/brand1.png";
+import brand2 from "../../img/brand2.png";
+import brand3 from "../../img/brand3.png";
+import brand4 from "../../img/brand4.png";
+import brand5 from "../../img/brand5.png";
 import vid1 from "../../video/slider1.mp4";
 
 export default function Home() {
@@ -21,6 +27,7 @@ export default function Home() {
       return '<span class="' + className + '"> 0' + (index + 1) + "</span>";
     },
   };
+
   const [video, setVideo] = useState(false);
   const [videoTo, setVideoTo] = useState(false);
   const [videoTr, setVideoTr] = useState(false);
@@ -38,12 +45,13 @@ export default function Home() {
   const handelVideoFr = () => {
     setVideoFr(!videoFr);
   };
+
   return (
     <Box>
       <Swiper
         pagination={pagination}
         modules={[Pagination]}
-        className="mySwiper"
+        className="slider-swiper"
       >
         <SwiperSlide className="swiper-slide1">
           {video ? (
@@ -695,6 +703,71 @@ export default function Home() {
           )}
         </SwiperSlide>
       </Swiper>
+      <Box
+        sx={{
+          p: "80px 0px 80px 0px",
+        }}
+      >
+        <Swiper
+          slidesPerView={4}
+          loop={true}
+          modules={[Autoplay]}
+          autoplay={{ delay: 1 }}
+          speed={1000}
+          effect="slide"
+        >
+          <SwiperSlide className="brand">
+            <Avatar
+              sx={{
+                width: 200,
+                height: 30,
+                borderRadius: 0,
+              }}
+              src={brand1}
+            />
+          </SwiperSlide>
+          <SwiperSlide className="brand">
+            <Avatar
+              sx={{
+                width: 200,
+                height: 30,
+                borderRadius: 0,
+              }}
+              src={brand2}
+            />
+          </SwiperSlide>
+          <SwiperSlide className="brand">
+            <Avatar
+              sx={{
+                width: 200,
+                height: 30,
+                borderRadius: 0,
+              }}
+              src={brand3}
+            />
+          </SwiperSlide>
+          <SwiperSlide className="brand">
+            <Avatar
+              sx={{
+                width: 300,
+                height: 30,
+                borderRadius: 0,
+              }}
+              src={brand4}
+            />
+          </SwiperSlide>
+          <SwiperSlide className="brand">
+            <Avatar
+              sx={{
+                width: 150,
+                height: 40,
+                borderRadius: 0,
+              }}
+              src={brand5}
+            />
+          </SwiperSlide>
+        </Swiper>
+      </Box>
     </Box>
   );
 }
