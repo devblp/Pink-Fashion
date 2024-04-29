@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Avatar, Box, Typography, Button } from "@mui/material";
+import { Avatar, Box, Typography, Button, Grid } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -19,6 +19,10 @@ import brand3 from "../../img/brand3.png";
 import brand4 from "../../img/brand4.png";
 import brand5 from "../../img/brand5.png";
 import vid1 from "../../video/slider1.mp4";
+import imgCardShop1 from "../../img/imgCardShop1.png";
+import imgCardShop2 from "../../img/imgCardShop2.png";
+import imgCardShop3 from "../../img/imgCardShop3.png";
+import imgCardShop4 from "../../img/imgCardShop4.png";
 
 export default function Home() {
   const pagination = {
@@ -759,8 +763,8 @@ export default function Home() {
           <SwiperSlide className="brand">
             <Avatar
               sx={{
-                width: 150,
-                height: 40,
+                width: 300,
+                height: 30,
                 borderRadius: 0,
               }}
               src={brand5}
@@ -768,6 +772,97 @@ export default function Home() {
           </SwiperSlide>
         </Swiper>
       </Box>
+
+      {/* <Grid container spacing={2}>
+        <Grid
+          xs={6}
+          md={5}
+          sx={{ position: "relative", backgroundColor: "white" }}
+        >
+          <Typography fontFamily={"Actor"} fontSize={15} fontWeight={400}>
+            latest design
+          </Typography>
+          <Typography fontFamily={"Acme"} fontSize={46} fontWeight={400}>
+            Summer
+          </Typography>
+          <Typography fontFamily={"Actor"} fontSize={35} fontWeight={400}>
+            collection
+          </Typography>
+          <Button>Bay</Button>
+          <Avatar
+            src={imgCardShop1}
+            sx={{ position: "absolute", top: 0, right: 0 }}
+          />
+        </Grid>
+        <Grid
+          xs={6}
+          md={7}
+          sx={{ position: "relative", backgroundColor: "white" }}
+        >
+          <Typography fontFamily={"Acme"} fontSize={46} fontWeight={400}>
+            Woman
+          </Typography>
+          <Typography fontFamily={"Actor"} fontSize={35} fontWeight={400}>
+            collection
+          </Typography>
+          <Button>Bay</Button>
+          <Avatar
+            src={imgCardShop2}
+            sx={{ position: "absolute", top: 0, right: 0 }}
+          />
+        </Grid>
+        <Grid
+          xs={6}
+          md={3.5}
+          sx={{ position: "relative", backgroundColor: "white" }}
+        >
+          <Typography fontFamily={"Actor"} fontSize={15} fontWeight={400}>
+            hot season
+          </Typography>
+          <Typography fontFamily={"Acme"} fontSize={46} fontWeight={400}>
+            men's
+          </Typography>
+          <Typography fontFamily={"Actor"} fontSize={35} fontWeight={400}>
+            jacket
+          </Typography>
+          <Button>Bay</Button>
+          <Avatar
+            src={imgCardShop3}
+            sx={{ position: "absolute", top: 0, right: 0 }}
+          />
+        </Grid>
+        <Grid
+          xs={6}
+          md={3.5}
+          sx={{ position: "relative", backgroundColor: "white" }}
+        >
+          <Typography fontFamily={"Acme"} fontSize={46} fontWeight={400}>
+            Collection
+          </Typography>
+          <Typography fontFamily={"Acme"} fontSize={35} fontWeight={400}>
+            shoes
+          </Typography>
+          <Button>Bay</Button>
+          <Avatar
+            src={imgCardShop4}
+            sx={{ position: "absolute", top: 0, right: 0 }}
+          />
+        </Grid>
+      </Grid> */}
+      <Grid container spacing={2} my={5}>
+        <Grid item xs={3}>
+          <Box sx={{ backgroundColor: "red" }}>item1</Box>
+        </Grid>
+        <Grid item xs={9}>
+          <Box sx={{ backgroundColor: "red" }}>item2</Box>
+        </Grid>
+        <Grid item xs={9}>
+          <Box sx={{ backgroundColor: "red" }}>item3</Box>
+        </Grid>
+        <Grid item xs={3}>
+          <Box sx={{ backgroundColor: "red" }}>item4</Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 }
