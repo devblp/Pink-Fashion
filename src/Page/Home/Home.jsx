@@ -24,7 +24,8 @@ import imgCardShop1 from "../../img/imgCardShop1.png";
 import imgCardShop2 from "../../img/imgCardShop2.png";
 import imgCardShop3 from "../../img/imgCardShop3.png";
 import imgCardShop4 from "../../img/imgCardShop4.png";
-import Cards from "../../Components/Card/Cards";
+import CardDetail from "../../Components/CardDetail/CardDetail";
+import { useEffect } from "react";
 
 export default function Home() {
   const pagination = {
@@ -51,7 +52,30 @@ export default function Home() {
   const handelVideoFr = () => {
     setVideoFr(!videoFr);
   };
+  const [products,setProducts] = useState()
+  
+  useEffect(() => {
+    (async()=>{
+      try {
+        const res = await fetch("https://asos2.p.rapidapi.com/products/v2/list?store=US&offset=0&categoryId=4209&limit=48&country=US&sort=freshness&currency=USD&sizeSchema=US&lang=en-US",{
+          method: 'GET',
+          headers: {
+            'X-RapidAPI-Key': '40863d12e9msh1a3332d3fcfe93ep1a0b91jsn8977caaaaca1',
+            'X-RapidAPI-Host': 'asos2.p.rapidapi.com'
+          }
+        })
+        const data = await res.json()
+        setProducts(data.products)
+    }catch (error) {
+      alert(error)
+    }
+  })()
+    
+  }, []);
 
+  // const firstFourProducts = products.slice(0, 4)
+  // const carts = firstFourProducts?.map((e,index)=><CardDetail key={index} name={e.name} img={e.imageUrl} />)
+  const carts = products ? products.slice(0, 4).map((e, index) => <CardDetail key={index} name={e.name} img={e.imageUrl} />) : null;
   return (
     <Box>
       <Swiper
@@ -774,10 +798,10 @@ export default function Home() {
           </SwiperSlide>
         </Swiper>
       </Box>
-      <Container maxWidth>
+      <Box sx={{px:10}}>
         <Grid container spacing={2} my={5}>
           <Grid container xs={7}>
-            <Grid item xs={12}>
+            <Grid xs={12}>
               <Box
                 sx={{ position: "relative", bgcolor: "white", height: "318px" }}
               >
@@ -842,7 +866,7 @@ export default function Home() {
                 />
               </Box>
             </Grid>
-            <Grid item xs={6}>
+            <Grid xs={6}>
               <Box
                 sx={{ position: "relative", bgcolor: "white", height: "308px" }}
               >
@@ -907,7 +931,7 @@ export default function Home() {
                 />
               </Box>
             </Grid>
-            <Grid item xs={6}>
+            <Grid xs={6}>
               <Box
                 sx={{ position: "relative", bgcolor: "white", height: "308px" }}
               >
@@ -962,7 +986,7 @@ export default function Home() {
             </Grid>
           </Grid>
           <Grid container xs={5}>
-            <Grid item xs={12}>
+            <Grid xs={12}>
               <Box
                 sx={{ position: "relative", bgcolor: "white", height: "645px" }}
               >
@@ -1021,9 +1045,8 @@ export default function Home() {
         </Grid>
         <Box sx={{ py: 8 }}>
           <Typography
+            variant="h3"
             sx={{
-              fontWeight: 400,
-              fontSize: "46px",
               fontFamily: "Acme",
               textAlign: "center",
             }}
@@ -1031,9 +1054,9 @@ export default function Home() {
             New Arrivals
           </Typography>
           <Typography
+          variant="p"
+          component="div"
             sx={{
-              fontWeight: 400,
-              fontSize: "16px",
               fontFamily: "Acme",
               textAlign: "center",
             }}
@@ -1042,43 +1065,115 @@ export default function Home() {
             <br /> duis ultrices sollicitudin aliquam sem. Scelerisque duis
             ultrices sollicitudin
           </Typography>
-          <Box display={"flex"} justifyContent={"center"} py={5} >
+          <Box display={"flex"} justifyContent={"center"} py={5}>
             <Grid container spacing={5}>
-              <Grid item>
+              <Grid>
                 <Box>
-                  <Button variant="contained" sx={{bgcolor:"white", borderRadius:3,width:"207px",height:"56px" , color:"black" ,":hover":{bgcolor:"#FFAFCF"}}} >Men's t-shirt</Button>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      bgcolor: "white",
+                      borderRadius: 3,
+                      width: "207px",
+                      height: "56px",
+                      color: "black",
+                      ":hover": { bgcolor: "#FFAFCF" },
+                    }}
+                  >
+                    Men's t-shirt
+                  </Button>
                 </Box>
               </Grid>
-              <Grid item>
+              <Grid>
                 <Box>
-                  <Button variant="contained" sx={{bgcolor:"white", borderRadius:3,width:"207px",height:"56px" , color:"black" ,":hover":{bgcolor:"#FFAFCF"}}} >Men's hoodie</Button>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      bgcolor: "white",
+                      borderRadius: 3,
+                      width: "207px",
+                      height: "56px",
+                      color: "black",
+                      ":hover": { bgcolor: "#FFAFCF" },
+                    }}
+                  >
+                    Men's hoodie
+                  </Button>
                 </Box>
               </Grid>
-              <Grid item>
+              <Grid>
                 <Box>
-                  <Button variant="contained" sx={{bgcolor:"white", borderRadius:3,width:"207px",height:"56px" , color:"black" ,":hover":{bgcolor:"#FFAFCF"}}} >Women's dress shirt</Button>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      bgcolor: "white",
+                      borderRadius: 3,
+                      width: "207px",
+                      height: "56px",
+                      color: "black",
+                      ":hover": { bgcolor: "#FFAFCF" },
+                    }}
+                  >
+                    Women's dress shirt
+                  </Button>
                 </Box>
               </Grid>
-              <Grid item>
+              <Grid>
                 <Box>
-                  <Button variant="contained" sx={{bgcolor:"white", borderRadius:3,width:"207px",height:"56px" , color:"black" ,":hover":{bgcolor:"#FFAFCF"}}} >skirt</Button>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      bgcolor: "white",
+                      borderRadius: 3,
+                      width: "207px",
+                      height: "56px",
+                      color: "black",
+                      ":hover": { bgcolor: "#FFAFCF" },
+                    }}
+                  >
+                    skirt
+                  </Button>
                 </Box>
               </Grid>
-              <Grid item>
+              <Grid>
                 <Box>
-                  <Button variant="contained" sx={{bgcolor:"white", borderRadius:3,width:"207px",height:"56px" , color:"black" ,":hover":{bgcolor:"#FFAFCF"}}} >leather jacke</Button>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      bgcolor: "white",
+                      borderRadius: 3,
+                      width: "207px",
+                      height: "56px",
+                      color: "black",
+                      ":hover": { bgcolor: "#FFAFCF" },
+                    }}
+                  >
+                    leather jacke
+                  </Button>
                 </Box>
               </Grid>
             </Grid>
           </Box>
           <Box>
-            <Cards/>
+            {carts}
           </Box>
           <Box display={"flex"} justifyContent={"center"} py={4}>
-          <Button variant="contained" sx={{bgcolor:"#FFAFCF", borderRadius:3,width:"207px",height:"56px" , color:"black" ,":hover":{bgcolor:"#FFAFCF"}}} >View More</Button>
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: "#FFAFCF",
+                borderRadius: 3,
+                width: "207px",
+                height: "56px",
+                color: "black",
+                ":hover": { bgcolor: "#FFAFCF" },
+              }}
+            >
+              View More
+            </Button>
           </Box>
         </Box>
-      </Container>
+      </Box>
     </Box>
   );
 }
