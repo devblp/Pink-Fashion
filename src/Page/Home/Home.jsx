@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Avatar, Box, Typography, Button, Grid } from "@mui/material";
+import { Avatar, Box, Typography, Button, Container } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -23,6 +24,7 @@ import imgCardShop1 from "../../img/imgCardShop1.png";
 import imgCardShop2 from "../../img/imgCardShop2.png";
 import imgCardShop3 from "../../img/imgCardShop3.png";
 import imgCardShop4 from "../../img/imgCardShop4.png";
+import Cards from "../../Components/Card/Cards";
 
 export default function Home() {
   const pagination = {
@@ -772,97 +774,311 @@ export default function Home() {
           </SwiperSlide>
         </Swiper>
       </Box>
+      <Container maxWidth>
+        <Grid container spacing={2} my={5}>
+          <Grid container xs={7}>
+            <Grid item xs={12}>
+              <Box
+                sx={{ position: "relative", bgcolor: "white", height: "318px" }}
+              >
+                <Typography
+                  sx={{
+                    position: "absolute",
+                    left: 30,
+                    top: 40,
+                    fontFamily: "Actor",
+                    fontSize: 15,
+                    fontWeight: 400,
+                  }}
+                >
+                  latest design
+                </Typography>
+                <Typography
+                  sx={{
+                    position: "absolute",
+                    left: 60,
+                    top: 50,
+                    fontFamily: "Acme",
+                    fontSize: 46,
+                    fontWeight: 400,
+                  }}
+                >
+                  Summer
+                </Typography>
+                <Typography
+                  sx={{
+                    position: "absolute",
+                    left: 110,
+                    top: 100,
+                    fontFamily: "Actor",
+                    fontSize: 35,
+                    fontWeight: 400,
+                  }}
+                >
+                  collection
+                </Typography>
+                <Button
+                  sx={{
+                    position: "absolute",
+                    left: 110,
+                    top: 200,
+                    border: "solid 2px #FFAFCF",
+                    borderRadius: 5,
+                    color: "black",
+                  }}
+                >
+                  Bay
+                </Button>
+                <Avatar
+                  src={imgCardShop1}
+                  sx={{
+                    position: "absolute",
+                    bottom: 0,
+                    right: 0,
+                    borderRadius: 0,
+                    width: "330px",
+                    height: "318px",
+                  }}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={6}>
+              <Box
+                sx={{ position: "relative", bgcolor: "white", height: "308px" }}
+              >
+                <Typography
+                  fontFamily={"Actor"}
+                  fontSize={15}
+                  fontWeight={400}
+                  sx={{
+                    position: "absolute",
+                    left: 2,
+                    top: 40,
+                  }}
+                >
+                  hot season
+                </Typography>
+                <Typography
+                  fontFamily={"Acme"}
+                  fontSize={46}
+                  fontWeight={400}
+                  sx={{
+                    position: "absolute",
+                    left: 30,
+                    top: 50,
+                  }}
+                >
+                  men's
+                </Typography>
+                <Typography
+                  fontFamily={"Actor"}
+                  fontSize={35}
+                  fontWeight={400}
+                  sx={{
+                    position: "absolute",
+                    left: 20,
+                    top: 100,
+                  }}
+                >
+                  jacket
+                </Typography>
+                <Button
+                  sx={{
+                    position: "absolute",
+                    left: 30,
+                    top: 220,
+                    border: "solid 2px #FFAFCF",
+                    borderRadius: 5,
+                    color: "black",
+                  }}
+                >
+                  Bay
+                </Button>
+                <Avatar
+                  src={imgCardShop3}
+                  sx={{
+                    position: "absolute",
+                    bottom: 0,
+                    right: 0,
+                    borderRadius: 0,
+                    width: "279px",
+                    height: "259px",
+                  }}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={6}>
+              <Box
+                sx={{ position: "relative", bgcolor: "white", height: "308px" }}
+              >
+                <Typography
+                  fontFamily={"Acme"}
+                  fontSize={46}
+                  fontWeight={400}
+                  sx={{
+                    position: "absolute",
+                    top: 10,
+                    left: 20,
+                  }}
+                >
+                  Collection
+                </Typography>
+                <Typography
+                  fontFamily={"Acme"}
+                  fontSize={35}
+                  fontWeight={400}
+                  sx={{
+                    position: "absolute",
+                    top: 60,
+                    left: 70,
+                  }}
+                >
+                  shoes
+                </Typography>
+                <Button
+                  sx={{
+                    position: "absolute",
+                    left: 230,
+                    top: 55,
+                    border: "solid 2px #FFAFCF",
+                    borderRadius: 5,
+                    color: "black",
+                  }}
+                >
+                  Bay
+                </Button>
+                <Avatar
+                  src={imgCardShop4}
+                  sx={{
+                    position: "absolute",
+                    bottom: 0,
+                    right: 0,
+                    borderRadius: 0,
+                    width: "299px",
+                    height: "202px",
+                  }}
+                />
+              </Box>
+            </Grid>
+          </Grid>
+          <Grid container xs={5}>
+            <Grid item xs={12}>
+              <Box
+                sx={{ position: "relative", bgcolor: "white", height: "645px" }}
+              >
+                <Typography
+                  fontFamily={"Acme"}
+                  fontSize={46}
+                  fontWeight={400}
+                  sx={{
+                    position: "absolute",
+                    left: 30,
+                    top: 40,
+                  }}
+                >
+                  Woman
+                </Typography>
+                <Typography
+                  fontFamily={"Actor"}
+                  fontSize={35}
+                  fontWeight={400}
+                  sx={{
+                    position: "absolute",
+                    left: 80,
+                    top: 90,
+                  }}
+                >
+                  collection
+                </Typography>
 
-      {/* <Grid container spacing={2}>
-        <Grid
-          xs={6}
-          md={5}
-          sx={{ position: "relative", backgroundColor: "white" }}
-        >
-          <Typography fontFamily={"Actor"} fontSize={15} fontWeight={400}>
-            latest design
-          </Typography>
-          <Typography fontFamily={"Acme"} fontSize={46} fontWeight={400}>
-            Summer
-          </Typography>
-          <Typography fontFamily={"Actor"} fontSize={35} fontWeight={400}>
-            collection
-          </Typography>
-          <Button>Bay</Button>
-          <Avatar
-            src={imgCardShop1}
-            sx={{ position: "absolute", top: 0, right: 0 }}
-          />
+                <Button
+                  sx={{
+                    position: "absolute",
+                    left: 70,
+                    top: 200,
+                    border: "solid 2px #FFAFCF",
+                    borderRadius: 5,
+                    color: "black",
+                  }}
+                >
+                  Bay
+                </Button>
+
+                <Avatar
+                  src={imgCardShop2}
+                  sx={{
+                    position: "absolute",
+                    bottom: 0,
+                    right: 0,
+                    borderRadius: 0,
+                    width: "400px",
+                    height: "400px",
+                  }}
+                />
+              </Box>
+            </Grid>
+          </Grid>
         </Grid>
-        <Grid
-          xs={6}
-          md={7}
-          sx={{ position: "relative", backgroundColor: "white" }}
-        >
-          <Typography fontFamily={"Acme"} fontSize={46} fontWeight={400}>
-            Woman
+        <Box sx={{ py: 8 }}>
+          <Typography
+            sx={{
+              fontWeight: 400,
+              fontSize: "46px",
+              fontFamily: "Acme",
+              textAlign: "center",
+            }}
+          >
+            New Arrivals
           </Typography>
-          <Typography fontFamily={"Actor"} fontSize={35} fontWeight={400}>
-            collection
+          <Typography
+            sx={{
+              fontWeight: 400,
+              fontSize: "16px",
+              fontFamily: "Acme",
+              textAlign: "center",
+            }}
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque
+            <br /> duis ultrices sollicitudin aliquam sem. Scelerisque duis
+            ultrices sollicitudin
           </Typography>
-          <Button>Bay</Button>
-          <Avatar
-            src={imgCardShop2}
-            sx={{ position: "absolute", top: 0, right: 0 }}
-          />
-        </Grid>
-        <Grid
-          xs={6}
-          md={3.5}
-          sx={{ position: "relative", backgroundColor: "white" }}
-        >
-          <Typography fontFamily={"Actor"} fontSize={15} fontWeight={400}>
-            hot season
-          </Typography>
-          <Typography fontFamily={"Acme"} fontSize={46} fontWeight={400}>
-            men's
-          </Typography>
-          <Typography fontFamily={"Actor"} fontSize={35} fontWeight={400}>
-            jacket
-          </Typography>
-          <Button>Bay</Button>
-          <Avatar
-            src={imgCardShop3}
-            sx={{ position: "absolute", top: 0, right: 0 }}
-          />
-        </Grid>
-        <Grid
-          xs={6}
-          md={3.5}
-          sx={{ position: "relative", backgroundColor: "white" }}
-        >
-          <Typography fontFamily={"Acme"} fontSize={46} fontWeight={400}>
-            Collection
-          </Typography>
-          <Typography fontFamily={"Acme"} fontSize={35} fontWeight={400}>
-            shoes
-          </Typography>
-          <Button>Bay</Button>
-          <Avatar
-            src={imgCardShop4}
-            sx={{ position: "absolute", top: 0, right: 0 }}
-          />
-        </Grid>
-      </Grid> */}
-      <Grid container spacing={2} my={5}>
-        <Grid item xs={3}>
-          <Box sx={{ backgroundColor: "red" }}>item1</Box>
-        </Grid>
-        <Grid item xs={9}>
-          <Box sx={{ backgroundColor: "red" }}>item2</Box>
-        </Grid>
-        <Grid item xs={9}>
-          <Box sx={{ backgroundColor: "red" }}>item3</Box>
-        </Grid>
-        <Grid item xs={3}>
-          <Box sx={{ backgroundColor: "red" }}>item4</Box>
-        </Grid>
-      </Grid>
+          <Box display={"flex"} justifyContent={"center"} py={5} >
+            <Grid container spacing={5}>
+              <Grid item>
+                <Box>
+                  <Button variant="contained" sx={{bgcolor:"white", borderRadius:3,width:"207px",height:"56px" , color:"black" ,":hover":{bgcolor:"#FFAFCF"}}} >Men's t-shirt</Button>
+                </Box>
+              </Grid>
+              <Grid item>
+                <Box>
+                  <Button variant="contained" sx={{bgcolor:"white", borderRadius:3,width:"207px",height:"56px" , color:"black" ,":hover":{bgcolor:"#FFAFCF"}}} >Men's hoodie</Button>
+                </Box>
+              </Grid>
+              <Grid item>
+                <Box>
+                  <Button variant="contained" sx={{bgcolor:"white", borderRadius:3,width:"207px",height:"56px" , color:"black" ,":hover":{bgcolor:"#FFAFCF"}}} >Women's dress shirt</Button>
+                </Box>
+              </Grid>
+              <Grid item>
+                <Box>
+                  <Button variant="contained" sx={{bgcolor:"white", borderRadius:3,width:"207px",height:"56px" , color:"black" ,":hover":{bgcolor:"#FFAFCF"}}} >skirt</Button>
+                </Box>
+              </Grid>
+              <Grid item>
+                <Box>
+                  <Button variant="contained" sx={{bgcolor:"white", borderRadius:3,width:"207px",height:"56px" , color:"black" ,":hover":{bgcolor:"#FFAFCF"}}} >leather jacke</Button>
+                </Box>
+              </Grid>
+            </Grid>
+          </Box>
+          <Box>
+            <Cards/>
+          </Box>
+          <Box display={"flex"} justifyContent={"center"} py={4}>
+          <Button variant="contained" sx={{bgcolor:"#FFAFCF", borderRadius:3,width:"207px",height:"56px" , color:"black" ,":hover":{bgcolor:"#FFAFCF"}}} >View More</Button>
+          </Box>
+        </Box>
+      </Container>
     </Box>
   );
 }
