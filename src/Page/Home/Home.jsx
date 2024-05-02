@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Avatar, Box, Typography, Button, Container } from "@mui/material";
+import { Avatar, Box, Typography, Button, CircularProgress } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { motion } from "framer-motion";
@@ -53,19 +53,18 @@ export default function Home() {
     setVideoFr(!videoFr);
   };
   const [products,setProducts] = useState()
-  
   useEffect(() => {
     (async()=>{
       try {
-        const res = await fetch("https://asos2.p.rapidapi.com/products/v2/list?store=US&offset=0&categoryId=4209&limit=48&country=US&sort=freshness&currency=USD&sizeSchema=US&lang=en-US",{
+        const res = await fetch("https://asos-com1.p.rapidapi.com/products/search?q=shearling%20jacket",{
           method: 'GET',
           headers: {
             'X-RapidAPI-Key': '40863d12e9msh1a3332d3fcfe93ep1a0b91jsn8977caaaaca1',
-            'X-RapidAPI-Host': 'asos2.p.rapidapi.com'
+            'X-RapidAPI-Host': 'asos-com1.p.rapidapi.com'
           }
         })
         const data = await res.json()
-        setProducts(data.products)
+        setProducts(data.data.products)
     }catch (error) {
       alert(error)
     }
@@ -73,9 +72,8 @@ export default function Home() {
     
   }, []);
 
-  // const firstFourProducts = products.slice(0, 4)
-  // const carts = firstFourProducts?.map((e,index)=><CardDetail key={index} name={e.name} img={e.imageUrl} />)
-  const carts = products ? products.slice(0, 4).map((e, index) => <CardDetail key={index} name={e.name} img={e.imageUrl} />) : null;
+  const carts = products ? products.slice(0, 6)?.map((e, index) => <CardDetail key={index} name={e.name} img={e.imageUrl} current={e.price.current.text} brandName={e.brandName}  />) : null;
+  
   return (
     <Box>
       <Swiper
@@ -803,7 +801,7 @@ export default function Home() {
           <Grid container xs={7}>
             <Grid xs={12}>
               <Box
-                sx={{ position: "relative", bgcolor: "white", height: "318px" }}
+                sx={{ position: "relative", bgcolor: "#E2E2E2", height: "318px" }}
               >
                 <Typography
                   sx={{
@@ -868,7 +866,7 @@ export default function Home() {
             </Grid>
             <Grid xs={6}>
               <Box
-                sx={{ position: "relative", bgcolor: "white", height: "308px" }}
+                sx={{ position: "relative", bgcolor: "#E2E2E2", height: "308px" }}
               >
                 <Typography
                   fontFamily={"Actor"}
@@ -933,7 +931,7 @@ export default function Home() {
             </Grid>
             <Grid xs={6}>
               <Box
-                sx={{ position: "relative", bgcolor: "white", height: "308px" }}
+                sx={{ position: "relative", bgcolor: "#E2E2E2", height: "308px" }}
               >
                 <Typography
                   fontFamily={"Acme"}
@@ -988,7 +986,7 @@ export default function Home() {
           <Grid container xs={5}>
             <Grid xs={12}>
               <Box
-                sx={{ position: "relative", bgcolor: "white", height: "645px" }}
+                sx={{ position: "relative", bgcolor: "#E2E2E2", height: "645px" }}
               >
                 <Typography
                   fontFamily={"Acme"}
@@ -1154,8 +1152,14 @@ export default function Home() {
               </Grid>
             </Grid>
           </Box>
-          <Box>
-            {carts}
+          <Box sx={{
+            display:"flex",
+            justifyContent:"center",
+            flexDirection:"row",
+            flexWrap:"wrap",
+            gap:"50px"
+          }}>
+           {carts?(carts):<Box py={8}><CircularProgress color="secondary"/></Box>}
           </Box>
           <Box display={"flex"} justifyContent={"center"} py={4}>
             <Button
