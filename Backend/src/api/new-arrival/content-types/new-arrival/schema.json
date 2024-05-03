@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "new_arrivals",
+  "info": {
+    "singularName": "new-arrival",
+    "pluralName": "new-arrivals",
+    "displayName": "newArrival"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "images": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

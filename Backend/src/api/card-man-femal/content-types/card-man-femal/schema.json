@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "card_man_femals",
+  "info": {
+    "singularName": "card-man-femal",
+    "pluralName": "card-man-femals",
+    "displayName": "cardManFemal",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "imagesMan": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "imagesFemal": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

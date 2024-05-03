@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "login_signups",
+  "info": {
+    "singularName": "login-signup",
+    "pluralName": "login-signups",
+    "displayName": "loginSignup"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "imageLogin": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "imageSignUp": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

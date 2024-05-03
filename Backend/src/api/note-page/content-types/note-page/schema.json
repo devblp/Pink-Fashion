@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "note_pages",
+  "info": {
+    "singularName": "note-page",
+    "pluralName": "note-pages",
+    "displayName": "notePage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "images": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

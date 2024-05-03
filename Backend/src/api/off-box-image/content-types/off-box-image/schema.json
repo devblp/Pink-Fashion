@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "off_box_images",
+  "info": {
+    "singularName": "off-box-image",
+    "pluralName": "off-box-images",
+    "displayName": "offBoxImage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "imegas": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

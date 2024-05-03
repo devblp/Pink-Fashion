@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "home_card_imgs",
+  "info": {
+    "singularName": "home-card-img",
+    "pluralName": "home-card-imgs",
+    "displayName": "homeCardImg"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "images": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
