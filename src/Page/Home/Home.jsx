@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Avatar, Box, Typography, Button, CircularProgress } from "@mui/material";
+import { Avatar, Box, Typography, Button } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { motion } from "framer-motion";
@@ -24,8 +24,6 @@ import imgCardShop1 from "../../img/imgCardShop1.png";
 import imgCardShop2 from "../../img/imgCardShop2.png";
 import imgCardShop3 from "../../img/imgCardShop3.png";
 import imgCardShop4 from "../../img/imgCardShop4.png";
-import CardDetail from "../../Components/CardDetail/CardDetail";
-import { useEffect } from "react";
 
 export default function Home() {
   const pagination = {
@@ -52,27 +50,6 @@ export default function Home() {
   const handelVideoFr = () => {
     setVideoFr(!videoFr);
   };
-  const [products,setProducts] = useState()
-  useEffect(() => {
-    (async()=>{
-      try {
-        const res = await fetch("https://asos-com1.p.rapidapi.com/products/search?q=shearling%20jacket",{
-          method: 'GET',
-          headers: {
-            'X-RapidAPI-Key': '40863d12e9msh1a3332d3fcfe93ep1a0b91jsn8977caaaaca1',
-            'X-RapidAPI-Host': 'asos-com1.p.rapidapi.com'
-          }
-        })
-        const data = await res.json()
-        setProducts(data.data.products)
-    }catch (error) {
-      alert(error)
-    }
-  })()
-    
-  }, []);
-
-  const carts = products ? products.slice(0, 6)?.map((e, index) => <CardDetail key={index} name={e.name} img={e.imageUrl} current={e.price.current.text} brandName={e.brandName}  />) : null;
   
   return (
     <Box>
@@ -1159,7 +1136,6 @@ export default function Home() {
             flexWrap:"wrap",
             gap:"50px"
           }}>
-           {carts?(carts):<Box py={8}><CircularProgress color="secondary"/></Box>}
           </Box>
           <Box display={"flex"} justifyContent={"center"} py={4}>
             <Button
