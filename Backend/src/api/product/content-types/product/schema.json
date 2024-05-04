@@ -4,7 +4,7 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "Product",
+    "displayName": "product",
     "description": ""
   },
   "options": {
@@ -15,26 +15,14 @@
     "name": {
       "type": "string"
     },
-    "price": {
-      "type": "decimal",
-      "default": 0
-    },
-    "brandName": {
-      "type": "string"
-    },
-    "info": {
+    "description": {
       "type": "text"
     },
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+    "price": {
+      "type": "decimal"
+    },
+    "discount": {
+      "type": "integer"
     },
     "images": {
       "type": "media",
@@ -47,37 +35,14 @@
         "audios"
       ]
     },
-    "size": {
-      "type": "enumeration",
-      "enum": [
-        "smal",
-        "medom",
-        "larg",
-        "xlarg",
-        "xxlarg",
-        "xxxlarg"
-      ]
+    "quantity": {
+      "type": "integer"
     },
-    "coler": {
-      "type": "enumeration",
-      "enum": [
-        "red",
-        "blue",
-        "black",
-        "pink",
-        "yellow",
-        "orange"
-      ]
-    },
-    "gender": {
-      "type": "enumeration",
-      "enum": [
-        "female",
-        "man"
-      ]
-    },
-    "score": {
-      "type": "decimal"
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "products"
     }
   }
 }

@@ -788,325 +788,35 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
-export interface ApiAbutAbut extends Schema.CollectionType {
-  collectionName: 'abuts';
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
   info: {
-    singularName: 'abut';
-    pluralName: 'abuts';
-    displayName: 'abut';
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'category';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    name: Attribute.String;
     image: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::abut.abut', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::abut.abut', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiBrandBrand extends Schema.CollectionType {
-  collectionName: 'brands';
-  info: {
-    singularName: 'brand';
-    pluralName: 'brands';
-    displayName: 'brand';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    images: Attribute.Media;
+    products: Attribute.Relation<
+      'api::category.category',
+      'manyToMany',
+      'api::product.product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::brand.brand',
+      'api::category.category',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::brand.brand',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCardManFemalCardManFemal extends Schema.CollectionType {
-  collectionName: 'card_man_femals';
-  info: {
-    singularName: 'card-man-femal';
-    pluralName: 'card-man-femals';
-    displayName: 'cardManFemal';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    imagesMan: Attribute.Media;
-    imagesFemal: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::card-man-femal.card-man-femal',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::card-man-femal.card-man-femal',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiFoterFoter extends Schema.CollectionType {
-  collectionName: 'foters';
-  info: {
-    singularName: 'foter';
-    pluralName: 'foters';
-    displayName: 'foter';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    image: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::foter.foter',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::foter.foter',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiHeaderHeader extends Schema.CollectionType {
-  collectionName: 'headers';
-  info: {
-    singularName: 'header';
-    pluralName: 'headers';
-    displayName: 'header';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    image: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::header.header',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::header.header',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiHomeCardImgHomeCardImg extends Schema.CollectionType {
-  collectionName: 'home_card_imgs';
-  info: {
-    singularName: 'home-card-img';
-    pluralName: 'home-card-imgs';
-    displayName: 'homeCardImg';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    images: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::home-card-img.home-card-img',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::home-card-img.home-card-img',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiInsyagramInsyagram extends Schema.CollectionType {
-  collectionName: 'insyagrams';
-  info: {
-    singularName: 'insyagram';
-    pluralName: 'insyagrams';
-    displayName: 'instagram';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    images: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::insyagram.insyagram',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::insyagram.insyagram',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiLoginSignupLoginSignup extends Schema.CollectionType {
-  collectionName: 'login_signups';
-  info: {
-    singularName: 'login-signup';
-    pluralName: 'login-signups';
-    displayName: 'loginSignup';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    imageLogin: Attribute.Media;
-    imageSignUp: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::login-signup.login-signup',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::login-signup.login-signup',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiNewArrivalNewArrival extends Schema.CollectionType {
-  collectionName: 'new_arrivals';
-  info: {
-    singularName: 'new-arrival';
-    pluralName: 'new-arrivals';
-    displayName: 'newArrival';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    images: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::new-arrival.new-arrival',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::new-arrival.new-arrival',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiNotePageNotePage extends Schema.CollectionType {
-  collectionName: 'note_pages';
-  info: {
-    singularName: 'note-page';
-    pluralName: 'note-pages';
-    displayName: 'notePage';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    images: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::note-page.note-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::note-page.note-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiOffBoxImageOffBoxImage extends Schema.CollectionType {
-  collectionName: 'off_box_images';
-  info: {
-    singularName: 'off-box-image';
-    pluralName: 'off-box-images';
-    displayName: 'offBoxImage';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    imegas: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::off-box-image.off-box-image',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::off-box-image.off-box-image',
+      'api::category.category',
       'oneToOne',
       'admin::user'
     > &
@@ -1119,7 +829,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
   info: {
     singularName: 'product';
     pluralName: 'products';
-    displayName: 'Product';
+    displayName: 'product';
     description: '';
   };
   options: {
@@ -1127,19 +837,16 @@ export interface ApiProductProduct extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    price: Attribute.Decimal & Attribute.DefaultTo<0>;
-    brandName: Attribute.String;
-    info: Attribute.Text;
-    image: Attribute.Media;
+    description: Attribute.Text;
+    price: Attribute.Decimal;
+    discount: Attribute.Integer;
     images: Attribute.Media;
-    size: Attribute.Enumeration<
-      ['smal', 'medom', 'larg', 'xlarg', 'xxlarg', 'xxxlarg']
+    quantity: Attribute.Integer;
+    categories: Attribute.Relation<
+      'api::product.product',
+      'manyToMany',
+      'api::category.category'
     >;
-    coler: Attribute.Enumeration<
-      ['red', 'blue', 'black', 'pink', 'yellow', 'orange']
-    >;
-    gender: Attribute.Enumeration<['female', 'man']>;
-    score: Attribute.Decimal;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1151,40 +858,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::product.product',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSignUpSignUp extends Schema.CollectionType {
-  collectionName: 'sign_ups';
-  info: {
-    singularName: 'sign-up';
-    pluralName: 'sign-ups';
-    displayName: 'signUp';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    userName: Attribute.String & Attribute.Required;
-    firstName: Attribute.String & Attribute.Required;
-    lastName: Attribute.String & Attribute.Required;
-    email: Attribute.Email & Attribute.Required;
-    password: Attribute.Password & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::sign-up.sign-up',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::sign-up.sign-up',
       'oneToOne',
       'admin::user'
     > &
@@ -1203,8 +876,8 @@ export interface ApiSliderSlider extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
+    title: Attribute.String;
     image: Attribute.Media;
-    video: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1241,19 +914,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
-      'api::abut.abut': ApiAbutAbut;
-      'api::brand.brand': ApiBrandBrand;
-      'api::card-man-femal.card-man-femal': ApiCardManFemalCardManFemal;
-      'api::foter.foter': ApiFoterFoter;
-      'api::header.header': ApiHeaderHeader;
-      'api::home-card-img.home-card-img': ApiHomeCardImgHomeCardImg;
-      'api::insyagram.insyagram': ApiInsyagramInsyagram;
-      'api::login-signup.login-signup': ApiLoginSignupLoginSignup;
-      'api::new-arrival.new-arrival': ApiNewArrivalNewArrival;
-      'api::note-page.note-page': ApiNotePageNotePage;
-      'api::off-box-image.off-box-image': ApiOffBoxImageOffBoxImage;
+      'api::category.category': ApiCategoryCategory;
       'api::product.product': ApiProductProduct;
-      'api::sign-up.sign-up': ApiSignUpSignUp;
       'api::slider.slider': ApiSliderSlider;
     }
   }
