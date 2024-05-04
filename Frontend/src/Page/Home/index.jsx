@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar, Box, Typography, Button } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
@@ -24,6 +24,7 @@ import imgCardShop1 from "../../img/imgCardShop1.png";
 import imgCardShop2 from "../../img/imgCardShop2.png";
 import imgCardShop3 from "../../img/imgCardShop3.png";
 import imgCardShop4 from "../../img/imgCardShop4.png";
+import fetchData from "../../Utils/fetchData";
 
 export default function Home() {
   const pagination = {
@@ -50,15 +51,27 @@ export default function Home() {
   const handelVideoFr = () => {
     setVideoFr(!videoFr);
   };
+  const [sliders,setSliders] = useState()
   
+  useEffect(()=>{
+    (async()=>{
+      const res = await fetchData("sliders?populate=*")
+      setSliders(res.data)
+    })()
+  },[])
+  const imageSlider = sliders?.map((e,index)=>(<img key={index} src={import.meta.env.VITE_BASE_API + e.attributes.image.data.attributes.url}/>))
+  console.log(imageSlider);
   return (
     <Box>
+      
       <Swiper
         pagination={pagination}
         modules={[Pagination]}
         className="slider-swiper"
       >
+        
         <SwiperSlide className="swiper-slide1">
+          {imageSlider}
           {video ? (
             <Box>
               <video autoPlay loop muted posta={vid1}>
@@ -139,6 +152,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 800 }}
                 transition={{ duration: 0.7 }}
               >
+                
                 <Avatar
                   sx={{
                     width: 700,

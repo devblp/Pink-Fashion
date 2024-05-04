@@ -8,7 +8,6 @@ import Dasbord from "./Page/Dashbord"
 import ProductDetail from "./Page/ProductDetail"
 import Products from "./Page/Products";
 import NotPage404 from "./Page/NotPage404"
-import Login from "./Page/Auth/Login"
 import { Navigate, Route, Routes} from "react-router-dom";
 import {useSelector} from "react-redux"
 import Auth from "./Sore/Slices/Auth";

@@ -11,6 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import { Fragment } from "react";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const Search = styled("div")(({ theme }) => ({
@@ -94,7 +95,7 @@ export default function Footer() {
                       ":hover": { color: "#FFAFCF",backgroundColor:"rgba(0, 0, 0, 0)", },
                     }}
                   >
-                    Home
+                    <Link to={"/"}>Home</Link>
                   </Button>
                   <Button
                     disableRipple
@@ -111,7 +112,7 @@ export default function Footer() {
                     }}
                     {...bindTrigger(PopupState)}
                   >
-                    Shop
+                    <Link to={"/products/:detailId/:detailName"}>Shop</Link>
                   </Button>
                   <Menu {...bindMenu(PopupState)}>
                     <MenuItem

@@ -871,12 +871,12 @@ export interface ApiSliderSlider extends Schema.CollectionType {
     singularName: 'slider';
     pluralName: 'sliders';
     displayName: 'slider';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
     image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
