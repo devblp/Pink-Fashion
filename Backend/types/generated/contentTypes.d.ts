@@ -878,6 +878,7 @@ export interface ApiSliderSlider extends Schema.CollectionType {
   };
   attributes: {
     image: Attribute.Media;
+    video: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

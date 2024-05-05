@@ -9,7 +9,11 @@ const userFromFields = () => {
       [target.name]: target.value,
     });
   };
-  return [users, handelCheng];
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(users);
+  };
+  return [users, handelCheng, handleSubmit];
 };
 
 export default userFromFields;

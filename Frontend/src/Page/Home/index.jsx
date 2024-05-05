@@ -5,21 +5,18 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/less/pagination";
 import "./style.css";
 
-import img1 from "../../img/img1.png";
-import img2 from "../../img/img2.png";
-import img3 from "../../img/img3.png";
-import img4 from "../../img/img4.png";
+
 import brand1 from "../../img/brand1.png";
 import brand2 from "../../img/brand2.png";
 import brand3 from "../../img/brand3.png";
 import brand4 from "../../img/brand4.png";
 import brand5 from "../../img/brand5.png";
-import vid1 from "../../video/slider1.mp4";
 import imgCardShop1 from "../../img/imgCardShop1.png";
 import imgCardShop2 from "../../img/imgCardShop2.png";
 import imgCardShop3 from "../../img/imgCardShop3.png";
@@ -59,8 +56,11 @@ export default function Home() {
       setSliders(res.data)
     })()
   },[])
-  const imageSlider = sliders?.map((e,index)=>(<img key={index} src={import.meta.env.VITE_BASE_API + e.attributes.image.data.attributes.url}/>))
-  console.log(imageSlider);
+  const imageSlider = sliders? sliders?.map((e)=>(e?.attributes?.image?.data?.attributes?.url)) : []
+  const videoSlider = sliders? sliders?.map((e)=>(e?.attributes?.video?.data?.attributes?.url)) : []
+
+
+
   return (
     <Box>
       
@@ -71,11 +71,10 @@ export default function Home() {
       >
         
         <SwiperSlide className="swiper-slide1">
-          {imageSlider}
           {video ? (
             <Box>
-              <video autoPlay loop muted posta={vid1}>
-                <source src={vid1} />
+              <video autoPlay loop muted posta={import.meta.env.VITE_BASE_URL + videoSlider[0]}>
+                <source src={import.meta.env.VITE_BASE_URL + videoSlider[0]} />
               </video>
               <Button
                 onClick={handleVideo}
@@ -163,7 +162,7 @@ export default function Home() {
                     transform: "translate(50%)",
                     bottom: 1,
                   }}
-                  src={img1}
+                  src={import.meta.env.VITE_BASE_URL + imageSlider[0]}
                 />
               </motion.div>
               <Button
@@ -201,8 +200,8 @@ export default function Home() {
         <SwiperSlide className="swiper-slide2">
           {videoTo ? (
             <Box>
-              <video autoPlay loop muted posta={vid1}>
-                <source src={vid1} />
+              <video autoPlay loop muted posta={import.meta.env.VITE_BASE_URL + videoSlider[1]}>
+                <source src={import.meta.env.VITE_BASE_URL + videoSlider[1]} />
               </video>
               <Button
                 onClick={handelVideoTo}
@@ -313,7 +312,7 @@ export default function Home() {
                     transform: "translate(50%)",
                     bottom: 0,
                   }}
-                  src={img2}
+                  src={import.meta.env.VITE_BASE_URL + imageSlider[1]}
                 />
               </motion.div>
               <Button
@@ -351,8 +350,8 @@ export default function Home() {
         <SwiperSlide className="swiper-slide3">
           {videoTr ? (
             <Box>
-              <video autoPlay loop muted posta={vid1}>
-                <source src={vid1} />
+              <video autoPlay loop muted posta={import.meta.env.VITE_BASE_URL + videoSlider[2]}>
+                <source src={import.meta.env.VITE_BASE_URL + videoSlider[2]} />
               </video>
               <Button
                 onClick={handelVideoTr}
@@ -485,7 +484,7 @@ export default function Home() {
                     transform: "translate(50%)",
                     bottom: 1,
                   }}
-                  src={img3}
+                  src={import.meta.env.VITE_BASE_URL + imageSlider[2]}
                 />
               </motion.div>
               <Button
@@ -523,8 +522,8 @@ export default function Home() {
         <SwiperSlide className="swiper-slide4">
           {videoFr ? (
             <Box>
-              <video autoPlay loop muted posta={vid1}>
-                <source src={vid1} />
+              <video autoPlay loop muted posta={import.meta.env.VITE_BASE_URL + videoSlider[3]}>
+                <source src={import.meta.env.VITE_BASE_URL + videoSlider[3]} />
               </video>
               <Button
                 onClick={handelVideoFr}
@@ -686,7 +685,7 @@ export default function Home() {
                     transform: "translate(50%)",
                     bottom: 1,
                   }}
-                  src={img4}
+                  src={import.meta.env.VITE_BASE_URL + imageSlider[3]}
                 />
               </motion.div>
               <Button

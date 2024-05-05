@@ -8,9 +8,9 @@ import Dasbord from "./Page/Dashbord"
 import ProductDetail from "./Page/ProductDetail"
 import Products from "./Page/Products";
 import NotPage404 from "./Page/NotPage404"
+import Auth from "./Page/Auth";
 import { Navigate, Route, Routes} from "react-router-dom";
 import {useSelector} from "react-redux"
-import Auth from "./Sore/Slices/Auth";
 
 export default function App() {
   const {token} = useSelector(state=>state.auth)

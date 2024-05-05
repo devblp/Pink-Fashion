@@ -4,5 +4,13 @@
     display: flex;
     flex-wrap: wrap;
 }
+.link-navbar {
+    margin: 10px;
+    text-decoration: none;
+    color: #ffffff;
+}
+.link-navbar:hover {
+    color: #F9C7DB;
+}
 
 /* test */

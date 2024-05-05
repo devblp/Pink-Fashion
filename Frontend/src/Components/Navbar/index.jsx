@@ -1,63 +1,13 @@
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import { styled, alpha } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
-import { Button } from "@mui/material";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import { Button, Box, MenuItem, Menu, Typography, Toolbar, AppBar, Avatar } from "@mui/material";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import { Fragment } from "react";
 import "./style.css";
-import { Link } from "react-router-dom";
+import {useNavigate, Link } from "react-router-dom";
+import {useSelector} from "react-redux"
 
 export default function Footer() {
-  const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: 20,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-  }));
-
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 1),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    right: 0,
-    background: "#FFAFCF",
-    borderRadius: 100,
-  }));
-
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(1)})`,
-      paddingRight: `calc(1em + ${theme.spacing(3)})`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("md")]: {
-        width: "20ch",
-      },
-    },
-  }));
-
+  const {token} = useSelector(state=>state.auth)
+  const navigate = useNavigate()
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
       {(PopupState) => (
@@ -95,7 +45,7 @@ export default function Footer() {
                       ":hover": { color: "#FFAFCF",backgroundColor:"rgba(0, 0, 0, 0)", },
                     }}
                   >
-                    <Link to={"/"}>Home</Link>
+                    <Link className="link-navbar" to={"/"}>Home</Link>
                   </Button>
                   <Button
                     disableRipple
@@ -112,7 +62,7 @@ export default function Footer() {
                     }}
                     {...bindTrigger(PopupState)}
                   >
-                    <Link to={"/products/:detailId/:detailName"}>Shop</Link>
+                    <Link className="link-navbar" to={"/products/:detailId/:detailName"}>Shop</Link>
                   </Button>
                   <Menu {...bindMenu(PopupState)}>
                     <MenuItem
@@ -142,7 +92,7 @@ export default function Footer() {
                       ":hover": { color: "#FFAFCF",backgroundColor:"rgba(0, 0, 0, 0)", },
                     }}
                   >
-                    Abous us
+                    <Link className="link-navbar" to={"/abaut"}>Abous us</Link>
                   </Button>
                   <Button
                     disableRipple
@@ -152,22 +102,15 @@ export default function Footer() {
                       padding:2,
                       color: "white",
                       display: "block",
-                      ":hover": { color: "#FFAFCF",backgroundColor:"rgba(0, 0, 0, 0)", },
+                      ":hover": { color: "#F9C7DB",backgroundColor:"rgba(0, 0, 0, 0)", },
                     }}
                   >
-                    Contact
+                    <Link className="link-navbar" to={"/products/:detailId/:detailName"}>Contact</Link>
                   </Button>
                 </Box>
-                <Box>
-                  <Search>
-                    <SearchIconWrapper>
-                      <SearchIcon />
-                    </SearchIconWrapper>
-                    <StyledInputBase
-                      placeholder="Search..."
-                      inputProps={{ "aria-label": "search" }}
-                    />
-                  </Search>
+                <Box  sx={{backgroundColor:"#323232d7",width:"200px",height:"44px",borderRadius:"20px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                    <Avatar/>
+                    <Button onClick={()=>token?navigate("/dashbord"):navigate("/auth")} disableRipple sx={{color: "white",":hover": { color: "#F9C7DB",backgroundColor:"rgba(0, 0, 0, 0)", },}}><Typography sx={{px:"20px",fontSize:"13px"}}>{token?null:"Login / LogOut"}</Typography></Button>
                 </Box>
               </Toolbar>
             </AppBar>
