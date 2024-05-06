@@ -824,6 +824,38 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiImgAuthBackgruondImgAuthBackgruond
+  extends Schema.CollectionType {
+  collectionName: 'img_auth_backgruonds';
+  info: {
+    singularName: 'img-auth-backgruond';
+    pluralName: 'img-auth-backgruonds';
+    displayName: 'imgAuthBackgruond';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    imgLogin: Attribute.Media;
+    imgSigUp: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::img-auth-backgruond.img-auth-backgruond',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::img-auth-backgruond.img-auth-backgruond',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiProductProduct extends Schema.CollectionType {
   collectionName: 'products';
   info: {
@@ -916,6 +948,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::category.category': ApiCategoryCategory;
+      'api::img-auth-backgruond.img-auth-backgruond': ApiImgAuthBackgruondImgAuthBackgruond;
       'api::product.product': ApiProductProduct;
       'api::slider.slider': ApiSliderSlider;
     }

@@ -70,7 +70,7 @@ export default function Footer() {
                     >
                       Profile
                     </MenuItem>
-                    <MenuItem  onClick={PopupState.close}>My account</MenuItem>
+                    <MenuItem  onClick={PopupState.close}>ss</MenuItem>
                     <MenuItem onClick={PopupState.close}>Logout</MenuItem>
                     <MenuItem onClick={PopupState.close}>Logout</MenuItem>
                     <MenuItem onClick={PopupState.close}>Logout</MenuItem>
@@ -110,7 +110,7 @@ export default function Footer() {
                 </Box>
                 <Box  sx={{backgroundColor:"#323232d7",width:"200px",height:"44px",borderRadius:"20px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                     <Avatar/>
-                    <Button onClick={()=>token?navigate("/dashbord"):navigate("/auth")} disableRipple sx={{color: "white",":hover": { color: "#F9C7DB",backgroundColor:"rgba(0, 0, 0, 0)", },}}><Typography sx={{px:"20px",fontSize:"13px"}}>{token?null:"Login / LogOut"}</Typography></Button>
+                    <Button onClick={()=>navigate("/auth")} disableRipple sx={{color: "white",":hover": { color: "#F9C7DB",backgroundColor:"rgba(0, 0, 0, 0)", },}}><Typography sx={{px:"20px",fontSize:"13px"}}>{token?null:"Login / LogOut"}</Typography></Button>
                 </Box>
               </Toolbar>
             </AppBar>

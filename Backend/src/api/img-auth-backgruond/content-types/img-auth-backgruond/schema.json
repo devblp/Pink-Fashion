@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "img_auth_backgruonds",
+  "info": {
+    "singularName": "img-auth-backgruond",
+    "pluralName": "img-auth-backgruonds",
+    "displayName": "imgAuthBackgruond"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "imgLogin": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "imgSigUp": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
