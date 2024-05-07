@@ -25,14 +25,16 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import React, { useEffect, useState } from "react";
 import userFromFields from "../../../Utils/useFromFields";
 import fetchData from "../../../Utils/fetchData";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Toast from "../../../Components/Toast";
 
 export default function Login() {
   const [users, handelCheng] = userFromFields();
   console.log(users);
 
   const [imgAuth, setImgAuth] = useState();
+  const [toast, setToast] = useState({ type: "info", message: " " });
+  console.log(toast);
   useEffect(() => {
     (async () => {
       const res = await fetchData("img-auth-backgruonds?populate=*");
@@ -42,20 +44,24 @@ export default function Login() {
     })();
   }, []);
 
-  const handleLogin = async () => {
+  const HandleLogin = async () => {
+    
     try {
+      setToast({ type: "info", message: " " })
       if (users.password && users.identifier) {
+        
         const {data} = await fetchData("auth/local",{users});
         console.log(data);
         if (data.jwt) {
           
-          toast.success("Logged in successfully!", {
-            hideProgressBar: true,
-          });
+         console.log("ok");
         }
+      }else {
+        
       }
     } catch (error) {
-      
+      setToast({type:"error",message:error.message})
+      console.log("no");
     }
   };
   
@@ -131,7 +137,7 @@ export default function Login() {
             </FormControl>
 
             <Button
-              onClick={handleLogin}
+              onClick={HandleLogin}
               sx={{
                 backgroundColor: "#FFAFCE",
                 color: "black",
@@ -142,6 +148,7 @@ export default function Login() {
             >
               Login
             </Button>
+            <Toast type={toast.type} message={toast.message}/>
             <FormControlLabel control={<Checkbox />} label="Save account" />
 
             <Box sx={{ width: 300, borderBottom: 1 }} />
@@ -159,6 +166,7 @@ export default function Login() {
             <Typography>
               Have an account?<Link to={"/sign-up"}>sign up</Link>
             </Typography>
+
           </Box>
         </Grid>
       </Grid>
