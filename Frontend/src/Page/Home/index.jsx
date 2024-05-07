@@ -70,8 +70,6 @@ export default function Home() {
   const videoSlider = sliders
     ? sliders?.map((e) => e?.attributes?.video?.data?.attributes?.url)
     : [];
-  const brand = brands ? brands.map((e) => console.log(e)) : [];
-  console.log(brand);
   return (
     <Box>
       <Swiper
