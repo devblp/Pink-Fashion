@@ -788,6 +788,37 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiBrandImgBrandImg extends Schema.CollectionType {
+  collectionName: 'brand_imgs';
+  info: {
+    singularName: 'brand-img';
+    pluralName: 'brand-imgs';
+    displayName: 'BrandImg';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    image: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::brand-img.brand-img',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::brand-img.brand-img',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Schema.CollectionType {
   collectionName: 'categories';
   info: {
@@ -947,6 +978,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::brand-img.brand-img': ApiBrandImgBrandImg;
       'api::category.category': ApiCategoryCategory;
       'api::img-auth-backgruond.img-auth-backgruond': ApiImgAuthBackgruondImgAuthBackgruond;
       'api::product.product': ApiProductProduct;

@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "brand_imgs",
+  "info": {
+    "singularName": "brand-img",
+    "pluralName": "brand-imgs",
+    "displayName": "BrandImg",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

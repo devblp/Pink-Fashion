@@ -11,7 +11,6 @@ import "swiper/css/pagination";
 import "swiper/less/pagination";
 import "./style.css";
 
-
 import brand1 from "../../img/brand1.png";
 import brand2 from "../../img/brand2.png";
 import brand3 from "../../img/brand3.png";
@@ -48,32 +47,47 @@ export default function Home() {
   const handelVideoFr = () => {
     setVideoFr(!videoFr);
   };
-  const [sliders,setSliders] = useState()
-  
-  useEffect(()=>{
-    (async()=>{
-      const res = await fetchData("sliders?populate=*")
-      setSliders(res.data)
-    })()
-  },[])
-  const imageSlider = sliders? sliders?.map((e)=>(e?.attributes?.image?.data?.attributes?.url)) : []
-  const videoSlider = sliders? sliders?.map((e)=>(e?.attributes?.video?.data?.attributes?.url)) : []
-
-
-
+  const [sliders, setSliders] = useState();
+  const [brands, setBrands] = useState();
+  console.log(brands);
+  useEffect(() => {
+    (async () => {
+      const res = await fetchData("sliders?populate=*");
+      setSliders(res.data);
+    })();
+  }, []);
+  useEffect(() => {
+    (async () => {
+      const res = await fetchData("brand-imgs?populate=*");
+      if (res) {
+        setBrands(res.data);
+      }
+    })();
+  }, []);
+  const imageSlider = sliders
+    ? sliders?.map((e) => e?.attributes?.image?.data?.attributes?.url)
+    : [];
+  const videoSlider = sliders
+    ? sliders?.map((e) => e?.attributes?.video?.data?.attributes?.url)
+    : [];
+  const brand = brands ? brands.map((e) => console.log(e)) : [];
+  console.log(brand);
   return (
     <Box>
-      
       <Swiper
         pagination={pagination}
         modules={[Pagination]}
         className="slider-swiper"
       >
-        
         <SwiperSlide className="swiper-slide1">
           {video ? (
             <Box>
-              <video autoPlay loop muted posta={import.meta.env.VITE_BASE_URL + videoSlider[0]}>
+              <video
+                autoPlay
+                loop
+                muted
+                posta={import.meta.env.VITE_BASE_URL + videoSlider[0]}
+              >
                 <source src={import.meta.env.VITE_BASE_URL + videoSlider[0]} />
               </video>
               <Button
@@ -151,7 +165,6 @@ export default function Home() {
                 animate={{ opacity: 1, y: 800 }}
                 transition={{ duration: 0.7 }}
               >
-                
                 <Avatar
                   sx={{
                     width: 700,
@@ -200,7 +213,12 @@ export default function Home() {
         <SwiperSlide className="swiper-slide2">
           {videoTo ? (
             <Box>
-              <video autoPlay loop muted posta={import.meta.env.VITE_BASE_URL + videoSlider[1]}>
+              <video
+                autoPlay
+                loop
+                muted
+                posta={import.meta.env.VITE_BASE_URL + videoSlider[1]}
+              >
                 <source src={import.meta.env.VITE_BASE_URL + videoSlider[1]} />
               </video>
               <Button
@@ -350,7 +368,12 @@ export default function Home() {
         <SwiperSlide className="swiper-slide3">
           {videoTr ? (
             <Box>
-              <video autoPlay loop muted posta={import.meta.env.VITE_BASE_URL + videoSlider[2]}>
+              <video
+                autoPlay
+                loop
+                muted
+                posta={import.meta.env.VITE_BASE_URL + videoSlider[2]}
+              >
                 <source src={import.meta.env.VITE_BASE_URL + videoSlider[2]} />
               </video>
               <Button
@@ -522,7 +545,12 @@ export default function Home() {
         <SwiperSlide className="swiper-slide4">
           {videoFr ? (
             <Box>
-              <video autoPlay loop muted posta={import.meta.env.VITE_BASE_URL + videoSlider[3]}>
+              <video
+                autoPlay
+                loop
+                muted
+                posta={import.meta.env.VITE_BASE_URL + videoSlider[3]}
+              >
                 <source src={import.meta.env.VITE_BASE_URL + videoSlider[3]} />
               </video>
               <Button
@@ -741,7 +769,7 @@ export default function Home() {
                 height: 30,
                 borderRadius: 0,
               }}
-              src={brand1}
+              src={import.meta.env.VITE_BASE_URL}
             />
           </SwiperSlide>
           <SwiperSlide className="brand">
@@ -786,12 +814,16 @@ export default function Home() {
           </SwiperSlide>
         </Swiper>
       </Box>
-      <Box sx={{px:10}}>
+      <Box sx={{ px: 10 }}>
         <Grid container spacing={2} my={5}>
           <Grid container xs={7}>
             <Grid xs={12}>
               <Box
-                sx={{ position: "relative", bgcolor: "#E2E2E2", height: "318px" }}
+                sx={{
+                  position: "relative",
+                  bgcolor: "#E2E2E2",
+                  height: "318px",
+                }}
               >
                 <Typography
                   sx={{
@@ -856,7 +888,11 @@ export default function Home() {
             </Grid>
             <Grid xs={6}>
               <Box
-                sx={{ position: "relative", bgcolor: "#E2E2E2", height: "308px" }}
+                sx={{
+                  position: "relative",
+                  bgcolor: "#E2E2E2",
+                  height: "308px",
+                }}
               >
                 <Typography
                   fontFamily={"Actor"}
@@ -921,7 +957,11 @@ export default function Home() {
             </Grid>
             <Grid xs={6}>
               <Box
-                sx={{ position: "relative", bgcolor: "#E2E2E2", height: "308px" }}
+                sx={{
+                  position: "relative",
+                  bgcolor: "#E2E2E2",
+                  height: "308px",
+                }}
               >
                 <Typography
                   fontFamily={"Acme"}
@@ -976,7 +1016,11 @@ export default function Home() {
           <Grid container xs={5}>
             <Grid xs={12}>
               <Box
-                sx={{ position: "relative", bgcolor: "#E2E2E2", height: "645px" }}
+                sx={{
+                  position: "relative",
+                  bgcolor: "#E2E2E2",
+                  height: "645px",
+                }}
               >
                 <Typography
                   fontFamily={"Acme"}
@@ -1042,8 +1086,8 @@ export default function Home() {
             New Arrivals
           </Typography>
           <Typography
-          variant="p"
-          component="div"
+            variant="p"
+            component="div"
             sx={{
               fontFamily: "Acme",
               textAlign: "center",
@@ -1142,14 +1186,15 @@ export default function Home() {
               </Grid>
             </Grid>
           </Box>
-          <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            flexDirection:"row",
-            flexWrap:"wrap",
-            gap:"50px"
-          }}>
-          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              gap: "50px",
+            }}
+          ></Box>
           <Box display={"flex"} justifyContent={"center"} py={4}>
             <Button
               variant="contained"

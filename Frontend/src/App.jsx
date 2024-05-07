@@ -17,7 +17,7 @@ export default function App() {
   const {token} = useSelector(state=>state.auth)
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/abaut" element={<Abaut/>} />
@@ -30,7 +30,7 @@ export default function App() {
         <Route path="/sign-up" element={<SignUp/>}/>
         <Route path="*" element={<NotPage404/>}/>
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
