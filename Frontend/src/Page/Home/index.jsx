@@ -25,7 +25,7 @@ import fetchData from "../../Utils/fetchData";
 import CardDetail from "../../Components/CardDetail";
 
 export default function Home() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
@@ -52,7 +52,7 @@ export default function Home() {
   };
   const [sliders, setSliders] = useState();
   const [brands, setBrands] = useState();
-  const [cards,setCards] = useState();
+  const [cards, setCards] = useState();
   console.log(cards);
   useEffect(() => {
     (async () => {
@@ -68,20 +68,28 @@ export default function Home() {
       }
     })();
   }, []);
-  useEffect(()=>{
-    (async()=>{
+  useEffect(() => {
+    (async () => {
       const res = await fetchData("cards?populate=*");
-      setCards(res.data)
-    })()
-  },[])
+      setCards(res.data);
+    })();
+  }, []);
   const imageSlider = sliders
     ? sliders?.map((e) => e?.attributes?.image?.data?.attributes?.url)
     : [];
   const videoSlider = sliders
     ? sliders?.map((e) => e?.attributes?.video?.data?.attributes?.url)
     : [];
-    const card = cards?.map((e,index)=>(<CardDetail key={index} title={e.attributes.title} brandName={e.attributes.brandName} current={e.attributes.current} image={e.attributes.image.data.attributes.url}/>))
-    console.log(card);
+  const card = cards?.map((e, index) => (
+    <CardDetail
+      key={index}
+      title={e.attributes.title}
+      brandName={e.attributes.brandName}
+      current={e.attributes.current}
+      image={e.attributes.image.data.attributes.url}
+    />
+  ));
+  console.log(card);
   return (
     <Box>
       <Swiper
@@ -1205,7 +1213,6 @@ export default function Home() {
               gap: "50px",
             }}
           >
-
             {card}
           </Box>
           <Box display={"flex"} justifyContent={"center"} py={4}>
@@ -1219,12 +1226,53 @@ export default function Home() {
                 color: "black",
                 ":hover": { bgcolor: "#FFAFCF" },
               }}
-              onClick={()=>navigate("/products")}
+              onClick={() => navigate("/products")}
             >
               View More
             </Button>
           </Box>
         </Box>
+      </Box>
+      <Box sx={{ my: 6, backgroundColor: "#EAE9E9", width: 1500, height: 451 }}>
+        <Grid container spacing={2} my={6} mx={20}>
+          <Grid xs={4}>
+            <Box>
+              <Typography component={"h4"}>Deals Of The Month</Typography>
+              <Typography component={"p"}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <br />
+                Scelerisque duis ultrices sollicitudin aliquam sem . Scelerisque
+                <br />
+                duis ultrices sollicitudin
+                <br />
+              </Typography>
+              <Button
+                variant="contained"
+                sx={{
+                  bgcolor: "#FFAFCF",
+                  borderRadius: 20,
+                  width: "207px",
+                  height: "56px",
+                  color: "black",
+                  ":hover": { bgcolor: "#FFAFCF" },
+                }}
+                onClick={() => {}}
+              >
+                Buy Now
+              </Button>
+              <Typography component={"h4"}>
+                Hurry, Before It’s Too Late!
+              </Typography>
+              <Box component={"div"}></Box>
+            </Box>
+          </Grid>
+          <Grid xs={8}>
+            <Swiper>
+              <SwiperSlide>s</SwiperSlide>
+              <SwiperSlide>s</SwiperSlide>
+            </Swiper>
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );
