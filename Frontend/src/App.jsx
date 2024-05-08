@@ -24,7 +24,7 @@ export default function App() {
         <Route path="/cart" element={<Cart/>} />
         <Route path="/dashbord" element={token?<Dasbord/>:<Navigate to={"/auth"}/>}/>
         <Route path="/product-detail/:id/name" element={<ProductDetail/>}/>
-        <Route path="/products/:detailId/:detailName" element={<Products/>} />
+        <Route path="/products" element={<Products/>} />
         <Route path="/auth" element={!token?<Auth/>:<Navigate to={"/dashbord"}/>}/>
         <Route path="/search/:query" element={!token?<Auth/>:<Navigate to={"/"}/>}/>
         <Route path="/sign-up" element={<SignUp/>}/>

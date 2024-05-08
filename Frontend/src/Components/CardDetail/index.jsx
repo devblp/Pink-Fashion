@@ -11,7 +11,8 @@ import {
   import StarIcon from "@mui/icons-material/Star";
   import React, { useState } from "react";
   
-  export default function CardDetail({ name, img, current, brandName }) {
+  
+  export default function CardDetail({ title, image, current, brandName }) {
     const [valueRating, setValueRating] = useState(3);
     return (
       <div>
@@ -28,7 +29,7 @@ import {
             alt="green iguana"
             width="336px"
             height="244px"
-            image={`https://${img}`}
+            image={import.meta.env.VITE_BASE_URL + image}
             sx={{ borderRadius: "10px" }}
           />
           <CardContent>
@@ -39,7 +40,7 @@ import {
                 component="div"
                 sx={{ fontFamily: "Acme" }}
               >
-                {name.substring(0, 20)}
+                {title}
               </Typography>
               <Rating
                 name="hover-feedback"
@@ -74,7 +75,7 @@ import {
             sx={{ display: "flex", justifyContent: "space-between", p: 2 }}
           >
             <Typography gutterBottom sx={{ fontFamily: "Acme" }}>
-              {current}
+              $ {current}
             </Typography>
             <Button
               variant="contained"
@@ -87,6 +88,7 @@ import {
                 fontFamily: "Acme",
                 fontSize: "10px",
               }}
+              
             >
               Buy
             </Button>

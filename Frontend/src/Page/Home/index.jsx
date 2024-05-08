@@ -5,6 +5,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -24,6 +25,7 @@ import fetchData from "../../Utils/fetchData";
 import CardDetail from "../../Components/CardDetail";
 
 export default function Home() {
+  const navigate = useNavigate()
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
@@ -78,7 +80,8 @@ export default function Home() {
   const videoSlider = sliders
     ? sliders?.map((e) => e?.attributes?.video?.data?.attributes?.url)
     : [];
-    const card = cards? cards?.map((e,index)=>{<CardDetail key={index} name={e.attributes.title} brandName={e.attributes.brandName} current={e.attributes.current} img={e.attributes.image.da}/>}) : []
+    const card = cards?.map((e,index)=>(<CardDetail key={index} title={e.attributes.title} brandName={e.attributes.brandName} current={e.attributes.current} image={e.attributes.image.data.attributes.url}/>))
+    console.log(card);
   return (
     <Box>
       <Swiper
@@ -1203,7 +1206,7 @@ export default function Home() {
             }}
           >
 
-            
+            {card}
           </Box>
           <Box display={"flex"} justifyContent={"center"} py={4}>
             <Button
@@ -1216,6 +1219,7 @@ export default function Home() {
                 color: "black",
                 ":hover": { bgcolor: "#FFAFCF" },
               }}
+              onClick={()=>navigate("/products")}
             >
               View More
             </Button>
