@@ -103,7 +103,6 @@ export default function SignUp() {
               label="UserName"
               type="text"
               name="username"
-              value={users.username}
               onChange={handelCheng}
               sx={{ m: 1, width: "40ch" }}
             />
@@ -111,7 +110,6 @@ export default function SignUp() {
               label="Email"
               type="email"
               name="email"
-              value={users.email}
               onChange={handelCheng}
               sx={{ m: 1, width: "40ch" }}
             />
@@ -124,7 +122,6 @@ export default function SignUp() {
                 type={showPassword ? "text" : "password"}
                 name="password"
                 onChange={handelCheng}
-                value={users.password}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton

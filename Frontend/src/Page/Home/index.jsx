@@ -21,6 +21,7 @@ import imgCardShop2 from "../../img/imgCardShop2.png";
 import imgCardShop3 from "../../img/imgCardShop3.png";
 import imgCardShop4 from "../../img/imgCardShop4.png";
 import fetchData from "../../Utils/fetchData";
+import CardDetail from "../../Components/CardDetail";
 
 export default function Home() {
   const pagination = {
@@ -49,7 +50,8 @@ export default function Home() {
   };
   const [sliders, setSliders] = useState();
   const [brands, setBrands] = useState();
-  console.log(brands);
+  const [cards,setCards] = useState();
+  console.log(cards);
   useEffect(() => {
     (async () => {
       const res = await fetchData("sliders?populate=*");
@@ -64,12 +66,19 @@ export default function Home() {
       }
     })();
   }, []);
+  useEffect(()=>{
+    (async()=>{
+      const res = await fetchData("cards?populate=*");
+      setCards(res.data)
+    })()
+  },[])
   const imageSlider = sliders
     ? sliders?.map((e) => e?.attributes?.image?.data?.attributes?.url)
     : [];
   const videoSlider = sliders
     ? sliders?.map((e) => e?.attributes?.video?.data?.attributes?.url)
     : [];
+    const card = cards? cards?.map((e,index)=>{<CardDetail key={index} name={e.attributes.title} brandName={e.attributes.brandName} current={e.attributes.current} img={e.attributes.image.da}/>}) : []
   return (
     <Box>
       <Swiper
@@ -1192,7 +1201,10 @@ export default function Home() {
               flexWrap: "wrap",
               gap: "50px",
             }}
-          ></Box>
+          >
+
+            
+          </Box>
           <Box display={"flex"} justifyContent={"center"} py={4}>
             <Button
               variant="contained"

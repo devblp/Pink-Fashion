@@ -724,6 +724,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'plugin::users-permissions.role'
     >;
     jwt: Attribute.Text;
+    profil: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -815,6 +816,31 @@ export interface ApiBrandImgBrandImg extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCardCard extends Schema.CollectionType {
+  collectionName: 'cards';
+  info: {
+    singularName: 'card';
+    pluralName: 'cards';
+    displayName: 'Card';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    image: Attribute.Media;
+    title: Attribute.String;
+    brandName: Attribute.String;
+    current: Attribute.Decimal;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -979,6 +1005,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::brand-img.brand-img': ApiBrandImgBrandImg;
+      'api::card.card': ApiCardCard;
       'api::category.category': ApiCategoryCategory;
       'api::img-auth-backgruond.img-auth-backgruond': ApiImgAuthBackgruondImgAuthBackgruond;
       'api::product.product': ApiProductProduct;

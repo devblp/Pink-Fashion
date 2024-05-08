@@ -6,7 +6,7 @@ import {useNavigate, Link } from "react-router-dom";
 import {useSelector} from "react-redux"
 
 export default function Footer() {
-  const {token} = useSelector(state=>state.auth)
+  const {token,user,avatar} = useSelector(state=>state.auth)
   const navigate = useNavigate()
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
@@ -109,8 +109,8 @@ export default function Footer() {
                   </Button>
                 </Box>
                 <Box  sx={{backgroundColor:"#323232d7",width:"200px",height:"44px",borderRadius:"20px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                    <Avatar/>
-                    <Button onClick={()=>navigate("/auth")} disableRipple sx={{color: "white",":hover": { color: "#F9C7DB",backgroundColor:"rgba(0, 0, 0, 0)", },}}><Typography sx={{px:"20px",fontSize:"13px"}}>{token?null:"Login / LogOut"}</Typography></Button>
+                    <Avatar src={avatar}/>
+                    <Button onClick={()=>navigate("/auth")} disableRipple sx={{color: "white",":hover": { color: "#F9C7DB",backgroundColor:"rgba(0, 0, 0, 0)", },}}><Typography sx={{px:"20px",fontSize:"13px"}}>{token?user:"Login / LogOut"}</Typography></Button>
                 </Box>
               </Toolbar>
             </AppBar>

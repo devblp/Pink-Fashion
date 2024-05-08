@@ -27,13 +27,14 @@ import userFromFields from "../../../Utils/useFromFields";
 import fetchData from "../../../Utils/fetchData";
 import 'react-toastify/dist/ReactToastify.css';
 import Toast from "../../../Components/Toast";
+import { login } from "../../../Sore/Slices/Auth";
+import { useDispatch } from "react-redux";
 
 export default function Login() {
-  const [users, handelCheng] = userFromFields();
-  console.log(users);
-
   const [imgAuth, setImgAuth] = useState();
+  const [users, handelCheng] = userFromFields();
   const [toast, setToast] = useState({ type: "info", message: " " });
+  const dispatch = useDispatch()
   console.log(toast);
   useEffect(() => {
     (async () => {
@@ -45,19 +46,21 @@ export default function Login() {
   }, []);
 
   const HandleLogin = async () => {
-    
     try {
       setToast({ type: "info", message: " " })
       if (users.password && users.identifier) {
-        
-        const {data} = await fetchData("auth/local",{users});
-        console.log(data);
-        if (data.jwt) {
-          
-         console.log("ok");
+        const res = await fetchData("auth/local?populate=*" , {
+          method: 'POST',
+          body: JSON.stringify(users),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        } );
+        if (res.jwt) {
+          setToast({ type: "success", message: "Login Success"})
+          console.log(res);
+          dispatch(login({user:res.user.username,token:res.jwt,avatar:res.user.jwt}))
         }
-      }else {
-        
       }
     } catch (error) {
       setToast({type:"error",message:error.message})
@@ -105,10 +108,9 @@ export default function Login() {
             />
             <TextField
               label="UserName"
-              type="text"
+              type="email"
               name="identifier"
               onChange={handelCheng}
-              defaultValue="Success"
               sx={{ m: 1, width: "40ch" }}
             />
             <FormControl sx={{ m: 1, width: "40ch" }} variant="outlined">
