@@ -1239,7 +1239,7 @@ export default function Home() {
             <Box>
               <Typography component={"h4"}>Deals Of The Month</Typography>
               <Typography component={"p"}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.s
                 <br />
                 Scelerisque duis ultrices sollicitudin aliquam sem . Scelerisque
                 <br />
@@ -1261,15 +1261,15 @@ export default function Home() {
                 Buy Now
               </Button>
               <Typography component={"h4"}>
-                Hurry, Before It’s Too Late!
+                Hurry, Before It’s Too Late!s
               </Typography>
               <Box component={"div"}></Box>
             </Box>
           </Grid>
           <Grid xs={8}>
             <Swiper>
-              <SwiperSlide>s</SwiperSlide>
-              <SwiperSlide>s</SwiperSlide>
+              <SwiperSlide>ssss</SwiperSlide>
+              <SwiperSlide>s,,,</SwiperSlide>
             </Swiper>
           </Grid>
         </Grid>
