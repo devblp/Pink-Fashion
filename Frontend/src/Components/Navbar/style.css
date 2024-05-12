@@ -7,8 +7,30 @@
 .link-navbar {
     margin: 10px;
     text-decoration: none;
-    color: #ff92bc;
+    color: white;
 }
+.link-navbar-icon {
+	color: black;
+}
+.link-to{
+	color: #ff92bc;
+}
+.filter-menu-nav {
+	position: relative;
+}
+.filter-menu-nav::before {
+	content: "";
+	position: absolute;
+	bottom: -25px;
+	left: 0;
+	height: 2px;
+	width: 0%;
+	background-color: #ff92bc;
+	transition: all .5s;
+  }
+  .filter-menu-nav:hover:before{
+	width: 100%;
+  }
 
 
 /* test */
