@@ -18,8 +18,9 @@ export default function App() {
   const theme = createTheme({
     palette:{
       primary: {
-        mn: "#ff92bc",
+        main: "#ff92bc",
         bk:"#000000",
+        bkNero:"#1f1f1f",
         ws:"#ffffff",
       },
     }
