@@ -10,12 +10,16 @@ import {
   Icon,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import {  useState } from "react";
+import { useState } from "react";
 import "./style.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import imageUsa from "../../img/USA.png";
 import logo from "../../img/logo.png";
+import Frame1 from "../../img/Frame1.png"
+import Frame2 from "../../img/Frame3.png"
+
+
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
@@ -42,7 +46,7 @@ export default function Footer() {
           xs={12}
           sx={{ bgcolor: "primary.bk", color: "primary.ws", height: 30 }}
         >
-          <Grid item xs={7} sx={{ display: "flex", justifyContent: "right" }}>
+          <Grid xs={7} sx={{ display: "flex", justifyContent: "right" }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Typography>Get early access on launches and offers.</Typography>
               <Link to={"/auth"} className="link-navbar link-to">
@@ -176,9 +180,35 @@ export default function Footer() {
               keepMounted
               open={open}
               onClose={handelClosMegaMenu}
-              PaperProps={{sx:{width: '100%' ,left:0, right: 0,display:"block"}}}
             >
-              <MenuItem >s</MenuItem>
+              <Grid container xs={12} py={1}>
+                <Grid container xs={3} sx={{display:"flex" ,justifyContent:"center"}}>
+                  <Box >
+                    <Typography component={"h4"} sx={{color:"#737373",py:3,fontSize:"10px"}}>HIGHLIGHTS</Typography>
+                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"} >The Gift Guide</Typography></Link>
+                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>New Bottoms</Typography></Link>
+                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>New Tops</Typography></Link>
+                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>T-Shirt Bundles</Typography></Link>
+                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>Under $100</Typography></Link>
+                  </Box>
+                </Grid>
+                <Grid container xs={4} sx={{display:"flex" ,justifyContent:"center",}}>
+                  <Box>
+                    <Typography component={"h4"} sx={{color:"#737373",py:3,fontSize:"10px"}}>FEATURED SHOPS</Typography>
+                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>The Holiday Outfit Edit</Typography></Link>
+                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>Giftable Sweaters</Typography></Link>
+                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>Uniform & Capsule</Typography></Link>
+                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>The Performance Chino Shop</Typography></Link>
+                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>Top Rated Men’s Clothing</Typography></Link>
+                  </Box>
+                </Grid>
+                <Grid container xs={5} sx={{display:"flex" ,justifyContent:"center" ,flexDirection:"row"}}>
+                  <Box sx={{display:"flex" ,gap:3}}>
+                    <Link to={""}><Avatar src={Frame1} sx={{width:"262px",height:"262px",borderRadius:0}}/></Link>
+                    <Link to={""}><Avatar src={Frame2} sx={{width:"262px",height:"262px",borderRadius:0}}/></Link>
+                  </Box>
+                </Grid>
+              </Grid>
             </Menu>
           </Box>
         </Grid>

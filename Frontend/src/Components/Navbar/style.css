@@ -1,27 +1,43 @@
 .MuiMenu-list {
-    padding: 20px !important;
-    width: 200px;
-    display: flex;
-    flex-wrap: wrap;
+	padding: 20px !important;
+	width: 200px;
+	display: flex;
+	flex-wrap: wrap;
 }
+
 .link-navbar {
-    margin: 10px;
-    text-decoration: none;
-    color: white;
+	margin: 10px;
+	text-decoration: none;
+	color: white;
 }
+
 .link-navbar-icon {
 	color: black;
 }
-.link-to{
+
+.link-to {
 	color: #ff92bc;
 }
+
 .link-navbar-menu {
 	color: black;
 	text-decoration: none;
 }
+
+.link-navbar-menu-mega {
+	color: black;
+	text-decoration: none;
+	
+}
+.link-navbar-menu-mega:hover{
+	color: #ff92bc;
+	transition: all 0.2s;
+}
+
 .filter-menu-nav {
 	position: relative;
 }
+
 .filter-menu-nav::before {
 	content: "";
 	position: absolute;
@@ -31,13 +47,21 @@
 	width: 0%;
 	background-color: #ff92bc;
 	transition: all .5s;
-  }
-  .filter-menu-nav:hover:before{
+}
+
+.filter-menu-nav:hover:before {
 	width: 100%;
-  }
+}
 
+.MuiMenu-paper {
+	left: 0;
+	right: 0;
+	width: 100%;
+}
+.MuiMenu-list {
+	width: 100%;
+}
 
-/* test */
 @font-face {
 	font-family: 'MaisonNeueBook';
 	src: url('../../Fonts/MaisonNeue-Book.woff') format('woff'),
@@ -45,6 +69,7 @@
 	font-weight: normal;
 	font-style: normal;
 }
+
 /* @font-face {
 	font-family: 'Maison Neue';
 	src: url('MaisonNeue-LightItalic.woff2') format('woff2'),
@@ -147,5 +172,5 @@
 
 
 .navbar {
-    font-family: 'MaisonNeueBook',sans-serif;
+	font-family: 'MaisonNeueBook', sans-serif;
 }
