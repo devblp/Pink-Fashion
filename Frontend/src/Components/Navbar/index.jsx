@@ -177,7 +177,6 @@ export default function Footer() {
             <Menu
               className="mega-menu"
               anchorEl={anchorEl}
-              keepMounted
               open={open}
               onClose={handelClosMegaMenu}
             >
