@@ -1,9 +1,10 @@
-.slider-swiper  {
+.slider-swiper {
     height: 617px;
     background-color: #1F1F1F;
     position: relative;
     color: white;
 }
+
 .brand-swiper .brand {
     display: flex;
     align-items: center;
@@ -20,8 +21,9 @@
     position: absolute !important;
     width: 0px !important;
     bottom: 30px !important;
-    left: 96% !important; 
+    left: 96% !important;
 }
+
 .swiper-pagination-bullet {
     padding-top: 5px;
     margin-top: 10px !important;
@@ -29,16 +31,16 @@
     width: 40px;
     height: 50px;
     border-radius: 18px;
-    border: solid 1px #ffffff; 
+    border: solid 1px #ffffff;
     opacity: 1;
-    
+
 }
 
 
 
 .swiper-pagination-bullet-active {
     background-color: #FFAFCF;
-    border: solid 1px #FFAFCF; 
+    border: solid 1px #FFAFCF;
 }
 
 .box {
@@ -48,16 +50,75 @@
     opacity: 0 !important;
 }
 
-.swiper-slide1 video,.swiper-slide2 video,.swiper-slide3 video ,.swiper-slide4 video  {
+.swiper-slide1 video,
+.swiper-slide2 video,
+.swiper-slide3 video,
+.swiper-slide4 video {
     width: 100%;
     height: 100%;
 }
 
+/* .item-swaper-slider-brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+@keyframes slides {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.brands {
+    overflow: hidden;
+    padding: 30px 0px;
+    white-space: nowrap;
+    position: relative;
+}
+
+.brands:before,
+.brands:after {
+    position: absolute;
+    top: 0;
+    content: '';
+    width: 250px;
+    height: 100%;
+    z-index: 2;
+}
+
+.brands:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255));
+}
+
+.brands:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(255, 255, 255));
+}
+
+.brand-items {
+    display: inline-block;
+    animation: 35s slides infinite linear;
+}
+
+.brands:hover .brand-items {
+    animation-play-state: paused;
+}
+
+.brand-items {
+    height: 100px;
+}
+
 
 @font-face {
-	font-family: 'MaisonNeueBook';
-	src: url('../../Fonts/MaisonNeue-Book.woff') format('woff'),
-		url('../../Fonts/MaisonNeue-Book.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'MaisonNeueBook';
+    src: url('../../Fonts/MaisonNeue-Book.woff') format('woff'),
+        url('../../Fonts/MaisonNeue-Book.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }

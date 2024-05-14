@@ -6,12 +6,16 @@ import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
-import SliderBrandLogo from "../../Components/SliderBrandLogo"
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/less/pagination";
 import "./style.css";
+import brand1 from "../../img/brand1.png";
+import brand2 from "../../img/brand2.png";
+import brand3 from "../../img/brand3.png";
+import brand4 from "../../img/brand4.png";
+import brand5 from "../../img/brand5.png";
 
 import fetchData from "../../Utils/fetchData";
 import CardDetail from "../../Components/CardDetail";
@@ -79,8 +83,10 @@ export default function Home() {
       image={e.attributes.image.data.attributes.url}
     />
   ));
-  const sliderBrand = brands? brands?.map((e)=>e?.attributes?.image?.data?.attributes?.url):[]
-  console.log(sliderBrand);
+  const sliderBrand = brands
+    ? brands?.map((e) => e?.attributes?.image?.data?.attributes?.url)
+    : [];
+
   return (
     <Box>
       <Swiper
@@ -759,20 +765,26 @@ export default function Home() {
           )}
         </SwiperSlide>
       </Swiper>
-      <Box className="brands-logo">
-        <Swiper
-          slidesPerView={4}
-          spaceBetween={30}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Pagination]}
-          className="mySwiper"
-        >
-          <SwiperSlide>
-            <Avatar src={img} />
-          </SwiperSlide>
-        </Swiper>
+      <Box component={"div"} className="brands">
+        <Box component={"div"} className="brand-items">
+          <Avatar src={brand1} />
+          <Avatar src={brand2} />
+          <Avatar src={brand3} />
+          <Avatar src={brand4} />
+          <Avatar src={brand5} />
+        </Box>
+        <Box component={"div"} className="brand-items">
+          <Avatar src={brand1} />
+          <Avatar src={brand2} />
+          <Avatar src={brand3} />
+          <Avatar src={brand4} />
+          <Avatar src={brand5} />
+          <Avatar src={brand1} />
+          <Avatar src={brand2} />
+          <Avatar src={brand3} />
+          <Avatar src={brand4} />
+          <Avatar src={brand5} />
+        </Box>
       </Box>
     </Box>
   );
