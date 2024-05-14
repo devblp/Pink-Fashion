@@ -15,6 +15,7 @@ import brandss from "../../img/brandA.png";
 
 import fetchData from "../../Utils/fetchData";
 import CardDetail from "../../Components/CardDetail";
+import CardCategory from "../../Components/CardCategory"
 
 export default function Home() {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ export default function Home() {
   const [sliders, setSliders] = useState();
   const [brands, setBrands] = useState();
   const [cards, setCards] = useState();
-  const [cartCategory , setCardCategory] = useState()
+  const [cartCategory, setCardCategory] = useState();
   useEffect(() => {
     (async () => {
       const res = await fetchData("sliders?populate=*");
@@ -89,7 +90,8 @@ export default function Home() {
   const sliderBrand = brands
     ? brands?.map((e) => e?.attributes?.image?.data?.attributes?.url)
     : [];
-
+  const cartCategorys = cartCategory? cartCategory?.map((e,index)=>(<CardCategory key={index} name={e.attributes.name} image={e.attributes.image.data.attributes.url}/>)):[]
+  console.log(cartCategory);
   return (
     <Box>
       <Swiper
@@ -853,8 +855,8 @@ export default function Home() {
               <Typography>Shop by Category</Typography>
             </Box>
           </Grid>
-          <Grid container xs={12} spacing={1}>
-            {""}
+          <Grid container xs={12} sx={{display:"flex",justifyContent:"center"}}>
+            {cartCategorys}
           </Grid>
         </Grid>
       </Box>
