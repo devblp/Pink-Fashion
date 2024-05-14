@@ -14,12 +14,11 @@ import { useState } from "react";
 import "./style.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 import imageUsa from "../../img/USA.png";
 import logo from "../../img/logo.png";
 import Frame1 from "../../img/Frame1.png"
 import Frame2 from "../../img/Frame3.png"
-
-
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import LocalMallIcon from "@mui/icons-material/LocalMall";

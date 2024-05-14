@@ -6,21 +6,13 @@ import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
+import SliderBrandLogo from "../../Components/SliderBrandLogo"
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/less/pagination";
 import "./style.css";
 
-import brand1 from "../../img/brand1.png";
-import brand2 from "../../img/brand2.png";
-import brand3 from "../../img/brand3.png";
-import brand4 from "../../img/brand4.png";
-import brand5 from "../../img/brand5.png";
-import imgCardShop1 from "../../img/imgCardShop1.png";
-import imgCardShop2 from "../../img/imgCardShop2.png";
-import imgCardShop3 from "../../img/imgCardShop3.png";
-import imgCardShop4 from "../../img/imgCardShop4.png";
 import fetchData from "../../Utils/fetchData";
 import CardDetail from "../../Components/CardDetail";
 
@@ -42,7 +34,6 @@ export default function Home() {
   };
   const handelVideoTo = () => {
     setVideoTo(!videoTo);
-    console.log(videoTo);
   };
   const handelVideoTr = () => {
     setVideoTr(!videoTr);
@@ -53,7 +44,6 @@ export default function Home() {
   const [sliders, setSliders] = useState();
   const [brands, setBrands] = useState();
   const [cards, setCards] = useState();
-  console.log(cards);
   useEffect(() => {
     (async () => {
       const res = await fetchData("sliders?populate=*");
@@ -89,7 +79,8 @@ export default function Home() {
       image={e.attributes.image.data.attributes.url}
     />
   ));
-  console.log(card);
+  const sliderBrand = brands? brands?.map((e)=>e?.attributes?.image?.data?.attributes?.url):[]
+  console.log(sliderBrand);
   return (
     <Box>
       <Swiper
@@ -114,8 +105,8 @@ export default function Home() {
                 sx={{
                   color: "white",
                   position: "absolute",
-                  bottom: "100px",
-                  left: "100px",
+                  bottom: "30px",
+                  left: "30px",
                   ":hover": {
                     background: "rgba(0, 0, 0, 0)",
                   },
@@ -202,8 +193,8 @@ export default function Home() {
                 sx={{
                   color: "white",
                   position: "absolute",
-                  bottom: "100px",
-                  left: "100px",
+                  bottom: "30px",
+                  left: "30px",
                   ":hover": {
                     background: "rgba(0, 0, 0, 0)",
                   },
@@ -245,8 +236,8 @@ export default function Home() {
                 sx={{
                   color: "white",
                   position: "absolute",
-                  bottom: "100px",
-                  left: "100px",
+                  bottom: "30px",
+                  left: "30px",
                   ":hover": {
                     background: "rgba(0, 0, 0, 0)",
                   },
@@ -283,7 +274,7 @@ export default function Home() {
                     right: "70%",
                     top: "110px",
                     transform: "translate(50%)",
-                    fontFamily: "Poppins",
+                    fontFamily: "'MaisonNeueBook', sans-serif",
                     fontSize: "91px",
                     fontWeight: "500",
                   }}
@@ -295,7 +286,7 @@ export default function Home() {
                     position: "absolute",
                     right: "57.5%",
                     top: "160px",
-                    fontFamily: "Poppins",
+                    fontFamily: "'MaisonNeueBook', sans-serif",
                     fontSize: "187PX",
                     color: "rgba(255, 255, 255, 0)",
                     WebkitTextStroke: "2px #FFAFCF",
@@ -308,7 +299,7 @@ export default function Home() {
                     position: "absolute",
                     right: "65%",
                     top: "400px",
-                    fontFamily: "Poppins",
+                    fontFamily: "'MaisonNeueBook', sans-serif",
                     fontSize: "20px",
                     fontWeight: "400",
                   }}
@@ -357,8 +348,8 @@ export default function Home() {
                 sx={{
                   color: "white",
                   position: "absolute",
-                  bottom: "100px",
-                  left: "100px",
+                  bottom: "30px",
+                  left: "30px",
                   ":hover": {
                     background: "rgba(0, 0, 0, 0)",
                   },
@@ -400,8 +391,8 @@ export default function Home() {
                 sx={{
                   color: "white",
                   position: "absolute",
-                  bottom: "100px",
-                  left: "100px",
+                  bottom: "30px",
+                  left: "30px",
                   ":hover": {
                     background: "rgba(0, 0, 0, 0)",
                   },
@@ -475,7 +466,7 @@ export default function Home() {
                     position: "absolute",
                     right: "70%",
                     top: "178px",
-                    fontFamily: "Suez One",
+                    fontFamily: "'MaisonNeueBook', sans-serif",
                     fontSize: "96px",
                     fontWeight: "400",
                   }}
@@ -488,7 +479,7 @@ export default function Home() {
                     right: "68%",
                     top: "320px",
                     transform: "translate(50%)",
-                    fontFamily: "Suez One",
+                    fontFamily: "'MaisonNeueBook', sans-serif",
                     fontSize: "96px",
                     fontWeight: "400",
                     color: "rgba(255, 255, 255, 0)",
@@ -502,7 +493,7 @@ export default function Home() {
                     position: "absolute",
                     right: "45%",
                     top: "450px",
-                    fontFamily: "Suez One",
+                    fontFamily: "'MaisonNeueBook', sans-serif",
                     fontSize: "96px",
                     fontWeight: "400",
                   }}
@@ -534,8 +525,8 @@ export default function Home() {
                 sx={{
                   color: "white",
                   position: "absolute",
-                  bottom: "100px",
-                  left: "100px",
+                  bottom: "30px",
+                  left: "30px",
                   ":hover": {
                     background: "rgba(0, 0, 0, 0)",
                   },
@@ -577,8 +568,8 @@ export default function Home() {
                 sx={{
                   color: "white",
                   position: "absolute",
-                  bottom: "100px",
-                  left: "100px",
+                  bottom: "30px",
+                  left: "30px",
                   ":hover": {
                     background: "rgba(0, 0, 0, 0)",
                   },
@@ -665,7 +656,7 @@ export default function Home() {
                     position: "absolute",
                     right: "80%",
                     top: "178px",
-                    fontFamily: "Acme",
+                    fontFamily: "'MaisonNeueBook', sans-serif",
                     fontSize: "64px",
                     fontWeight: "400",
                   }}
@@ -677,7 +668,7 @@ export default function Home() {
                     position: "absolute",
                     right: "74%",
                     top: "250px",
-                    fontFamily: "Acme",
+                    fontFamily: "'MaisonNeueBook', sans-serif",
                     fontSize: "64px",
                     fontWeight: "400",
                   }}
@@ -687,9 +678,9 @@ export default function Home() {
                 <Typography
                   sx={{
                     position: "absolute",
-                    right: "75%",
+                    right: "70%",
                     top: "350px",
-                    fontFamily: "Acme",
+                    fontFamily: "'MaisonNeueBook', sans-serif",
                     fontSize: "16px",
                     fontWeight: "400",
                   }}
@@ -740,8 +731,8 @@ export default function Home() {
                 sx={{
                   color: "white",
                   position: "absolute",
-                  bottom: "100px",
-                  left: "100px",
+                  bottom: "30px",
+                  left: "30px",
                   ":hover": {
                     background: "rgba(0, 0, 0, 0)",
                   },
@@ -768,7 +759,21 @@ export default function Home() {
           )}
         </SwiperSlide>
       </Swiper>
-      
+      <Box className="brands-logo">
+        <Swiper
+          slidesPerView={4}
+          spaceBetween={30}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          <SwiperSlide>
+            <Avatar src={img} />
+          </SwiperSlide>
+        </Swiper>
+      </Box>
     </Box>
   );
 }
