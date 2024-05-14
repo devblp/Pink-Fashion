@@ -11,11 +11,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/less/pagination";
 import "./style.css";
-import brand1 from "../../img/brand1.png";
-import brand2 from "../../img/brand2.png";
-import brand3 from "../../img/brand3.png";
-import brand4 from "../../img/brand4.png";
-import brand5 from "../../img/brand5.png";
+import brandss from "../../img/brandA.png";
 
 import fetchData from "../../Utils/fetchData";
 import CardDetail from "../../Components/CardDetail";
@@ -48,6 +44,7 @@ export default function Home() {
   const [sliders, setSliders] = useState();
   const [brands, setBrands] = useState();
   const [cards, setCards] = useState();
+  const [cartCategory , setCardCategory] = useState()
   useEffect(() => {
     (async () => {
       const res = await fetchData("sliders?populate=*");
@@ -66,6 +63,12 @@ export default function Home() {
     (async () => {
       const res = await fetchData("cards?populate=*");
       setCards(res.data);
+    })();
+  }, []);
+  useEffect(() => {
+    (async () => {
+      const res = await fetchData("categories?populate=*");
+      setCardCategory(res.data);
     })();
   }, []);
   const imageSlider = sliders
@@ -765,26 +768,95 @@ export default function Home() {
           )}
         </SwiperSlide>
       </Swiper>
-      <Box component={"div"} className="brands">
-        <Box component={"div"} className="brand-items">
-          <Avatar src={brand1} />
-          <Avatar src={brand2} />
-          <Avatar src={brand3} />
-          <Avatar src={brand4} />
-          <Avatar src={brand5} />
-        </Box>
-        <Box component={"div"} className="brand-items">
-          <Avatar src={brand1} />
-          <Avatar src={brand2} />
-          <Avatar src={brand3} />
-          <Avatar src={brand4} />
-          <Avatar src={brand5} />
-          <Avatar src={brand1} />
-          <Avatar src={brand2} />
-          <Avatar src={brand3} />
-          <Avatar src={brand4} />
-          <Avatar src={brand5} />
-        </Box>
+      <Box className="brands-logo">
+        <Swiper
+          slidesPerView={9}
+          spaceBetween={10}
+          speed={2000}
+          autoplay={{
+            delay: 1,
+          }}
+          loop={true}
+          modules={[Pagination, Autoplay]}
+          className="mySwiper"
+        >
+          <SwiperSlide className="item-swaper-slider-brand">
+            <Avatar
+              sx={{ borderRadius: 0, width: "200px", height: "30px", py: 7 }}
+              src={import.meta.env.VITE_BASE_URL + sliderBrand[0]}
+            />
+          </SwiperSlide>
+          <SwiperSlide className="item-swaper-slider-brand">
+            <Avatar
+              sx={{ borderRadius: 0, width: "50px", height: "30px", py: 7 }}
+              src={brandss}
+            />
+          </SwiperSlide>
+          <SwiperSlide className="item-swaper-slider-brand">
+            <Avatar
+              sx={{ borderRadius: 0, width: "200px", height: "30px", py: 7 }}
+              src={import.meta.env.VITE_BASE_URL + sliderBrand[1]}
+            />
+          </SwiperSlide>
+          <SwiperSlide className="item-swaper-slider-brand">
+            <Avatar
+              sx={{ borderRadius: 0, width: "50px", height: "30px", py: 7 }}
+              src={brandss}
+            />
+          </SwiperSlide>
+          <SwiperSlide className="item-swaper-slider-brand">
+            <Avatar
+              sx={{ borderRadius: 0, width: "200px", height: "30px", py: 7 }}
+              src={import.meta.env.VITE_BASE_URL + sliderBrand[2]}
+            />
+          </SwiperSlide>
+          <SwiperSlide className="item-swaper-slider-brand">
+            <Avatar
+              sx={{ borderRadius: 0, width: "50px", height: "30px", py: 7 }}
+              src={brandss}
+            />
+          </SwiperSlide>
+          <SwiperSlide className="item-swaper-slider-brand">
+            <Avatar
+              sx={{ borderRadius: 0, width: "230px", height: "30px", py: 7 }}
+              src={import.meta.env.VITE_BASE_URL + sliderBrand[3]}
+            />
+          </SwiperSlide>
+          <SwiperSlide className="item-swaper-slider-brand">
+            <Avatar
+              sx={{ borderRadius: 0, width: "50px", height: "30px", py: 7 }}
+              src={brandss}
+            />
+          </SwiperSlide>
+          <SwiperSlide className="item-swaper-slider-brand">
+            <Avatar
+              sx={{ borderRadius: 0, width: "150px", height: "40px", py: 7 }}
+              src={import.meta.env.VITE_BASE_URL + sliderBrand[4]}
+            />
+          </SwiperSlide>
+          <SwiperSlide className="item-swaper-slider-brand">
+            <Avatar
+              sx={{ borderRadius: 0, width: "50px", height: "30px", py: 7 }}
+              src={brandss}
+            />
+          </SwiperSlide>
+        </Swiper>
+      </Box>
+      <Box>
+        <Grid container xs={12}>
+          <Grid
+            container
+            xs={12}
+            sx={{ display: "flex", justifyContent: "center" }}
+          >
+            <Box>
+              <Typography>Shop by Category</Typography>
+            </Box>
+          </Grid>
+          <Grid container xs={12} spacing={1}>
+            {""}
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );
