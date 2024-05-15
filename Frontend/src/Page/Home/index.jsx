@@ -11,8 +11,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/less/pagination";
 import "./style.css";
+
 import brandss from "../../img/brandA.png";
 import imageLearmMore from "../../img/imageLearmMore.png";
+import m1 from "../../img/image21.jpg"
+import m2 from "../../img/image21321.jpg"
 
 import fetchData from "../../Utils/fetchData";
 import CardCategory from "../../Components/CardCategory";
@@ -1266,11 +1269,11 @@ export default function Home() {
             },
           }}
           loop={true}
-          speed={2000}
+          speed={3000}
           autoplay={{
-            delay: 2000,
+            delay: 3000,
           }}
-          modules={[EffectCreative,Autoplay]}
+          modules={[EffectCreative, Autoplay]}
           className="mySwiper2"
         >
           <SwiperSlide>
@@ -1361,6 +1364,48 @@ export default function Home() {
             </Grid>
           </SwiperSlide>
         </Swiper>
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Box
+          sx={{
+            height: "1px",
+            width: "85%",
+            bgcolor: "primary.bk",
+            my: "20px",
+          }}
+          className="border-top"
+        />
+      </Box>
+      <Box py={18}>
+        <Grid container xs={12} justifyContent={"center"}>
+          <Grid container  xs={5}   justifyContent={"center"}>
+            <Box sx={{display:"flex",justifyContent:"center",flexDirection:"column",alignItems:"center"}}>
+              <Typography py={2}>Our Holiday Gift Picks</Typography>
+              <Avatar src={m1} sx={{width:660,height:770,borderRadius:0}} />
+              <Typography fontSize={13} py={2}>The best presents for everyone on your list.</Typography>
+              <Button>Read More</Button>
+            </Box>
+          </Grid>
+          <Grid container xs={5} justifyContent={"center"}>
+            <Box sx={{display:"flex",justifyContent:"center",flexDirection:"column",alignItems:"center"}}>
+              <Typography  py={2}>Cleaner Fashion</Typography>
+              <Avatar src={m2} sx={{width:660,height:770,borderRadius:0}} />
+              <Typography fontSize={13} py={2}>See the sustainability efforts behind each of our products.</Typography>
+              <Button>Read More</Button>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Box
+          sx={{
+            height: "1px",
+            width: "85%",
+            bgcolor: "primary.bk",
+            my: "20px",
+          }}
+          className="border-bootum"
+        />
       </Box>
     </Box>
   );
