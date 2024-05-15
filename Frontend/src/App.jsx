@@ -20,6 +20,7 @@ export default function App() {
       primary: {
         main: "#ff92bc",
         bk:"#000000",
+        bkk:"#737373",
         bkNero:"#1f1f1f",
         ws:"#ffffff",
       },

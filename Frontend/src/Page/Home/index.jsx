@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Box, Typography, Button } from "@mui/material";
+import { Avatar, Box, Typography, Button, Rating } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay, FreeMode } from "swiper/modules";
+import { Pagination, Autoplay, EffectCreative } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 
 import "swiper/css";
@@ -15,7 +15,6 @@ import brandss from "../../img/brandA.png";
 import imageLearmMore from "../../img/imageLearmMore.png";
 
 import fetchData from "../../Utils/fetchData";
-import CardDetail from "../../Components/CardDetail";
 import CardCategory from "../../Components/CardCategory";
 
 export default function Home() {
@@ -26,7 +25,7 @@ export default function Home() {
       return '<span class="' + className + '"> 0' + (index + 1) + "</span>";
     },
   };
-
+  const url = import.meta.env.VITE_BASE_URL;
   const [video, setVideo] = useState(false);
   const [videoTo, setVideoTo] = useState(false);
   const [videoTr, setVideoTr] = useState(false);
@@ -46,6 +45,8 @@ export default function Home() {
   const [sliders, setSliders] = useState();
   const [brands, setBrands] = useState();
   const [cards, setCards] = useState();
+  const [value, setValue] = useState(5);
+  console.log(cards);
   const [cartCategory, setCardCategory] = useState();
   useEffect(() => {
     (async () => {
@@ -64,7 +65,9 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const res = await fetchData("cards?populate=*");
-      setCards(res.data);
+      if (res) {
+        setCards(res.data);
+      }
     })();
   }, []);
   useEffect(() => {
@@ -79,15 +82,6 @@ export default function Home() {
   const videoSlider = sliders
     ? sliders?.map((e) => e?.attributes?.video?.data?.attributes?.url)
     : [];
-  const card = cards?.map((e, index) => (
-    <CardDetail
-      key={index}
-      title={e.attributes.title}
-      brandName={e.attributes.brandName}
-      current={e.attributes.current}
-      image={e.attributes.image.data.attributes.url}
-    />
-  ));
   const sliderBrand = brands
     ? brands?.map((e) => e?.attributes?.image?.data?.attributes?.url)
     : [];
@@ -100,7 +94,6 @@ export default function Home() {
         />
       ))
     : [];
-  console.log(cartCategory);
   return (
     <Box>
       <Swiper
@@ -874,13 +867,14 @@ export default function Home() {
       <Box>
         <Grid
           container
+          xs={12}
           sx={{ justifyContent: "center", py: 18, position: "relative" }}
         >
-          <Box sx={{}}>
+          <Box sx={{ width: "1600px" }}>
             <Avatar
               src={imageLearmMore}
               sx={{
-                width: 1510,
+                width: "100%",
                 height: 301,
                 borderRadius: 0,
               }}
@@ -920,32 +914,453 @@ export default function Home() {
       </Box>
       <Box>
         <Grid container xs={12} sx={{ justifyContent: "center" }}>
-          <Grid container xs={12}>
-            <Typography>Everlane Favorites</Typography>
+          <Grid container xs={10} sx={{ justifyContent: "center" }}>
+            <Typography sx={{ fontSize: 24 }}>Everlane Favorites</Typography>
           </Grid>
-          <Grid container xs={12}>
-            <Typography>
+          <Grid container xs={10} sx={{ justifyContent: "center" }}>
+            <Typography sx={{ fontSize: 17 }}>
               Beautifully Functional. Purposefully Designed. Consciously
               Crafted.
             </Typography>
           </Grid>
-          <Grid container xs={12}>
-            <Swiper
-              slidesPerView={4}
-              spaceBetween={30}
-              centeredSlides={true}
-              pagination={{
-                clickable: true,
-              }}
-              modules={[Pagination]}
-              className="mySwiper"
-            >
-             
-            {card}
-             
+          <Grid container xs={10} sx={{ py: 2 }}>
+            <Swiper slidesPerView={5} spaceBetween={30} className="mySwiper">
+              <SwiperSlide>
+                <Box>
+                  <Box>
+                    <Avatar
+                      src={
+                        cards
+                          ? url +
+                            cards[0].attributes?.image?.data?.attributes?.url
+                          : []
+                      }
+                      sx={{ width: "282px", height: "461px", borderRadius: 0 }}
+                    />
+                  </Box>
+                  <Grid container xs={12} sx={{ p: 1 }}>
+                    <Grid xs={10}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        {cards ? cards[0].attributes?.title : []}
+                      </Typography>
+                      <Typography
+                        sx={{ fontSize: "12px", color: "primary.bkk" }}
+                      >
+                        {cards ? cards[0].attributes?.brandName : []}
+                      </Typography>
+                    </Grid>
+                    <Grid xs={2}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        $ {cards ? cards[0].attributes?.current : []}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Box>
+                  <Box>
+                    <Avatar
+                      src={
+                        cards
+                          ? url +
+                            cards[1].attributes?.image?.data?.attributes?.url
+                          : []
+                      }
+                      sx={{ width: "282px", height: "461px", borderRadius: 0 }}
+                    />
+                  </Box>
+                  <Grid container xs={12} sx={{ p: 1 }}>
+                    <Grid xs={10}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        {cards ? cards[1].attributes?.title : []}
+                      </Typography>
+                      <Typography
+                        sx={{ fontSize: "12px", color: "primary.bkk" }}
+                      >
+                        {cards ? cards[1].attributes?.brandName : []}
+                      </Typography>
+                    </Grid>
+                    <Grid xs={2}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        $ {cards ? cards[1].attributes?.current : []}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Box>
+                  <Box>
+                    <Avatar
+                      src={
+                        cards
+                          ? url +
+                            cards[2].attributes?.image?.data?.attributes?.url
+                          : []
+                      }
+                      sx={{ width: "282px", height: "461px", borderRadius: 0 }}
+                    />
+                  </Box>
+                  <Grid container xs={12} sx={{ p: 1 }}>
+                    <Grid xs={10}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        {cards ? cards[2].attributes?.title : []}
+                      </Typography>
+                      <Typography
+                        sx={{ fontSize: "12px", color: "primary.bkk" }}
+                      >
+                        {cards ? cards[2].attributes?.brandName : []}
+                      </Typography>
+                    </Grid>
+                    <Grid xs={2}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        $ {cards ? cards[2].attributes?.current : []}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Box>
+                  <Box>
+                    <Avatar
+                      src={
+                        cards
+                          ? url +
+                            cards[3].attributes?.image?.data?.attributes?.url
+                          : []
+                      }
+                      sx={{ width: "282px", height: "461px", borderRadius: 0 }}
+                    />
+                  </Box>
+                  <Grid container xs={12} sx={{ p: 1 }}>
+                    <Grid xs={10}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        {cards ? cards[3].attributes?.title : []}
+                      </Typography>
+                      <Typography
+                        sx={{ fontSize: "12px", color: "primary.bkk" }}
+                      >
+                        {cards ? cards[3].attributes?.brandName : []}
+                      </Typography>
+                    </Grid>
+                    <Grid xs={2}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        $ {cards ? cards[3].attributes?.current : []}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Box>
+                  <Box>
+                    <Avatar
+                      src={
+                        cards
+                          ? url +
+                            cards[4].attributes?.image?.data?.attributes?.url
+                          : []
+                      }
+                      sx={{ width: "282px", height: "461px", borderRadius: 0 }}
+                    />
+                  </Box>
+                  <Grid container xs={12} sx={{ p: 1 }}>
+                    <Grid xs={10}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        {cards ? cards[4].attributes?.title : []}
+                      </Typography>
+                      <Typography
+                        sx={{ fontSize: "12px", color: "primary.bkk" }}
+                      >
+                        {cards ? cards[4].attributes?.brandName : []}
+                      </Typography>
+                    </Grid>
+                    <Grid xs={2}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        $ {cards ? cards[4].attributes?.current : []}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Box>
+                  <Box>
+                    <Avatar
+                      src={
+                        cards
+                          ? url +
+                            cards[0].attributes?.image?.data?.attributes?.url
+                          : []
+                      }
+                      sx={{ width: "282px", height: "461px", borderRadius: 0 }}
+                    />
+                  </Box>
+                  <Grid container xs={12} sx={{ p: 1 }}>
+                    <Grid xs={10}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        {cards ? cards[0].attributes?.title : []}
+                      </Typography>
+                      <Typography
+                        sx={{ fontSize: "12px", color: "primary.bkk" }}
+                      >
+                        {cards ? cards[0].attributes?.brandName : []}
+                      </Typography>
+                    </Grid>
+                    <Grid xs={2}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        $ {cards ? cards[0].attributes?.current : []}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Box>
+                  <Box>
+                    <Avatar
+                      src={
+                        cards
+                          ? url +
+                            cards[1].attributes?.image?.data?.attributes?.url
+                          : []
+                      }
+                      sx={{ width: "282px", height: "461px", borderRadius: 0 }}
+                    />
+                  </Box>
+                  <Grid container xs={12} sx={{ p: 1 }}>
+                    <Grid xs={10}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        {cards ? cards[1].attributes?.title : []}
+                      </Typography>
+                      <Typography
+                        sx={{ fontSize: "12px", color: "primary.bkk" }}
+                      >
+                        {cards ? cards[1].attributes?.brandName : []}
+                      </Typography>
+                    </Grid>
+                    <Grid xs={2}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        $ {cards ? cards[1].attributes?.current : []}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Box>
+                  <Box>
+                    <Avatar
+                      src={
+                        cards
+                          ? url +
+                            cards[2].attributes?.image?.data?.attributes?.url
+                          : []
+                      }
+                      sx={{ width: "282px", height: "461px", borderRadius: 0 }}
+                    />
+                  </Box>
+                  <Grid container xs={12} sx={{ p: 1 }}>
+                    <Grid xs={10}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        {cards ? cards[2].attributes?.title : []}
+                      </Typography>
+                      <Typography
+                        sx={{ fontSize: "12px", color: "primary.bkk" }}
+                      >
+                        {cards ? cards[2].attributes?.brandName : []}
+                      </Typography>
+                    </Grid>
+                    <Grid xs={2}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        $ {cards ? cards[2].attributes?.current : []}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Box>
+                  <Box>
+                    <Avatar
+                      src={
+                        cards
+                          ? url +
+                            cards[3].attributes?.image?.data?.attributes?.url
+                          : []
+                      }
+                      sx={{ width: "282px", height: "461px", borderRadius: 0 }}
+                    />
+                  </Box>
+                  <Grid container xs={12} sx={{ p: 1 }}>
+                    <Grid xs={10}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        {cards ? cards[3].attributes?.title : []}
+                      </Typography>
+                      <Typography
+                        sx={{ fontSize: "12px", color: "primary.bkk" }}
+                      >
+                        {cards ? cards[3].attributes?.brandName : []}
+                      </Typography>
+                    </Grid>
+                    <Grid xs={2}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        $ {cards ? cards[3].attributes?.current : []}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Box>
+                  <Box>
+                    <Avatar
+                      src={
+                        cards
+                          ? url +
+                            cards[4].attributes?.image?.data?.attributes?.url
+                          : []
+                      }
+                      sx={{ width: "282px", height: "461px", borderRadius: 0 }}
+                    />
+                  </Box>
+                  <Grid container xs={12} sx={{ p: 1 }}>
+                    <Grid xs={10}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        {cards ? cards[4].attributes?.title : []}
+                      </Typography>
+                      <Typography
+                        sx={{ fontSize: "12px", color: "primary.bkk" }}
+                      >
+                        {cards ? cards[4].attributes?.brandName : []}
+                      </Typography>
+                    </Grid>
+                    <Grid xs={2}>
+                      <Typography sx={{ fontSize: "12px" }}>
+                        $ {cards ? cards[4].attributes?.current : []}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </SwiperSlide>
             </Swiper>
           </Grid>
         </Grid>
+      </Box>
+      <Box>
+        <Swiper
+          slidesPerView={1}
+          grabCursor={true}
+          spaceBetween={10}
+          effect={"creative"}
+          creativeEffect={{
+            prev: {
+              shadow: true,
+              translate: ["-120%", 0, -500],
+            },
+            next: {
+              shadow: true,
+              translate: ["120%", 0, -500],
+            },
+          }}
+          loop={true}
+          speed={2000}
+          autoplay={{
+            delay: 2000,
+          }}
+          modules={[EffectCreative,Autoplay]}
+          className="mySwiper2"
+        >
+          <SwiperSlide>
+            <Grid container xs={12} sx={{ justifyContent: "center", py: 18 }}>
+              <Grid xs={5} container sx={{ justifyContent: "center" }}>
+                <Box py={20}>
+                  <Typography py={5}>People Are Talking</Typography>
+                  <Rating value={value} readOnly />
+                  <Typography fontSize={24}>
+                    “Love this shirt! Fits perfectly and
+                    <br /> the fabric is thick without
+                    <br />
+                    being stiff.”
+                  </Typography>
+                  <Typography py={5}>
+                    -- JonSnSF, The Heavyweight Overshirt
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid xs={5} container sx={{ justifyContent: "center" }}>
+                <Avatar
+                  sx={{ width: 530, height: 695, borderRadius: 0 }}
+                  src={
+                    cards
+                      ? url + cards[3].attributes?.image?.data?.attributes?.url
+                      : []
+                  }
+                />
+              </Grid>
+            </Grid>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Grid container xs={12} sx={{ justifyContent: "center", py: 18 }}>
+              <Grid xs={5} container sx={{ justifyContent: "center" }}>
+                <Box py={20}>
+                  <Typography py={5}>People Are Talking</Typography>
+                  <Rating value={value} readOnly />
+                  <Typography fontSize={24}>
+                    “Love this shirt! Fits perfectly and
+                    <br /> the fabric is thick without
+                    <br />
+                    being stiff.”
+                  </Typography>
+                  <Typography py={5}>
+                    -- JonSnSF, The Heavyweight Overshirt
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid xs={5} container sx={{ justifyContent: "center" }}>
+                <Avatar
+                  sx={{ width: 530, height: 695, borderRadius: 0 }}
+                  src={
+                    cards
+                      ? url + cards[2].attributes?.image?.data?.attributes?.url
+                      : []
+                  }
+                />
+              </Grid>
+            </Grid>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Grid container xs={12} sx={{ justifyContent: "center", py: 18 }}>
+              <Grid xs={5} container sx={{ justifyContent: "center" }}>
+                <Box py={20}>
+                  <Typography py={5}>People Are Talking</Typography>
+                  <Rating value={value} readOnly />
+                  <Typography fontSize={24}>
+                    “Love this shirt! Fits perfectly and
+                    <br /> the fabric is thick without
+                    <br />
+                    being stiff.”
+                  </Typography>
+                  <Typography py={5}>
+                    -- JonSnSF, The Heavyweight Overshirt
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid xs={5} container sx={{ justifyContent: "center" }}>
+                <Avatar
+                  sx={{ width: 530, height: 695, borderRadius: 0 }}
+                  src={
+                    cards
+                      ? url + cards[1].attributes?.image?.data?.attributes?.url
+                      : []
+                  }
+                />
+              </Grid>
+            </Grid>
+          </SwiperSlide>
+        </Swiper>
       </Box>
     </Box>
   );
