@@ -15,7 +15,8 @@ import {
   export default function CardDetail({ title, image, current, brandName }) {
     const [valueRating, setValueRating] = useState(3);
     return (
-      <div>
+      <>
+        <
         <Card
           sx={{
             width: "346px",
@@ -94,7 +95,7 @@ import {
             </Button>
           </CardActions>
         </Card>
-      </div>
+      </>
     );
   }
   

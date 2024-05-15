@@ -4,7 +4,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Pagination, Autoplay, FreeMode } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 
 import "swiper/css";
@@ -12,10 +12,11 @@ import "swiper/css/pagination";
 import "swiper/less/pagination";
 import "./style.css";
 import brandss from "../../img/brandA.png";
+import imageLearmMore from "../../img/imageLearmMore.png";
 
 import fetchData from "../../Utils/fetchData";
 import CardDetail from "../../Components/CardDetail";
-import CardCategory from "../../Components/CardCategory"
+import CardCategory from "../../Components/CardCategory";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -90,7 +91,15 @@ export default function Home() {
   const sliderBrand = brands
     ? brands?.map((e) => e?.attributes?.image?.data?.attributes?.url)
     : [];
-  const cartCategorys = cartCategory? cartCategory?.map((e,index)=>(<CardCategory key={index} name={e.attributes.name} image={e.attributes.image.data.attributes.url}/>)):[]
+  const cartCategorys = cartCategory
+    ? cartCategory?.map((e, index) => (
+        <CardCategory
+          key={index}
+          name={e.attributes.name}
+          image={e.attributes.image.data.attributes.url}
+        />
+      ))
+    : [];
   console.log(cartCategory);
   return (
     <Box>
@@ -851,12 +860,90 @@ export default function Home() {
             xs={12}
             sx={{ display: "flex", justifyContent: "center" }}
           >
-            <Box>
-              <Typography>Shop by Category</Typography>
+            <Box sx={{ py: 3 }}>
+              <Typography fontSize={"19px"} fontWeight={500}>
+                Shop by Category
+              </Typography>
             </Box>
           </Grid>
-          <Grid container xs={12} sx={{display:"flex",justifyContent:"center"}}>
+          <Grid container xs={12} sx={{ justifyContent: "center", gap: 3 }}>
             {cartCategorys}
+          </Grid>
+        </Grid>
+      </Box>
+      <Box>
+        <Grid
+          container
+          sx={{ justifyContent: "center", py: 18, position: "relative" }}
+        >
+          <Box sx={{}}>
+            <Avatar
+              src={imageLearmMore}
+              sx={{
+                width: 1510,
+                height: 301,
+                borderRadius: 0,
+              }}
+            />
+          </Box>
+
+          <Box
+            sx={{
+              position: "absolute",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              top: "45%",
+              color: "primary.ws",
+            }}
+          >
+            <Typography sx={{ fontSize: 32 }}>
+              We’re on a Mission To Clean Up the Industry
+            </Typography>
+            <Typography sx={{ fontSize: 15 }}>
+              Read about our progress in our latest Impact Report.
+            </Typography>
+            <Button
+              sx={{
+                bgcolor: "primary.ws",
+                "&:hover": { bgcolor: "primary.main" },
+                color: "primary.bk",
+                my: 3,
+                px: 10,
+              }}
+            >
+              LEARN MORE
+            </Button>
+          </Box>
+        </Grid>
+      </Box>
+      <Box>
+        <Grid container xs={12} sx={{ justifyContent: "center" }}>
+          <Grid container xs={12}>
+            <Typography>Everlane Favorites</Typography>
+          </Grid>
+          <Grid container xs={12}>
+            <Typography>
+              Beautifully Functional. Purposefully Designed. Consciously
+              Crafted.
+            </Typography>
+          </Grid>
+          <Grid container xs={12}>
+            <Swiper
+              slidesPerView={4}
+              spaceBetween={30}
+              centeredSlides={true}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[Pagination]}
+              className="mySwiper"
+            >
+             
+            {card}
+             
+            </Swiper>
           </Grid>
         </Grid>
       </Box>
