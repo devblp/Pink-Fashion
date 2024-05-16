@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "image_produts_users",
+  "info": {
+    "singularName": "image-produts-user",
+    "pluralName": "image-produts-users",
+    "displayName": "image produts user"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

@@ -4,7 +4,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay, EffectCreative } from "swiper/modules";
+import { Pagination, Autoplay, EffectCreative, FreeMode } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 
 import "swiper/css";
@@ -14,8 +14,11 @@ import "./style.css";
 
 import brandss from "../../img/brandA.png";
 import imageLearmMore from "../../img/imageLearmMore.png";
-import m1 from "../../img/image21.jpg"
-import m2 from "../../img/image21321.jpg"
+import m1 from "../../img/image21.jpg";
+import m2 from "../../img/image21321.jpg";
+import iconBox from "../../img/iconBox.png"
+import iconMap from "../../img/iconMap.png"
+import iconS from "../../img/iconS.png"
 
 import fetchData from "../../Utils/fetchData";
 import CardCategory from "../../Components/CardCategory";
@@ -49,6 +52,7 @@ export default function Home() {
   const [brands, setBrands] = useState();
   const [cards, setCards] = useState();
   const [value, setValue] = useState(5);
+  const [userProductsUser, setUserProductsUser] = useState();
   console.log(cards);
   const [cartCategory, setCardCategory] = useState();
   useEffect(() => {
@@ -79,6 +83,12 @@ export default function Home() {
       setCardCategory(res.data);
     })();
   }, []);
+  useEffect(() => {
+    (async () => {
+      const res = await fetchData("image-produts-users?populate=*");
+      setUserProductsUser(res.data);
+    })();
+  }, []);
   const imageSlider = sliders
     ? sliders?.map((e) => e?.attributes?.image?.data?.attributes?.url)
     : [];
@@ -95,6 +105,16 @@ export default function Home() {
           name={e.attributes.name}
           image={e.attributes.image.data.attributes.url}
         />
+      ))
+    : [];
+  const sliderImgUserPrd = userProductsUser
+    ? userProductsUser?.map((e, indecx) => (
+        <SwiperSlide key={indecx}>
+          <Avatar
+            sx={{ borderRadius: 0, width: 225, height: 225 }}
+            src={url + e?.attributes?.image?.data[0]?.attributes?.url}
+          />
+        </SwiperSlide>
       ))
     : [];
   return (
@@ -1371,26 +1391,50 @@ export default function Home() {
             height: "1px",
             width: "85%",
             bgcolor: "primary.bk",
-            my: "20px",
+            my: "10px",
           }}
           className="border-top"
         />
       </Box>
       <Box py={18}>
         <Grid container xs={12} justifyContent={"center"}>
-          <Grid container  xs={5}   justifyContent={"center"}>
-            <Box sx={{display:"flex",justifyContent:"center",flexDirection:"column",alignItems:"center"}}>
+          <Grid container xs={5} justifyContent={"center"}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               <Typography py={2}>Our Holiday Gift Picks</Typography>
-              <Avatar src={m1} sx={{width:660,height:770,borderRadius:0}} />
-              <Typography fontSize={13} py={2}>The best presents for everyone on your list.</Typography>
+              <Avatar
+                src={m1}
+                sx={{ width: 660, height: 770, borderRadius: 0 }}
+              />
+              <Typography fontSize={13} py={2}>
+                The best presents for everyone on your list.
+              </Typography>
               <Button>Read More</Button>
             </Box>
           </Grid>
           <Grid container xs={5} justifyContent={"center"}>
-            <Box sx={{display:"flex",justifyContent:"center",flexDirection:"column",alignItems:"center"}}>
-              <Typography  py={2}>Cleaner Fashion</Typography>
-              <Avatar src={m2} sx={{width:660,height:770,borderRadius:0}} />
-              <Typography fontSize={13} py={2}>See the sustainability efforts behind each of our products.</Typography>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Typography py={2}>Cleaner Fashion</Typography>
+              <Avatar
+                src={m2}
+                sx={{ width: 660, height: 770, borderRadius: 0 }}
+              />
+              <Typography fontSize={13} py={2}>
+                See the sustainability efforts behind each of our products.
+              </Typography>
               <Button>Read More</Button>
             </Box>
           </Grid>
@@ -1402,10 +1446,55 @@ export default function Home() {
             height: "1px",
             width: "85%",
             bgcolor: "primary.bk",
-            my: "20px",
+            my: "10px",
           }}
           className="border-bootum"
         />
+      </Box>
+      <Box py={18}>
+        <Grid container xs={12} justifyContent={"center"} >
+          <Grid container xs={12}  alignItems={"center"} justifyContent={"center"} flexDirection={"column"}>
+          <Typography fontSize={"32px"}>Everlane On You</Typography>
+          <Typography py={2}>
+            Share your latest look with #EverlaneOnYou for a chance to be
+            featured.
+          </Typography>
+          <Typography py={1}>Add Your Photo</Typography>
+          </Grid>
+          <Grid container xs={10} alignItems={"center"} justifyContent={"center"} >
+          <Swiper
+            slidesPerView={5}
+            spaceBetween={30}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode]}
+            className="mySwiper"
+          >
+            {sliderImgUserPrd}
+          </Swiper>
+          </Grid>
+        </Grid>
+      </Box>
+      <Box sx={{display:"flex",justifyContent:"center", alignItems:"center"}}>
+        <Grid container xs={10} >
+          <Grid container xs={4} flexDirection={"column"} alignItems={"center"}><Avatar sx={{width:78,height:78}} src={iconBox}/> <Typography fontSize={18} fontWeight={500}>Complimentary Shipping</Typography> <Typography>Enjoy free shipping on U.S. orders over $100.</Typography></Grid>
+          <Grid container xs={4} flexDirection={"column"} alignItems={"center"}><Avatar sx={{width:78,height:78}} src={iconMap}/> <Typography fontSize={18} fontWeight={500}>Consciously Crafted</Typography> <Typography>Designed with you and the planet in mind.</Typography></Grid>
+          <Grid container xs={4} flexDirection={"column"} alignItems={"center"}><Avatar sx={{width:78,height:78}} src={iconS}/> <Typography fontSize={18} fontWeight={500}>Come Say Hi</Typography> <Typography>We have 11 stores across the U.S.</Typography></Grid>
+        </Grid>
+      </Box>
+      <Box>
+        <Grid container xs={12} py={15} >
+            <Box sx={{width:"100%",height:"354px",bgcolor:"#E2E2E2",position:"relative"}}>
+              <Grid xs={6}>
+                
+              </Grid>
+              <Grid xs={6}>
+                <Avatar src=""/>
+              </Grid>
+            </Box>
+        </Grid>
       </Box>
     </Box>
   );

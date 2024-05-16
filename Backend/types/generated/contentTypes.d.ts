@@ -881,6 +881,37 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiImageProdutsUserImageProdutsUser
+  extends Schema.CollectionType {
+  collectionName: 'image_produts_users';
+  info: {
+    singularName: 'image-produts-user';
+    pluralName: 'image-produts-users';
+    displayName: 'image produts user';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    image: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::image-produts-user.image-produts-user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::image-produts-user.image-produts-user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiImgAuthBackgruondImgAuthBackgruond
   extends Schema.CollectionType {
   collectionName: 'img_auth_backgruonds';
@@ -1007,6 +1038,7 @@ declare module '@strapi/types' {
       'api::brand-img.brand-img': ApiBrandImgBrandImg;
       'api::card.card': ApiCardCard;
       'api::category.category': ApiCategoryCategory;
+      'api::image-produts-user.image-produts-user': ApiImageProdutsUserImageProdutsUser;
       'api::img-auth-backgruond.img-auth-backgruond': ApiImgAuthBackgruondImgAuthBackgruond;
       'api::product.product': ApiProductProduct;
       'api::slider.slider': ApiSliderSlider;
