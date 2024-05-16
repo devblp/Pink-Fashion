@@ -12,7 +12,7 @@ import Auth from "./Page/Auth";
 import SignUp from "./Page/Auth/SignUp";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 export default function App() {
   const { token } = useSelector((state) => state.auth);
   const theme = createTheme({

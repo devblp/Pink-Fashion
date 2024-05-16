@@ -16,9 +16,10 @@ import brandss from "../../img/brandA.png";
 import imageLearmMore from "../../img/imageLearmMore.png";
 import m1 from "../../img/image21.jpg";
 import m2 from "../../img/image21321.jpg";
-import iconBox from "../../img/iconBox.png"
-import iconMap from "../../img/iconMap.png"
-import iconS from "../../img/iconS.png"
+import iconBox from "../../img/iconBox.png";
+import iconMap from "../../img/iconMap.png";
+import iconS from "../../img/iconS.png";
+import footerImg from "../../img/footerImg.png";
 
 import fetchData from "../../Utils/fetchData";
 import CardCategory from "../../Components/CardCategory";
@@ -1452,48 +1453,92 @@ export default function Home() {
         />
       </Box>
       <Box py={18}>
-        <Grid container xs={12} justifyContent={"center"} >
-          <Grid container xs={12}  alignItems={"center"} justifyContent={"center"} flexDirection={"column"}>
-          <Typography fontSize={"32px"}>Everlane On You</Typography>
-          <Typography py={2}>
-            Share your latest look with #EverlaneOnYou for a chance to be
-            featured.
-          </Typography>
-          <Typography py={1}>Add Your Photo</Typography>
-          </Grid>
-          <Grid container xs={10} alignItems={"center"} justifyContent={"center"} >
-          <Swiper
-            slidesPerView={5}
-            spaceBetween={30}
-            freeMode={true}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[FreeMode]}
-            className="mySwiper"
+        <Grid container xs={12} justifyContent={"center"}>
+          <Grid
+            container
+            xs={12}
+            alignItems={"center"}
+            justifyContent={"center"}
+            flexDirection={"column"}
           >
-            {sliderImgUserPrd}
-          </Swiper>
+            <Typography fontSize={"32px"}>Everlane On You</Typography>
+            <Typography py={2}>
+              Share your latest look with #EverlaneOnYou for a chance to be
+              featured.
+            </Typography>
+            <Typography py={1}>Add Your Photo</Typography>
+          </Grid>
+          <Grid
+            container
+            xs={10}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            <Swiper
+              slidesPerView={5}
+              spaceBetween={30}
+              freeMode={true}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[FreeMode]}
+              className="mySwiper"
+            >
+              {sliderImgUserPrd}
+            </Swiper>
           </Grid>
         </Grid>
       </Box>
-      <Box sx={{display:"flex",justifyContent:"center", alignItems:"center"}}>
-        <Grid container xs={10} >
-          <Grid container xs={4} flexDirection={"column"} alignItems={"center"}><Avatar sx={{width:78,height:78}} src={iconBox}/> <Typography fontSize={18} fontWeight={500}>Complimentary Shipping</Typography> <Typography>Enjoy free shipping on U.S. orders over $100.</Typography></Grid>
-          <Grid container xs={4} flexDirection={"column"} alignItems={"center"}><Avatar sx={{width:78,height:78}} src={iconMap}/> <Typography fontSize={18} fontWeight={500}>Consciously Crafted</Typography> <Typography>Designed with you and the planet in mind.</Typography></Grid>
-          <Grid container xs={4} flexDirection={"column"} alignItems={"center"}><Avatar sx={{width:78,height:78}} src={iconS}/> <Typography fontSize={18} fontWeight={500}>Come Say Hi</Typography> <Typography>We have 11 stores across the U.S.</Typography></Grid>
+      <Box
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
+        <Grid container xs={10}>
+          <Grid container xs={4} flexDirection={"column"} alignItems={"center"}>
+            <Avatar sx={{ width: 78, height: 78 }} src={iconBox} />{" "}
+            <Typography fontSize={18} fontWeight={500}>
+              Complimentary Shipping
+            </Typography>{" "}
+            <Typography>
+              Enjoy free shipping on U.S. orders over $100.
+            </Typography>
+          </Grid>
+          <Grid container xs={4} flexDirection={"column"} alignItems={"center"}>
+            <Avatar sx={{ width: 78, height: 78 }} src={iconMap} />{" "}
+            <Typography fontSize={18} fontWeight={500}>
+              Consciously Crafted
+            </Typography>{" "}
+            <Typography>Designed with you and the planet in mind.</Typography>
+          </Grid>
+          <Grid container xs={4} flexDirection={"column"} alignItems={"center"}>
+            <Avatar sx={{ width: 78, height: 78 }} src={iconS} />{" "}
+            <Typography fontSize={18} fontWeight={500}>
+              Come Say Hi
+            </Typography>{" "}
+            <Typography>We have 11 stores across the U.S.</Typography>
+          </Grid>
         </Grid>
       </Box>
-      <Box>
-        <Grid container xs={12} py={15} >
-            <Box sx={{width:"100%",height:"354px",bgcolor:"#E2E2E2",position:"relative"}}>
-              <Grid xs={6}>
-                
-              </Grid>
-              <Grid xs={6}>
-                <Avatar src=""/>
-              </Grid>
-            </Box>
+      <Box p={"150px 0px 0px 0px"}>
+        <Grid
+          container
+          xs={12}
+          py={15}
+          sx={{
+            width: "100%",
+            height: "354px",
+            bgcolor: "#E2E2E2",
+            position: "relative",
+          }}
+        >
+    
+            <Grid container xs={6} sx={{flexDirection:"column" , alignItems:"center", justifyContent:"center"}}>
+              <Typography fontSize={24}>Subscribe To Our Newsletter</Typography>
+              <Typography py={3} color={"#8A8A8A"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis <br/> ultrices sollicitudin aliquam sem. Scelerisque duis ultrices sollicitudin</Typography>
+              <Button>Subscribe Now</Button>
+            </Grid>
+            <Grid container xs={6}  sx={{position:"absolute",right:20,bottom:-30,justifyContent: "center"}}>
+              <Avatar sx={{width:394,height:520}} src={footerImg} />
+            </Grid>
         </Grid>
       </Box>
     </Box>
