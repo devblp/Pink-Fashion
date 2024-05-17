@@ -13,6 +13,7 @@ import SignUp from "./Page/Auth/SignUp";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Search from "./Page/Search";
 export default function App() {
   const { token } = useSelector((state) => state.auth);
   const theme = createTheme({
@@ -45,8 +46,8 @@ export default function App() {
             element={!token ? <Auth /> : <Navigate to={"/dashbord"} />}
           />
           <Route
-            path="/search/:query"
-            element={!token ? <Auth /> : <Navigate to={"/"} />}
+            path="/search"
+            element={<Search/>}
           />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="*" element={<NotPage404 />} />

@@ -967,6 +967,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'manyToMany',
       'api::category.category'
     >;
+    brand: Attribute.Enumeration<['zara', 'slwos', 'sagol', 'alan', 'bekan']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

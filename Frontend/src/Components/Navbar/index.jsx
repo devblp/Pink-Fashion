@@ -111,7 +111,7 @@ export default function Footer() {
             <Box
               sx={{ display: "flex", justifyContent: "center", gap: "20px" }}
             >
-              <Link className="link-navbar-icon">
+              <Link to={"/search"} className="link-navbar-icon">
                 <SearchIcon />
               </Link>
               <Link to={"/dashbord"} className="link-navbar-icon">
@@ -178,6 +178,7 @@ export default function Footer() {
               anchorEl={anchorEl}
               open={open}
               onClose={handelClosMegaMenu}
+              sx={{width:"100%"}}
             >
               <Grid container xs={12} py={1}>
                 <Grid container xs={3} sx={{display:"flex" ,justifyContent:"center"}}>

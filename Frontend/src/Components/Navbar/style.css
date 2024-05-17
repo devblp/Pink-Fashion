@@ -56,7 +56,7 @@
 .MuiMenu-paper {
 	left: 0;
 	right: 0;
-	width: 100%;
+	width: 100% !important;
 }
 .MuiMenu-list {
 	width: 100%;

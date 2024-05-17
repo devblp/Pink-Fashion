@@ -43,6 +43,16 @@
       "relation": "manyToMany",
       "target": "api::category.category",
       "inversedBy": "products"
+    },
+    "brand": {
+      "type": "enumeration",
+      "enum": [
+        "zara",
+        "slwos",
+        "sagol",
+        "alan",
+        "bekan"
+      ]
     }
   }
 }

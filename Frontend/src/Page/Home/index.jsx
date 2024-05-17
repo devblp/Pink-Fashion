@@ -26,98 +26,98 @@ import CardCategory from "../../Components/CardCategory";
 
 export default function Home() {
   const navigate = useNavigate();
+
+  // Swiper pagination configuration
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
       return '<span class="' + className + '"> 0' + (index + 1) + "</span>";
     },
   };
+
+  // URL from environment variables
   const url = import.meta.env.VITE_BASE_URL;
+
+  // State variables for video toggles
   const [video, setVideo] = useState(false);
   const [videoTo, setVideoTo] = useState(false);
   const [videoTr, setVideoTr] = useState(false);
   const [videoFr, setVideoFr] = useState(false);
-  const handleVideo = () => {
-    setVideo(!video);
-  };
-  const handelVideoTo = () => {
-    setVideoTo(!videoTo);
-  };
-  const handelVideoTr = () => {
-    setVideoTr(!videoTr);
-  };
-  const handelVideoFr = () => {
-    setVideoFr(!videoFr);
-  };
+
+  // Toggle functions for videos
+  const handleVideo = () => setVideo(!video);
+  const handelVideoTo = () =>  setVideoTo(!videoTo);
+  const handelVideoTr = () =>  setVideoTr(!videoTr);
+  const handelVideoFr = () =>  setVideoFr(!videoFr);
+
+  // State variables for fetched data
   const [sliders, setSliders] = useState();
   const [brands, setBrands] = useState();
   const [cards, setCards] = useState();
   const [value, setValue] = useState(5);
   const [userProductsUser, setUserProductsUser] = useState();
-  console.log(cards);
   const [cartCategory, setCardCategory] = useState();
+
+
+  // Utility function to fetch data from an endpoint
+  const fetchDataAsync = async (url) =>{
+    try {
+      const res = await fetchData(url)
+      return res.data
+    } catch (error) {
+      console.error(`Error fetching ${url}:`, error);
+    }
+  }
+
+   // Fetch data on component mount
   useEffect(() => {
-    (async () => {
-      const res = await fetchData("sliders?populate=*");
-      setSliders(res.data);
-    })();
-  }, []);
-  useEffect(() => {
-    (async () => {
-      const res = await fetchData("brand-imgs?populate=*");
-      if (res) {
-        setBrands(res.data);
-      }
-    })();
-  }, []);
-  useEffect(() => {
-    (async () => {
-      const res = await fetchData("cards?populate=*");
-      if (res) {
-        setCards(res.data);
-      }
-    })();
-  }, []);
-  useEffect(() => {
-    (async () => {
-      const res = await fetchData("categories?populate=*");
-      setCardCategory(res.data);
-    })();
-  }, []);
-  useEffect(() => {
-    (async () => {
-      const res = await fetchData("image-produts-users?populate=*");
-      setUserProductsUser(res.data);
-    })();
-  }, []);
-  const imageSlider = sliders
-    ? sliders?.map((e) => e?.attributes?.image?.data?.attributes?.url)
-    : [];
-  const videoSlider = sliders
-    ? sliders?.map((e) => e?.attributes?.video?.data?.attributes?.url)
-    : [];
-  const sliderBrand = brands
-    ? brands?.map((e) => e?.attributes?.image?.data?.attributes?.url)
-    : [];
-  const cartCategorys = cartCategory
-    ? cartCategory?.map((e, index) => (
-        <CardCategory
-          key={index}
-          name={e.attributes.name}
-          image={e.attributes.image.data.attributes.url}
-        />
-      ))
-    : [];
-  const sliderImgUserPrd = userProductsUser
-    ? userProductsUser?.map((e, indecx) => (
-        <SwiperSlide key={indecx}>
-          <Avatar
-            sx={{ borderRadius: 0, width: 225, height: 225 }}
-            src={url + e?.attributes?.image?.data[0]?.attributes?.url}
-          />
-        </SwiperSlide>
-      ))
-    : [];
+    (async()=>{
+      const fetchedSliders = await fetchDataAsync("sliders?populate=*");
+      setSliders(fetchedSliders);
+      const fetchedBrands = await fetchDataAsync("brand-imgs?populate=*");
+      setBrands(fetchedBrands);
+  
+      const fetchedCards = await fetchDataAsync("cards?populate=*");
+      setCards(fetchedCards);
+  
+      const fetchedCategories = await fetchDataAsync("categories?populate=*");
+      setCardCategory(fetchedCategories);
+  
+      const fetchedUserProducts = await fetchDataAsync("image-produts-users?populate=*");
+      setUserProductsUser(fetchedUserProducts);
+    })()
+  },[])
+
+  // Extract image URLs from sliders
+  const imageSlider = sliders?.map(e => e?.attributes?.image?.data?.attributes?.url) || [];
+  const videoSlider = sliders?.map(e => e?.attributes?.video?.data?.attributes?.url) || [];
+  const sliderBrand = brands?.map(e => e?.attributes?.image?.data?.attributes?.url) || [];
+  
+   // Map categories to CardCategory components
+  const cartCategorys = cartCategory?.map((e, index) => (
+    <CardCategory
+      key={index}
+      name={e?.attributes?.name}
+      image={e?.attributes?.image?.data?.attributes?.url}
+    />
+  )) || [];
+   // Map user product images to SwiperSlide components
+  const sliderImgUserPrd = userProductsUser?.map((e, index) => (
+    <SwiperSlide key={index}>
+      <Avatar
+        sx={{ borderRadius: 0, width: 225, height: 225 }}
+        src={url + e?.attributes?.image?.data[0]?.attributes?.url}
+      />
+    </SwiperSlide>
+  )) || [];
+
+  // Imports:Import necessary modules and components.State 
+  // Variables:Declare state variables for handling videos, fetched data, and other necessary states.Toggle 
+  // Functions:Define functions to toggle the state of video variables.Data Fetching 
+  // Function:fetchDataAsync is a utility function to fetch data from an endpoint and handle errors.useEffect 
+  // Hook:Use a single useEffect hook to fetch all necessary data when the component mounts.Data 
+  // Mapping:Map fetched data to the required formats or components.
+
   return (
     <Box>
       <Swiper
@@ -884,7 +884,7 @@ export default function Home() {
             </Box>
           </Grid>
           <Grid container xs={12} sx={{ justifyContent: "center", gap: 3 }}>
-            {cartCategorys}
+            {cartCategorys.slice(0,7)}
           </Grid>
         </Grid>
       </Box>
