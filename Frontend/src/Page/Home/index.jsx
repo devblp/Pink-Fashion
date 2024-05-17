@@ -5,7 +5,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, EffectCreative, FreeMode } from "swiper/modules";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -46,9 +46,9 @@ export default function Home() {
 
   // Toggle functions for videos
   const handleVideo = () => setVideo(!video);
-  const handelVideoTo = () =>  setVideoTo(!videoTo);
-  const handelVideoTr = () =>  setVideoTr(!videoTr);
-  const handelVideoFr = () =>  setVideoFr(!videoFr);
+  const handelVideoTo = () => setVideoTo(!videoTo);
+  const handelVideoTr = () => setVideoTr(!videoTr);
+  const handelVideoFr = () => setVideoFr(!videoFr);
 
   // State variables for fetched data
   const [sliders, setSliders] = useState();
@@ -58,64 +58,72 @@ export default function Home() {
   const [userProductsUser, setUserProductsUser] = useState();
   const [cartCategory, setCardCategory] = useState();
 
-
   // Utility function to fetch data from an endpoint
-  const fetchDataAsync = async (url) =>{
+  const fetchDataAsync = async (url) => {
     try {
-      const res = await fetchData(url)
-      return res.data
+      const res = await fetchData(url);
+      return res.data;
     } catch (error) {
       console.error(`Error fetching ${url}:`, error);
     }
-  }
+  };
 
-   // Fetch data on component mount
+  // Fetch data on component mount
   useEffect(() => {
-    (async()=>{
+    (async () => {
       const fetchedSliders = await fetchDataAsync("sliders?populate=*");
       setSliders(fetchedSliders);
       const fetchedBrands = await fetchDataAsync("brand-imgs?populate=*");
       setBrands(fetchedBrands);
-  
+
       const fetchedCards = await fetchDataAsync("cards?populate=*");
       setCards(fetchedCards);
-  
+
       const fetchedCategories = await fetchDataAsync("categories?populate=*");
       setCardCategory(fetchedCategories);
-  
-      const fetchedUserProducts = await fetchDataAsync("image-produts-users?populate=*");
+
+      const fetchedUserProducts = await fetchDataAsync(
+        "image-produts-users?populate=*"
+      );
       setUserProductsUser(fetchedUserProducts);
-    })()
-  },[])
+    })();
+  }, []);
 
   // Extract image URLs from sliders
-  const imageSlider = sliders?.map(e => e?.attributes?.image?.data?.attributes?.url) || [];
-  const videoSlider = sliders?.map(e => e?.attributes?.video?.data?.attributes?.url) || [];
-  const sliderBrand = brands?.map(e => e?.attributes?.image?.data?.attributes?.url) || [];
-  
-   // Map categories to CardCategory components
-  const cartCategorys = cartCategory?.map((e, index) => (
-    <CardCategory
-      key={index}
-      name={e?.attributes?.name}
-      image={e?.attributes?.image?.data?.attributes?.url}
-    />
-  )) || [];
-   // Map user product images to SwiperSlide components
-  const sliderImgUserPrd = userProductsUser?.map((e, index) => (
-    <SwiperSlide key={index}>
-      <Avatar
-        sx={{ borderRadius: 0, width: 225, height: 225 }}
-        src={url + e?.attributes?.image?.data[0]?.attributes?.url}
-      />
-    </SwiperSlide>
-  )) || [];
+  const imageSlider =
+    sliders?.map((e) => e?.attributes?.image?.data?.attributes?.url) || [];
+  const videoSlider =
+    sliders?.map((e) => e?.attributes?.video?.data?.attributes?.url) || [];
+  const sliderBrand =
+    brands?.map((e) => e?.attributes?.image?.data?.attributes?.url) || [];
 
-  // Imports:Import necessary modules and components.State 
-  // Variables:Declare state variables for handling videos, fetched data, and other necessary states.Toggle 
-  // Functions:Define functions to toggle the state of video variables.Data Fetching 
-  // Function:fetchDataAsync is a utility function to fetch data from an endpoint and handle errors.useEffect 
-  // Hook:Use a single useEffect hook to fetch all necessary data when the component mounts.Data 
+  // Map categories to CardCategory components
+  const cartCategorys =
+    cartCategory?.map((e, index) => (
+      <Link to={`products/all-product/all-category`}>
+        <CardCategory
+          key={index}
+          name={e?.attributes?.name}
+          image={e?.attributes?.image?.data?.attributes?.url}
+        />
+      </Link>
+    )) || [];
+  // Map user product images to SwiperSlide components
+  const sliderImgUserPrd =
+    userProductsUser?.map((e, index) => (
+      <SwiperSlide key={index}>
+        <Avatar
+          sx={{ borderRadius: 0, width: 225, height: 225 }}
+          src={url + e?.attributes?.image?.data[0]?.attributes?.url}
+        />
+      </SwiperSlide>
+    )) || [];
+
+  // Imports:Import necessary modules and components.State
+  // Variables:Declare state variables for handling videos, fetched data, and other necessary states.Toggle
+  // Functions:Define functions to toggle the state of video variables.Data Fetching
+  // Function:fetchDataAsync is a utility function to fetch data from an endpoint and handle errors.useEffect
+  // Hook:Use a single useEffect hook to fetch all necessary data when the component mounts.Data
   // Mapping:Map fetched data to the required formats or components.
 
   return (
@@ -884,7 +892,7 @@ export default function Home() {
             </Box>
           </Grid>
           <Grid container xs={12} sx={{ justifyContent: "center", gap: 3 }}>
-            {cartCategorys.slice(0,7)}
+            {cartCategorys.slice(0, 7)}
           </Grid>
         </Grid>
       </Box>
@@ -1530,15 +1538,35 @@ export default function Home() {
             position: "relative",
           }}
         >
-    
-            <Grid container xs={6} sx={{flexDirection:"column" , alignItems:"center", justifyContent:"center"}}>
-              <Typography fontSize={24}>Subscribe To Our Newsletter</Typography>
-              <Typography py={3} color={"#8A8A8A"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis <br/> ultrices sollicitudin aliquam sem. Scelerisque duis ultrices sollicitudin</Typography>
-              <Button>Subscribe Now</Button>
-            </Grid>
-            <Grid container xs={6}  sx={{position:"absolute",right:20,bottom:-30,justifyContent: "center"}}>
-              <Avatar sx={{width:394,height:520}} src={footerImg} />
-            </Grid>
+          <Grid
+            container
+            xs={6}
+            sx={{
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Typography fontSize={24}>Subscribe To Our Newsletter</Typography>
+            <Typography py={3} color={"#8A8A8A"}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Scelerisque duis <br /> ultrices sollicitudin aliquam sem.
+              Scelerisque duis ultrices sollicitudin
+            </Typography>
+            <Button>Subscribe Now</Button>
+          </Grid>
+          <Grid
+            container
+            xs={6}
+            sx={{
+              position: "absolute",
+              right: 20,
+              bottom: -30,
+              justifyContent: "center",
+            }}
+          >
+            <Avatar sx={{ width: 394, height: 520 }} src={footerImg} />
+          </Grid>
         </Grid>
       </Box>
     </Box>

@@ -1,8 +1,9 @@
 import { Avatar, Box, Button, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function index({name, image, price, brand}) {
+export default function index({name, image, price, brand,id}) {
     const url = import.meta.env.VITE_BASE_URL
   return (
     <>
@@ -26,7 +27,7 @@ export default function index({name, image, price, brand}) {
                 {"colors imge"}
             </Box>
             <Button>
-                submit
+                <Link to={`/product-detail/${id}/${name.replaceAll(" ",'-')}`}>submit</Link>
             </Button>
           </Grid>
           <Grid xs={2}>

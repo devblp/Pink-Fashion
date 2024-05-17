@@ -80,10 +80,10 @@ export default function Footer() {
             <Box
               sx={{ display: "flex", justifyContent: "center", gap: "20px" }}
             >
-              <Link to={""} className="link-navbar-menu">
+              <Link to={"/products/2/all-category"} className="link-navbar-menu">
                 <Typography className="filter-menu-nav">Women</Typography>
               </Link>
-              <Link to={""} className="link-navbar-menu">
+              <Link to={"/products/1/all-category"} className="link-navbar-menu">
                 <Typography className="filter-menu-nav">Men</Typography>
               </Link>
               <Link to={""} className="link-navbar-menu">
@@ -136,7 +136,7 @@ export default function Footer() {
               gap: "30px",
             }}
           >
-            <Link to={""} className="link-navbar-menu">
+            <Link to={"/products/all-product/all-category"} className="link-navbar-menu">
               <Typography className="filter-menu-nav">
                 Holiday Gifting
               </Typography>
