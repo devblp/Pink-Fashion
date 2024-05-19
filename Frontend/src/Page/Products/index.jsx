@@ -3,20 +3,27 @@ import {
   Box,
   Typography,
   Breadcrumbs,
-  FormControl,
   Select,
   MenuItem,
   OutlinedInput,
   Autocomplete,
   TextField,
+  Checkbox,
+  FormControl,
+  FormGroup,
+  FormControlLabel,
+  FormLabel,
+  Button,
 } from "@mui/material";
+
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Link, useParams } from "react-router-dom";
 import fetchData from "../../Utils/fetchData";
 import CardProducts from "../../Components/CardProducts";
 import SkeletonProduct from "./Skeleton";
-
+import FilterComponent from "./Filters";
 export default function Products() {
+
   const [categoryNames, setCategoryNames] = useState();
   const [valeuNames, setValeuNames] = useState(null);
   const [categoryColor, setCategoryColor] = useState();
@@ -67,39 +74,16 @@ export default function Products() {
     })();
   }, [catgoryId, valeuNames]);
   const lengthProduct = products?.length;
+
+
+
+  // --------filter start
+  
   return (
     <>
       <Grid container xs={12} sx={{ p: 10 }}>
         <Grid xs={3}>
-          <Typography sx={{ py: 2 }}>{lengthProduct} Products</Typography>
-          <Grid xs={12} sx={{ p: "50px 0px 280px 0px" }}>
-            <Autocomplete
-              id="controllable-states-demo"
-              value={valeuNames}
-              onChange={(event, newValue) => {
-                setValeuNames(newValue);
-              }}
-              options={categoryNames?.map((name) => name)}
-              sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Name" />}
-            />
-          </Grid>
-          <Grid xs={12} sx={{ p: "0px 0px 180px 0px" }}>
-            <Autocomplete
-              id="controllable-states-demo"
-              options={categoryColor?.map((name) => name)}
-              sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Color" />}
-            />
-          </Grid>
-          <Grid xs={12} sx={{ p: "0px 0px 100px 0px" }}>
-            <Autocomplete
-              id="controllable-states-demo"
-              options={categorySize?.map((name) => name)}
-              sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Size" />}
-            />
-          </Grid>
+          <FilterComponent/>
         </Grid>
         <Grid container xs={9} sx={{ px: 2 }}>
           <Grid xs={12}>
@@ -115,12 +99,16 @@ export default function Products() {
 
           {products ? (
             <>
-              <Grid container xs={12} sx={{ gap: 4, py: 10 }}>
+              <Grid
+                container
+                xs={12}
+                sx={{ width: "100%", gap: 2, py: 10, justifyContent: "center" }}
+              >
                 {products}
               </Grid>
             </>
           ) : (
-            <SkeletonProduct/>
+            <SkeletonProduct />
           )}
         </Grid>
       </Grid>
