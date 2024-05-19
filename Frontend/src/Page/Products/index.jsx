@@ -25,14 +25,9 @@ import fetchData from "../../Utils/fetchData";
 import CardProducts from "../../Components/CardProducts";
 import SkeletonProduct from "./Skeleton";
 
-
 export default function Products() {
-
-  
-  const [categoryNames, setCategoryNames] = useState();
-  const [categoryColor, setCategoryColor] = useState();
-  const [categorySize, setCategorySize] = useState();
   const [products, setProducts] = useState();
+  const [categorys, setSategorys] = useState();
   const { catgoryId, catgoryName } = useParams();
   const [filters, setFilters] = useState({
     categories: [],
@@ -55,15 +50,21 @@ export default function Products() {
   useEffect(() => {
     (async () => {
       const category = await fetchDataAsync(`categories?populate=*`);
-      const nameCategory = category?.map((e) => e?.attributes?.name) || [];
-      setCategoryNames(nameCategory.slice(0, 7));
-      setCategoryColor(nameCategory.slice(8, 11));
-      setCategorySize(nameCategory.slice(12, 16));
+      setSategorys(category);
+      let filtersUrl = "";
+      if (filters.categories.length > 0) {
+        const categoryNamesFilter = filters.categories
+          .map(encodeURIComponent)
+          .join(",");
+        filtersUrl += `&filters[categories][name][$in]=${categoryNamesFilter}`;
+      }
+
       const productsData = await fetchDataAsync(
         `products?populate=*${
-          catgoryId === "all-product"? ""
+          catgoryId === "all-product"
+            ? ""
             : `&filters[categories][id][$eq]=${catgoryId}`
-        }`
+        }${filtersUrl}`
       );
 
       const product =
@@ -80,30 +81,25 @@ export default function Products() {
       setProducts(product);
     })();
   }, [catgoryId, filters.categories]);
-  const lengthProduct = products?.length;
 
   // --------filter start
 
-  const [dataCategorie, setDataCategorie] = useState([]);
-  console.log(dataCategorie);
-  console.log(filters.categories);
-
-  useEffect(() => {
-    (async () => {
-      const categories = await fetchDataAsync(`categories?populate=*`);
-      setDataCategorie(categories);
-    })();
-  }, []);
-
   const handleCategoryChange = async (event) => {
     const { checked, value } = event.target;
+    setFilters({
+      categories: [],
+      colors: [],
+      sizes: {
+        waist: [],
+        clothing: [],
+      },
+    });
     setFilters((prev) => ({
       ...prev,
       categories: checked
         ? [...prev.categories, value]
         : prev.categories.filter((cat) => cat !== value),
     }));
-    
   };
   const handleColorChange = (event) => {
     const { checked, value } = event.target;
@@ -140,7 +136,7 @@ export default function Products() {
   };
 
   const categoriese =
-    dataCategorie?.map((e) => (
+    categorys?.map((e) => (
       <FormControlLabel
         control={
           <Checkbox
@@ -153,8 +149,6 @@ export default function Products() {
         key={e?.id}
       />
     )) || [];
-  const colors = ""
-  const size = ""
   return (
     <>
       <Grid container xs={12} sx={{ p: 10 }}>
