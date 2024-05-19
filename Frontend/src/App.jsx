@@ -39,7 +39,7 @@ export default function App() {
             path="/dashbord"
             element={token ? <Dasbord /> : <Navigate to={"/auth"} />}
           />
-          <Route path="/product-detail/:id/name" element={<ProductDetail />} />
+          <Route path="/product-detail/:id/:name" element={<ProductDetail />} />
           <Route path="/products/:catgoryId/:catgoryName" element={<Products />} />
           <Route
             path="/auth"
