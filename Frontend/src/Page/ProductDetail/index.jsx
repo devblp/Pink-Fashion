@@ -28,10 +28,10 @@ export default function ProductDetail() {
   }, [id]);
   return (
     <>
-      <Grid container xs={10} p={10}>
+      <Grid container xs={12} p={10}>
         <Grid container xs={8}>
           <ImageList
-            sx={{ width: 1100, height: 1400 }}
+            sx={{ width: 1100, height: 1900 }}
             cols={2}
             rowHeight={264}
           >
@@ -47,7 +47,7 @@ export default function ProductDetail() {
             ))}
           </ImageList>
         </Grid>
-        <Grid xs={4} px={3}>
+        <Grid  xs={4} px={3}>
           <Grid container xs={12}>
             <Grid xs={9}>
               <Typography variant="h1" color="initial">
@@ -91,8 +91,24 @@ export default function ProductDetail() {
                 <Box></Box>
               </Box>
             </Grid>
-            <Grid container xs={12}></Grid>
-            <Grid container xs={12}></Grid>
+            <Grid container xs={12}>
+              <Typography>titel</Typography>
+              <Typography>matn</Typography>
+            </Grid>
+            <Grid container xs={12}>
+              <Box>
+              <Box></Box>
+              <Box></Box>
+              </Box>
+              <Box>
+              <Box></Box>
+              <Box></Box>
+              </Box>
+              <Box>
+              <Box></Box>
+              <Box></Box>
+              </Box>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
