@@ -24,9 +24,9 @@ export default function index({name, image, price, brand, id, attributesColor}) 
               {brand? brand:"Feack"}
 
             </Typography>
-            
-                {attributesColor?(attributesColor.map((e)=>(<Box sx={{width: 20, height: 20, bgcolor: e ,borderRadius:100}}></Box>))):("")}
-            
+            <Box sx={{display:"flex",flexDirection:"row",gap:1}}>
+                {attributesColor?(attributesColor.map((e)=>(<Box sx={{width: 20, height: 20, bgcolor: e ,borderRadius:10}}></Box>))):("")}
+            </Box>
             <Button variant="outlined" sx={{my:2 ,px:3}} >
                 <Link style={{color:"black",textDecoration: "none"}} to={`/product-detail/${id}/${name.replaceAll(" ",'-')}`}>submit</Link>
             </Button>
