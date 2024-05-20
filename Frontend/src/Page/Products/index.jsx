@@ -3,13 +3,7 @@ import {
   Box,
   Typography,
   Breadcrumbs,
-  Select,
-  MenuItem,
-  OutlinedInput,
-  Autocomplete,
-  TextField,
   Checkbox,
-  FormControl,
   FormGroup,
   FormControlLabel,
   FormLabel,
@@ -76,6 +70,8 @@ export default function Products() {
             price={e?.attributes?.price}
             image={e?.attributes?.images?.data[0]?.attributes?.url}
             brand={e?.attributes?.brand}
+            attributesColor={e?.attributes?.categories?.data?.map(category => category?.attributes?.name) || []}
+
           />
         )) || [];
       setProducts(product);
@@ -101,28 +97,6 @@ export default function Products() {
         : prev.categories.filter((cat) => cat !== value),
     }));
   };
-  const handleColorChange = (event) => {
-    const { checked, value } = event.target;
-    setFilters((prev) => ({
-      ...prev,
-      colors: checked
-        ? [...prev.colors, value]
-        : prev.colors.filter((color) => color !== value),
-    }));
-  };
-
-  const handleSizeChange = (event, type) => {
-    const { checked, value } = event.target;
-    setFilters((prev) => ({
-      ...prev,
-      sizes: {
-        ...prev.sizes,
-        [type]: checked
-          ? [...prev.sizes[type], value]
-          : prev.sizes[type].filter((size) => size !== value),
-      },
-    }));
-  };
 
   const handleFilterReset = () => {
     setFilters({
@@ -136,6 +110,38 @@ export default function Products() {
   };
 
   const categoriese =
+    categorys?.map((e) => (
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={filters.categories.includes(e?.attributes?.name)}
+            onChange={handleCategoryChange}
+            value={e?.attributes?.name}
+          />
+        }
+        label={e?.attributes?.name}
+        key={e?.id}
+      />
+    )) || [];
+  const color =
+    categorys?.map((e) => (
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={filters.categories.includes(e?.attributes?.name)}
+            onChange={handleCategoryChange}
+            value={e?.attributes?.name}
+          />
+        }
+        label={
+          <Box
+            sx={{ width: 20, height: 20, bgcolor: e?.attributes?.name , borderRadius:100 }}
+          ></Box>
+        }
+        key={e?.id}
+      />
+    )) || [];
+  const size =
     categorys?.map((e) => (
       <FormControlLabel
         control={
@@ -171,39 +177,7 @@ export default function Products() {
                   <FormLabel>Color</FormLabel>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <FormGroup row>
-                    {[
-                      "black",
-                      "green",
-                      "blue",
-                      "brown",
-                      "orange",
-                      "pink",
-                      "red",
-                      "white",
-                      "yellow",
-                    ].map((color) => (
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            checked={filters.colors.includes(color)}
-                            onChange={handleColorChange}
-                            value={color}
-                          />
-                        }
-                        label={
-                          <div
-                            style={{
-                              width: 20,
-                              height: 20,
-                              backgroundColor: color,
-                            }}
-                          ></div>
-                        }
-                        key={color}
-                      />
-                    ))}
-                  </FormGroup>
+                  <FormGroup row>{color.slice(8, 12)}</FormGroup>
                   <Button>View More +</Button>
                 </AccordionDetails>
               </Accordion>
@@ -214,42 +188,8 @@ export default function Products() {
                   <FormLabel>Size</FormLabel>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <FormLabel component="legend">Waist</FormLabel>
-                  <FormGroup row>
-                    {["36", "38", "40", "42", "44", "46", "48", "50"].map(
-                      (size) => (
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              checked={filters.sizes.waist.includes(size)}
-                              onChange={(e) => handleSizeChange(e, "waist")}
-                              value={size}
-                            />
-                          }
-                          label={size}
-                          key={size}
-                        />
-                      )
-                    )}
-                  </FormGroup>
                   <FormLabel component="legend">Clothing</FormLabel>
-                  <FormGroup row>
-                    {["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"].map(
-                      (size) => (
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              checked={filters.sizes.clothing.includes(size)}
-                              onChange={(e) => handleSizeChange(e, "clothing")}
-                              value={size}
-                            />
-                          }
-                          label={size}
-                          key={size}
-                        />
-                      )
-                    )}
-                  </FormGroup>
+                  <FormGroup row>{size.slice(12,17)}</FormGroup>
                 </AccordionDetails>
               </Accordion>
             </Grid>

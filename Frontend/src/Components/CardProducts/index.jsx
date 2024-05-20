@@ -3,7 +3,8 @@ import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function index({name, image, price, brand,id}) {
+export default function index({name, image, price, brand, id, attributesColor}) {
+
     const url = import.meta.env.VITE_BASE_URL
   return (
     <>
@@ -23,9 +24,9 @@ export default function index({name, image, price, brand,id}) {
               {brand? brand:"Feack"}
 
             </Typography>
-            <Box>
-                {"colors imge"}
-            </Box>
+            
+                {attributesColor?(attributesColor.map((e)=>(<Box sx={{width: 20, height: 20, bgcolor: e ,borderRadius:100}}></Box>))):("")}
+            
             <Button variant="outlined" sx={{my:2 ,px:3}} >
                 <Link style={{color:"black",textDecoration: "none"}} to={`/product-detail/${id}/${name.replaceAll(" ",'-')}`}>submit</Link>
             </Button>
