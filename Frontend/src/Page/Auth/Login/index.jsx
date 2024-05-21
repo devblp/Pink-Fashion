@@ -35,7 +35,7 @@ export default function Login() {
   const [users, handelCheng] = userFromFields();
   const [toast, setToast] = useState({ type: "info", message: " " });
   const dispatch = useDispatch()
-  console.log(toast);
+ 
   useEffect(() => {
     (async () => {
       const res = await fetchData("img-auth-backgruonds?populate=*");

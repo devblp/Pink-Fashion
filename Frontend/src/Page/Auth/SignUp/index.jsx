@@ -94,7 +94,7 @@ export default function SignUp() {
             }}
           >
             <Typography variant="h2" textAlign={"center"}>
-              LOGIN
+              SignUp
             </Typography>
             <Box
               sx={{ width: "40ch", p: "20px 0px 20px 0px", borderBottom: 1 }}

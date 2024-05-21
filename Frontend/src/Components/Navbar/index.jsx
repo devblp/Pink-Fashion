@@ -39,6 +39,7 @@ export default function Footer() {
   };
   // start Cart
   const [openDrawer, setOpenDrawer] = useState(false);
+
   const { list } = useSelector((state) => state.Cart);
   console.log(list);
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ export default function Footer() {
   const items = list.map((e, index) => {
     totalPrice += e.attributes.price * e.quantity;
     return (
-      <Grid container xs={12} key={index}>
+      <Grid container xs={12} key={index} my={3}>
         <Grid container xs={2}>
           <Avatar
             alt={e.name}
@@ -180,7 +181,7 @@ export default function Footer() {
               <Link onClick={toggleDrawer(true)} className="link-navbar-icon">
                 <Box sx={{position:"relative"}}>
                 <LocalMallIcon  />
-                {list.length>0? (<Box sx={{borderRadius:100 ,width:"15px",height:"15px",bgcolor:"red",position:"absolute" , bottom:0,textAlign:"center",color:"pre"}}>2</Box>):""}
+                {list.length>0? (<Box sx={{borderRadius:100 ,width:"10px",height:"10px",bgcolor:"red",position:"absolute" , bottom:0,textAlign:"center",color:"primary.ws",fontSize:"14px"}}></Box>):""}
                 </Box>
                 
               </Link>
@@ -205,7 +206,7 @@ export default function Footer() {
               className="link-navbar-menu"
             >
               <Typography className="filter-menu-nav">
-                Holiday Gifting
+                Product's
               </Typography>
             </Link>
             <Link to={""} className="link-navbar-menu">
@@ -388,7 +389,7 @@ export default function Footer() {
               justifyContent={"space-between"}
             >
               <Box>
-                <Typography>Subtotal ( 2 itme )</Typography>
+                <Typography>Subtotal (  itmeS  )</Typography>
               </Box>
               <Box>$ {totalPrice}</Box>
             </Grid>
