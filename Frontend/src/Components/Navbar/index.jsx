@@ -1,31 +1,23 @@
-import {
-  Button,
-  Box,
-  MenuItem,
-  Menu,
-  Typography,
-  Toolbar,
-  AppBar,
-  Avatar,
-  Icon,
-} from "@mui/material";
+import { Button, Box, Menu, Typography, Avatar, Drawer } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useState } from "react";
 import "./style.css";
 import { useNavigate, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import imageUsa from "../../img/USA.png";
 import logo from "../../img/logo.png";
-import Frame1 from "../../img/Frame1.png"
-import Frame2 from "../../img/Frame3.png"
+import Frame1 from "../../img/Frame1.png";
+import Frame2 from "../../img/Frame3.png";
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import SearchIcon from "@mui/icons-material/Search";
+import { addItem, clear, removeItem } from "../../Sore/Slices/Cart";
 
 export default function Footer() {
+  const url = import.meta.env.VITE_BASE_URL;
   const { token, user, avatar } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -36,6 +28,36 @@ export default function Footer() {
   };
   const handelClosMegaMenu = () => {
     setAnchorEl(null);
+  };
+  // start Cart
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const { list } = useSelector((state) => state.Cart);
+  const dispatch = useDispatch();
+  let totalPrice = 0;
+  const items = list.map((e, index) => {
+    totalPrice += (e.price / 100) * e.quantity;
+    return (
+      <Grid container xs={12}>
+        {index + 1}
+        <Grid container xs={3}>
+          <Avatar
+            alt={e.name}
+            src={url + e.images.data[0].attributes.url}
+            style={{ width: "60px", height: "60px" }}
+          />
+        </Grid>
+        <Grid container xs={6}>
+          {e.name}$ {e.price / 100}
+        </Grid>
+        <Grid container xs={3}>
+          <Button onClick={() => dispatch(removeItem(e.id))}>-</Button>
+          <Button onClick={() => dispatch(addItem(e))}>+</Button>
+        </Grid>
+      </Grid>
+    );
+  });
+  const toggleDrawer = (newOpen) => () => {
+    setOpenDrawer(newOpen);
   };
   return (
     <>
@@ -80,10 +102,16 @@ export default function Footer() {
             <Box
               sx={{ display: "flex", justifyContent: "center", gap: "20px" }}
             >
-              <Link to={"/products/2/all-category"} className="link-navbar-menu">
+              <Link
+                to={"/products/2/all-category"}
+                className="link-navbar-menu"
+              >
                 <Typography className="filter-menu-nav">Women</Typography>
               </Link>
-              <Link to={"/products/1/all-category"} className="link-navbar-menu">
+              <Link
+                to={"/products/1/all-category"}
+                className="link-navbar-menu"
+              >
                 <Typography className="filter-menu-nav">Men</Typography>
               </Link>
               <Link to={""} className="link-navbar-menu">
@@ -117,7 +145,7 @@ export default function Footer() {
               <Link to={"/dashbord"} className="link-navbar-icon">
                 <PermIdentityIcon />
               </Link>
-              <Link className="link-navbar-icon">
+              <Link onClick={toggleDrawer(true)} className="link-navbar-icon">
                 <LocalMallIcon />
               </Link>
             </Box>
@@ -136,7 +164,10 @@ export default function Footer() {
               gap: "30px",
             }}
           >
-            <Link to={"/products/all-product/all-category"} className="link-navbar-menu">
+            <Link
+              to={"/products/all-product/all-category"}
+              className="link-navbar-menu"
+            >
               <Typography className="filter-menu-nav">
                 Holiday Gifting
               </Typography>
@@ -178,33 +209,117 @@ export default function Footer() {
               anchorEl={anchorEl}
               open={open}
               onClose={handelClosMegaMenu}
-              sx={{width:"100%"}}
+              sx={{ width: "100%" }}
             >
               <Grid container xs={12} py={1}>
-                <Grid container xs={3} sx={{display:"flex" ,justifyContent:"center"}}>
-                  <Box >
-                    <Typography component={"h4"} sx={{color:"#737373",py:3,fontSize:"10px"}}>HIGHLIGHTS</Typography>
-                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"} >The Gift Guide</Typography></Link>
-                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>New Bottoms</Typography></Link>
-                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>New Tops</Typography></Link>
-                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>T-Shirt Bundles</Typography></Link>
-                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>Under $100</Typography></Link>
-                  </Box>
-                </Grid>
-                <Grid container xs={4} sx={{display:"flex" ,justifyContent:"center",}}>
+                <Grid
+                  container
+                  xs={3}
+                  sx={{ display: "flex", justifyContent: "center" }}
+                >
                   <Box>
-                    <Typography component={"h4"} sx={{color:"#737373",py:3,fontSize:"10px"}}>FEATURED SHOPS</Typography>
-                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>The Holiday Outfit Edit</Typography></Link>
-                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>Giftable Sweaters</Typography></Link>
-                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>Uniform & Capsule</Typography></Link>
-                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>The Performance Chino Shop</Typography></Link>
-                    <Link className="link-navbar-menu-mega"><Typography py={1} fontSize={"14px"}>Top Rated Men’s Clothing</Typography></Link>
+                    <Typography
+                      component={"h4"}
+                      sx={{ color: "#737373", py: 3, fontSize: "10px" }}
+                    >
+                      HIGHLIGHTS
+                    </Typography>
+                    <Link className="link-navbar-menu-mega">
+                      <Typography py={1} fontSize={"14px"}>
+                        The Gift Guide
+                      </Typography>
+                    </Link>
+                    <Link className="link-navbar-menu-mega">
+                      <Typography py={1} fontSize={"14px"}>
+                        New Bottoms
+                      </Typography>
+                    </Link>
+                    <Link className="link-navbar-menu-mega">
+                      <Typography py={1} fontSize={"14px"}>
+                        New Tops
+                      </Typography>
+                    </Link>
+                    <Link className="link-navbar-menu-mega">
+                      <Typography py={1} fontSize={"14px"}>
+                        T-Shirt Bundles
+                      </Typography>
+                    </Link>
+                    <Link className="link-navbar-menu-mega">
+                      <Typography py={1} fontSize={"14px"}>
+                        Under $100
+                      </Typography>
+                    </Link>
                   </Box>
                 </Grid>
-                <Grid container xs={5} sx={{display:"flex" ,justifyContent:"center" ,flexDirection:"row"}}>
-                  <Box sx={{display:"flex" ,gap:3}}>
-                    <Link to={""}><Avatar src={Frame1} sx={{width:"262px",height:"262px",borderRadius:0}}/></Link>
-                    <Link to={""}><Avatar src={Frame2} sx={{width:"262px",height:"262px",borderRadius:0}}/></Link>
+                <Grid
+                  container
+                  xs={4}
+                  sx={{ display: "flex", justifyContent: "center" }}
+                >
+                  <Box>
+                    <Typography
+                      component={"h4"}
+                      sx={{ color: "#737373", py: 3, fontSize: "10px" }}
+                    >
+                      FEATURED SHOPS
+                    </Typography>
+                    <Link className="link-navbar-menu-mega">
+                      <Typography py={1} fontSize={"14px"}>
+                        The Holiday Outfit Edit
+                      </Typography>
+                    </Link>
+                    <Link className="link-navbar-menu-mega">
+                      <Typography py={1} fontSize={"14px"}>
+                        Giftable Sweaters
+                      </Typography>
+                    </Link>
+                    <Link className="link-navbar-menu-mega">
+                      <Typography py={1} fontSize={"14px"}>
+                        Uniform & Capsule
+                      </Typography>
+                    </Link>
+                    <Link className="link-navbar-menu-mega">
+                      <Typography py={1} fontSize={"14px"}>
+                        The Performance Chino Shop
+                      </Typography>
+                    </Link>
+                    <Link className="link-navbar-menu-mega">
+                      <Typography py={1} fontSize={"14px"}>
+                        Top Rated Men’s Clothing
+                      </Typography>
+                    </Link>
+                  </Box>
+                </Grid>
+                <Grid
+                  container
+                  xs={5}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    flexDirection: "row",
+                  }}
+                >
+                  <Box sx={{ display: "flex", gap: 3 }}>
+                    <Link to={""}>
+                      <Avatar
+                        src={Frame1}
+                        sx={{
+                          width: "262px",
+                          height: "262px",
+                          borderRadius: 0,
+                        }}
+                      />
+                    </Link>
+                    <Link to={""}>
+                      <Avatar
+                        src={Frame2}
+                        sx={{
+                          width: "262px",
+                          height: "262px",
+                          borderRadius: 0,
+                        }}
+                      />
+                    </Link>
                   </Box>
                 </Grid>
               </Grid>
@@ -212,6 +327,61 @@ export default function Footer() {
           </Box>
         </Grid>
       </Box>
+      <Drawer open={openDrawer} onClose={toggleDrawer(false)}>
+        <Grid container xs={12} px={3}>
+          <Grid container xs={12} gap={2}>
+            <Typography sx={{ fontSize: 24, fontWeight: 500 }} color="initial">
+              Your Cart
+            </Typography>
+            <Grid container xs={12} flexDirection={"column"} gap={1}>
+              {list.length > 0 ? (
+                <Box>
+                  {items}
+                </Box>
+              ) : (
+                <h2>cart is empty</h2>
+              )}
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            xs={12}
+            justifyContent={"center"}
+            alignItems={"center"}
+            flexDirection={"column"}
+            gap={2}
+          >
+            <Grid
+              container
+              xs={12}
+              alignItems={"center"}
+              justifyContent={"space-between"}
+            >
+              <Box>
+                <Typography>Subtotal ( 2 itme )</Typography>
+              </Box>
+              <Box>$ {totalPrice}</Box>
+            </Grid>
+            <Grid container xs={12} flexDirection={"column"}>
+              <Button
+                variant="contained"
+                sx={{ bgcolor: "primary.bkNero", color: "primary.ws" }}
+              >
+                CONTINUE TO CHECKOUT
+              </Button>
+              <br/>
+              <Button
+                variant="contained"
+                onClick={() => dispatch(clear())}
+                sx={{ bgcolor: "red", color: "primary.ws" }}
+              >
+                clear
+              </Button>
+            </Grid>
+            <Typography>Psst, get it now before it sells out.</Typography>
+          </Grid>
+        </Grid>
+      </Drawer>
     </>
   );
 }

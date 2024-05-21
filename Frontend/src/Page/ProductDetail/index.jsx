@@ -4,28 +4,72 @@ import { useParams } from "react-router-dom";
 import {
   Box,
   Button,
+  Checkbox,
+  FormControlLabel,
   ImageList,
   ImageListItem,
   Rating,
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../../Sore/Slices/Cart";
 
 export default function ProductDetail() {
   const url = import.meta.env.VITE_BASE_URL;
-  const { id, name } = useParams();
+  const dispatch = useDispatch()
+  const { id } = useParams();
   const [product, setProduct] = useState();
+  const [categorys,setCategory] =useState()
   const [rating, setRating] = useState(5);
+  // const quantity=useSelector(state=>state.Cart.list)?.filter(e=>e.id==id)[0]?.quantity
+  const fetchDataAsync = async (url) => {
+    try {
+      const res = await fetchData(url);
+      return res?.data;
+    } catch (error) {}
+  };
   useEffect(() => {
     (async () => {
-      try {
-        const res = await fetchData(`products/${id}?populate=*`);
-        setProduct(res.data.attributes);
-      } catch (error) {
-        console.error(error);
-      }
+      const productDatail = await fetchDataAsync(`products/${id}?populate=*`);
+      setProduct(productDatail?.attributes);
+      const categorys = await fetchDataAsync(`categories?populate=*`);
+      setCategory(categorys)
     })();
   }, [id]);
+  const color =
+    categorys?.map((e) => (
+      <FormControlLabel
+        control={
+          <Checkbox
+            // checked={filters.categories.includes(e?.attributes?.name)}
+            // onChange={handleCategoryChange}
+            value={e?.attributes?.name}
+          />
+        }
+        label={
+          <Box
+            sx={{ width: 20, height: 20, bgcolor: e?.attributes?.name , borderRadius:100 }}
+          ></Box>
+        }
+        key={e?.id}
+      />
+    )) || [];
+    const size =
+    categorys?.map((e) => (
+      <FormControlLabel
+        control={
+          <Checkbox
+            value={e?.attributes?.name}
+          />
+        }
+        label={e?.attributes?.name}
+        key={e?.id}
+      />
+    )) || [];
+    const handleAddToBag = () => {
+      dispatch(addItem(product));
+    };
   return (
     <>
       <Grid container xs={12} p={10}>
@@ -47,10 +91,10 @@ export default function ProductDetail() {
             ))}
           </ImageList>
         </Grid>
-        <Grid  xs={4} px={3}>
-          <Grid container xs={12}>
+        <Grid xs={4} px={3}>
+          <Grid container xs={12} sx={{alignItems:"center" , justifyContent:"space-between"}}>
             <Grid xs={9}>
-              <Typography variant="h1" color="initial">
+              <Typography sx={{fontSize:34 ,fontWeight:400}} variant="h2" color="initial">
                 {product?.name}
               </Typography>
               <Grid container>
@@ -64,21 +108,24 @@ export default function ProductDetail() {
                 </Box>
               </Grid>
             </Grid>
-            <Grid sx={3}>{`$ ${product?.price}`}</Grid>
+            <Grid sx={3}><Typography sx={{fontSize:24 ,fontWeight:400}}>{`$${product?.price}`}</Typography></Grid>
           </Grid>
-          <Box sx={{ height: "1px", width: "100%", bgcolor: "primary.bkk" }} />
-          <Grid container xs={12}>
-            <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <Box sx={{ height: "1px", width: "100%", bgcolor: "primary.bkk" ,my:"50px"}} />
+          <Grid container xs={12} >
+            <Box sx={{ display: "flex", flexDirection: "column" ,gap:5}}>
               <Box>
                 <Typography>Color</Typography>
+                <Box>{color.slice(8, 12)}</Box>
               </Box>
               <Box>
                 <Typography>Size</Typography>
+                <Box>{size.slice(12,17)}</Box>
               </Box>
-              <Button variant="text">ADD TO BAG</Button>
+              
+              <Button variant="contained" onClick={handleAddToBag}>ADD TO BAG</Button>
             </Box>
           </Grid>
-          <Box sx={{ height: "1px", width: "100%", bgcolor: "primary.bkk" }} />
+          <Box sx={{ height: "1px", width: "100%", bgcolor: "primary.bkk",my:"50px" }} />
           <Grid container xs={12}>
             <Grid xs={12}>
               <Box>
@@ -92,21 +139,23 @@ export default function ProductDetail() {
               </Box>
             </Grid>
             <Grid container xs={12}>
-              <Typography>titel</Typography>
-              <Typography>matn</Typography>
+              <Typography variant="h6">
+                Part shirt, part jacket, all style.
+              </Typography>
+              <Typography>{product?.description}</Typography>
             </Grid>
             <Grid container xs={12}>
               <Box>
-              <Box></Box>
-              <Box></Box>
+                <Box></Box>
+                <Box></Box>
               </Box>
               <Box>
-              <Box></Box>
-              <Box></Box>
+                <Box></Box>
+                <Box></Box>
               </Box>
               <Box>
-              <Box></Box>
-              <Box></Box>
+                <Box></Box>
+                <Box></Box>
               </Box>
             </Grid>
           </Grid>

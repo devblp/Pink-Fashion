@@ -1569,6 +1569,7 @@ export default function Home() {
           </Grid>
         </Grid>
       </Box>
+
     </Box>
   );
 }
