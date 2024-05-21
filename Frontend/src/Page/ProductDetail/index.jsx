@@ -32,7 +32,7 @@ export default function ProductDetail() {
   useEffect(() => {
     (async () => {
       const productDatail = await fetchDataAsync(`products/${id}?populate=*`);
-      setProduct(productDatail?.attributes);
+      setProduct(productDatail);
       const categorys = await fetchDataAsync(`categories?populate=*`);
       setCategory(categorys)
     })();
@@ -79,7 +79,7 @@ export default function ProductDetail() {
             cols={2}
             rowHeight={264}
           >
-            {product?.images?.data?.map((e, index) => (
+            {product?.attributes?.images?.data?.map((e, index) => (
               <ImageListItem key={index}>
                 <img
                   srcSet={url + e?.attributes?.url}
@@ -95,7 +95,7 @@ export default function ProductDetail() {
           <Grid container xs={12} sx={{alignItems:"center" , justifyContent:"space-between"}}>
             <Grid xs={9}>
               <Typography sx={{fontSize:34 ,fontWeight:400}} variant="h2" color="initial">
-                {product?.name}
+                {product?.attributes?.name}
               </Typography>
               <Grid container>
                 <Box display={"flex"} gap={2}>
@@ -108,7 +108,7 @@ export default function ProductDetail() {
                 </Box>
               </Grid>
             </Grid>
-            <Grid sx={3}><Typography sx={{fontSize:24 ,fontWeight:400}}>{`$${product?.price}`}</Typography></Grid>
+            <Grid sx={3}><Typography sx={{fontSize:24 ,fontWeight:400}}>{`$${product?.attributes?.price}`}</Typography></Grid>
           </Grid>
           <Box sx={{ height: "1px", width: "100%", bgcolor: "primary.bkk" ,my:"50px"}} />
           <Grid container xs={12} >
@@ -142,7 +142,7 @@ export default function ProductDetail() {
               <Typography variant="h6">
                 Part shirt, part jacket, all style.
               </Typography>
-              <Typography>{product?.description}</Typography>
+              <Typography>{product?.attributes?.description}</Typography>
             </Grid>
             <Grid container xs={12}>
               <Box>

@@ -1,4 +1,11 @@
-import { Button, Box, Menu, Typography, Avatar, Drawer } from "@mui/material";
+import {
+  Button,
+  Box,
+  Menu,
+  Typography,
+  Avatar,
+  Drawer,
+} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useState } from "react";
 import "./style.css";
@@ -14,6 +21,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import SearchIcon from "@mui/icons-material/Search";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { addItem, clear, removeItem } from "../../Sore/Slices/Cart";
 
 export default function Footer() {
@@ -32,26 +40,50 @@ export default function Footer() {
   // start Cart
   const [openDrawer, setOpenDrawer] = useState(false);
   const { list } = useSelector((state) => state.Cart);
+  console.log(list);
   const dispatch = useDispatch();
   let totalPrice = 0;
   const items = list.map((e, index) => {
-    totalPrice += (e.price / 100) * e.quantity;
+    totalPrice += e.attributes.price * e.quantity;
     return (
-      <Grid container xs={12}>
-        {index + 1}
-        <Grid container xs={3}>
+      <Grid container xs={12} key={index}>
+        <Grid container xs={2}>
           <Avatar
             alt={e.name}
-            src={url + e.images.data[0].attributes.url}
-            style={{ width: "60px", height: "60px" }}
+            src={url + e.attributes.images.data[0].attributes.url}
+            sx={{ width: "70px", height: "100px", borderRadius: "0" }}
           />
         </Grid>
-        <Grid container xs={6}>
-          {e.name}$ {e.price / 100}
+        <Grid
+          container
+          xs={2}
+          flexDirection={"column"}
+          justifyContent={"space-between"}
+        >
+          <Box>{e.attributes.name}</Box>
+          <Box>$ {e.attributes.price}</Box>
         </Grid>
-        <Grid container xs={3}>
-          <Button onClick={() => dispatch(removeItem(e.id))}>-</Button>
-          <Button onClick={() => dispatch(addItem(e))}>+</Button>
+        <Grid container xs={3} alignItems={"center"}justifyContent={"center"}>
+          <Box>
+            <Button onClick={() => dispatch(clear(e.id))} sx={{ height: "30px" }}>
+              <DeleteOutlineIcon sx={{color:"red"}} />
+            </Button>
+          </Box>
+          <Box>
+            <Button
+              sx={{ height: "30px" }}
+              onClick={() => dispatch(removeItem(e.id))}
+            >
+              -
+            </Button>
+            {e.quantity}
+            <Button
+              sx={{ height: "30px" }}
+              onClick={() => dispatch(addItem(e))}
+            >
+              +
+            </Button>
+          </Box>
         </Grid>
       </Grid>
     );
@@ -146,7 +178,11 @@ export default function Footer() {
                 <PermIdentityIcon />
               </Link>
               <Link onClick={toggleDrawer(true)} className="link-navbar-icon">
-                <LocalMallIcon />
+                <Box sx={{position:"relative"}}>
+                <LocalMallIcon  />
+                {list.length>0? (<Box sx={{borderRadius:100 ,width:"15px",height:"15px",bgcolor:"red",position:"absolute" , bottom:0,textAlign:"center",color:"pre"}}>2</Box>):""}
+                </Box>
+                
               </Link>
             </Box>
           </Grid>
@@ -334,13 +370,7 @@ export default function Footer() {
               Your Cart
             </Typography>
             <Grid container xs={12} flexDirection={"column"} gap={1}>
-              {list.length > 0 ? (
-                <Box>
-                  {items}
-                </Box>
-              ) : (
-                <h2>cart is empty</h2>
-              )}
+              {list.length > 0 ? <Box display={"flex"} flexDirection={"column"}>{items}</Box> : <h2>cart is empty</h2>}
             </Grid>
           </Grid>
           <Grid
@@ -369,7 +399,7 @@ export default function Footer() {
               >
                 CONTINUE TO CHECKOUT
               </Button>
-              <br/>
+              <br />
               <Button
                 variant="contained"
                 onClick={() => dispatch(clear())}
