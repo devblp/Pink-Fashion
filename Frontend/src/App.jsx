@@ -10,7 +10,7 @@ import Products from "./Page/Products";
 import NotPage404 from "./Page/NotPage404";
 import Auth from "./Page/Auth";
 import SignUp from "./Page/Auth/SignUp";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes  } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Search from "./Page/Search";
