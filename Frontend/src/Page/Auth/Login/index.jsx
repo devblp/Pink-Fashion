@@ -30,16 +30,14 @@ import { login } from "../../../Sore/Slices/Auth";
 import { useDispatch,useSelector } from "react-redux";
 
 export default function Login() {
-  const {user,token} = useSelector((state) => state.auth)
+  const {user,token,toast} = useSelector((state) => state.auth)
   const [imgAuth, setImgAuth] = useState();
-  const [toast, setToast] = useState({ type: "info", message: " " });
   const dispatch = useDispatch()
   
   const handelCheng = (e)=>{
     const {name, value} = e.target
-    dispatch(login({user:{...user,[name]:value}}))
+    dispatch(login({user:{...user,[name]:value},toast:{ type: "info", message: " "}}))
   }
-
   useEffect(() => {
     (async () => {
       const res = await fetchData("img-auth-backgruonds?populate=*");
@@ -51,7 +49,7 @@ export default function Login() {
 
   const HandleLogin = async () => {
     try {
-      setToast({ type: "info", message: " " })
+      dispatch(login({toast:{ type: "info", message: " "}}))
       if (user.password && user.identifier) {
         const res = await fetchData("auth/local?populate=*" , {
           method: 'POST',
@@ -61,16 +59,16 @@ export default function Login() {
           }
         } )
         if (res.jwt) {
-          setToast({ type: "success", message: "Login Success"})
+          dispatch(login({toast:{ type: "success", message: "Login Success"}}))
           setInterval(() => {
             dispatch(login({token:res.jwt}))
           }, 2000);
         }else{
-          setToast({ type: "error", message: "username and password not found"})
+          dispatch(login({toast:{ type: "error", message: "username and password not found"}}))
         }
       }
     } catch (error) {
-      setToast({type:"error",message:"err"})
+      
     }
   };
   
@@ -85,6 +83,7 @@ export default function Login() {
 
   return (
     <Box>
+      <Toast type={toast.type} message={toast.message}/>
       <Grid container spacing={0}>
         <Grid xs={5}>
           <Avatar
@@ -160,7 +159,7 @@ export default function Login() {
             >
               Login
             </Button>
-            <Toast type={toast.type} message={toast.message}/>
+            
             <FormControlLabel control={<Checkbox />} label="Save account" />
 
             <Box sx={{ width: 300, borderBottom: 1 }} />
