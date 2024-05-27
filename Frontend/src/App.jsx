@@ -30,7 +30,6 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-      
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />

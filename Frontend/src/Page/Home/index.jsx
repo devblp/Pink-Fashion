@@ -5,7 +5,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, EffectCreative, FreeMode } from "swiper/modules";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -25,8 +25,6 @@ import fetchData from "../../Utils/fetchData";
 import CardCategory from "../../Components/CardCategory";
 
 export default function Home() {
-  const navigate = useNavigate();
-
   // Swiper pagination configuration
   const pagination = {
     clickable: true,

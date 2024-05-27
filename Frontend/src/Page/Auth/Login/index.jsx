@@ -4,14 +4,11 @@ import {
   TextField,
   Typography,
   FormControl,
-  FormLabel,
-  FormHelperText,
   Grid,
   Avatar,
   Checkbox,
   FormControlLabel,
   IconButton,
-  FormGroup,
   OutlinedInput,
   InputLabel,
   InputAdornment,
@@ -23,19 +20,23 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import React, { useEffect, useState } from "react";
-import userFromFields from "../../../Utils/useFromFields";
 import fetchData from "../../../Utils/fetchData";
 import 'react-toastify/dist/ReactToastify.css';
 import Toast from "../../../Components/Toast";
 import { login } from "../../../Sore/Slices/Auth";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 
 export default function Login() {
+  const {user,token} = useSelector((state) => state.auth)
   const [imgAuth, setImgAuth] = useState();
-  const [users, handelCheng] = userFromFields();
   const [toast, setToast] = useState({ type: "info", message: " " });
   const dispatch = useDispatch()
- 
+  
+  const handelCheng = (e)=>{
+    const {name, value} = e.target
+    dispatch(login({user:{...user,[name]:value}}))
+  }
+
   useEffect(() => {
     (async () => {
       const res = await fetchData("img-auth-backgruonds?populate=*");
@@ -48,23 +49,25 @@ export default function Login() {
   const HandleLogin = async () => {
     try {
       setToast({ type: "info", message: " " })
-      if (users.password && users.identifier) {
+      if (user.password && user.identifier) {
         const res = await fetchData("auth/local?populate=*" , {
           method: 'POST',
-          body: JSON.stringify(users),
+          body: JSON.stringify(user),
           headers: {
             'Content-Type': 'application/json'
           }
-        } );
+        } )
         if (res.jwt) {
           setToast({ type: "success", message: "Login Success"})
-          console.log(res);
-          dispatch(login({user:res.user.username,token:res.jwt,avatar:res.user.jwt}))
+          setInterval(() => {
+            dispatch(login({token:res.jwt}))
+          }, 2000);
+        }else{
+          setToast({ type: "error", message: "username and password not found"})
         }
       }
     } catch (error) {
-      setToast({type:"error",message:error.message})
-      console.log("no");
+      setToast({type:"error",message:"err"})
     }
   };
   

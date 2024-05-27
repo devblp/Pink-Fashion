@@ -9,7 +9,7 @@ import {
 import Grid from "@mui/material/Unstable_Grid2";
 import { useState } from "react";
 import "./style.css";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import imageUsa from "../../img/USA.png";
@@ -26,22 +26,19 @@ import { addItem, clear, removeItem } from "../../Sore/Slices/Cart";
 
 export default function Footer() {
   const url = import.meta.env.VITE_BASE_URL;
-  const { token, user, avatar } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
-  console.log(anchorEl);
   const open = Boolean(anchorEl);
+
   const handelOpenMegaMenu = (e) => {
     setAnchorEl(e.currentTarget);
   };
+
   const handelClosMegaMenu = () => {
     setAnchorEl(null);
   };
   // start Cart
   const [openDrawer, setOpenDrawer] = useState(false);
-
-  const { list } = useSelector((state) => state.Cart);
-  console.log(list);
+  const { list } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   let totalPrice = 0;
   const items = list.map((e, index) => {
