@@ -129,6 +129,7 @@ export default function Footer() {
           sx={{ height: 75, display: "flex", alignItems: "center" }}
         >
           <Grid xs={4}>
+            
             <Box
               sx={{ display: "flex", justifyContent: "center", gap: "20px" }}
             >
@@ -148,7 +149,6 @@ export default function Footer() {
                 <Typography className="filter-menu-nav">About</Typography>
               </Link>
               <Link to={""} className="link-navbar-menu">
-                {" "}
                 <Typography className="filter-menu-nav">
                   Everworld Stories
                 </Typography>

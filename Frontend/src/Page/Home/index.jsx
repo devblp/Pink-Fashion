@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Box, Typography, Button, Rating } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Typography,
+  Button,
+  Rating,
+  Snackbar,
+  IconButton,
+  Backdrop,
+} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { motion } from "framer-motion";
@@ -23,6 +32,7 @@ import footerImg from "../../img/footerImg.png";
 
 import fetchData from "../../Utils/fetchData";
 import CardCategory from "../../Components/CardCategory";
+import { Close } from "@mui/icons-material";
 
 export default function Home() {
   // Swiper pagination configuration
@@ -123,9 +133,19 @@ export default function Home() {
   // Function:fetchDataAsync is a utility function to fetch data from an endpoint and handle errors.useEffect
   // Hook:Use a single useEffect hook to fetch all necessary data when the component mounts.Data
   // Mapping:Map fetched data to the required formats or components.
+  const [open, setOpen] = useState(true);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <Box>
+      <Backdrop open={open} sx={{zIndex:100}} onClick={handleClose}>
+        <Box sx={{position:"absolute",top:"50%", bgcolor:"white",borderRadius:"20px",height:100,width:400,textAlign:"center"}}>
+          <Typography m={"35px 0px 0px 0px"}>{"Login ---> pass: 123456 /  user: sina@gmail.com"}</Typography>
+        </Box>
+      </Backdrop>
       <Swiper
         pagination={pagination}
         modules={[Pagination]}
@@ -1567,7 +1587,7 @@ export default function Home() {
           </Grid>
         </Grid>
       </Box>
-
+      
     </Box>
   );
 }

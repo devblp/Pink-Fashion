@@ -14,11 +14,14 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+
 import XIcon from "@mui/icons-material/X";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+
 import React, { useEffect, useState } from "react";
 import fetchData from "../../../Utils/fetchData";
 import 'react-toastify/dist/ReactToastify.css';
@@ -100,9 +103,13 @@ export default function Login() {
               flexDirection: "column",
               alignItems: "center",
               gap: 3,
-              py: 20,
+              py: 10,
             }}
           >
+            <Box sx={{display:"flex",gap:1,alignItems:"center"}}>
+            <KeyboardBackspaceIcon sx={{fontSize:"15px"}}/>
+            <Typography ><Link to={"/"}>back to home</Link></Typography>
+            </Box>
             <Typography variant="h2" textAlign={"center"}>
               LOGIN
             </Typography>
