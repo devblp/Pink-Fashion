@@ -16,7 +16,8 @@ const authSlice = createSlice({
       state.toast = action.payload.toast;
     },
     logout: (state) => {
-      (state.token = null)((state.user = null));
+      state.token = null;
+      state.user = {};
     },
   },
 });

@@ -5,12 +5,14 @@ import {
   Typography,
   Avatar,
   Drawer,
+  IconButton,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useState } from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Badge from "@mui/material/Badge";
 
 import imageUsa from "../../img/USA.png";
 import logo from "../../img/logo.png";
@@ -61,10 +63,13 @@ export default function Footer() {
           <Box>{e.attributes.name}</Box>
           <Box>$ {e.attributes.price}</Box>
         </Grid>
-        <Grid container xs={3} alignItems={"center"}justifyContent={"center"}>
+        <Grid container xs={3} alignItems={"center"} justifyContent={"center"}>
           <Box>
-            <Button onClick={() => dispatch(clear(e.id))} sx={{ height: "30px" }}>
-              <DeleteOutlineIcon sx={{color:"red"}} />
+            <Button
+              onClick={() => dispatch(clear(e.id))}
+              sx={{ height: "30px" }}
+            >
+              <DeleteOutlineIcon sx={{ color: "red" }} />
             </Button>
           </Box>
           <Box>
@@ -129,7 +134,6 @@ export default function Footer() {
           sx={{ height: 75, display: "flex", alignItems: "center" }}
         >
           <Grid xs={4}>
-            
             <Box
               sx={{ display: "flex", justifyContent: "center", gap: "20px" }}
             >
@@ -170,17 +174,23 @@ export default function Footer() {
               sx={{ display: "flex", justifyContent: "center", gap: "20px" }}
             >
               <Link to={"/search"} className="link-navbar-icon">
-                <SearchIcon />
+                <IconButton sx={{color:"black"}}><SearchIcon /></IconButton >
               </Link>
               <Link to={"/dashbord"} className="link-navbar-icon">
-                <PermIdentityIcon />
+                <IconButton sx={{color:"black"}}><PermIdentityIcon /></IconButton>
               </Link>
               <Link onClick={toggleDrawer(true)} className="link-navbar-icon">
-                <Box sx={{position:"relative"}}>
-                <LocalMallIcon  />
-                {list.length>0? (<Box sx={{borderRadius:100 ,width:"10px",height:"10px",bgcolor:"red",position:"absolute" , bottom:0,textAlign:"center",color:"primary.ws",fontSize:"14px"}}></Box>):""}
-                </Box>
-                
+                <IconButton sx={{color:"black"}}>
+                  {list.length > 0 ? (
+                  <Badge badgeContent={list.length} color="secondary">
+                    <LocalMallIcon />
+                  </Badge>
+                ) : (
+                  <LocalMallIcon />
+                )}
+                </IconButton>
+
+
               </Link>
             </Box>
           </Grid>
@@ -202,9 +212,7 @@ export default function Footer() {
               to={"/products/all-product/all-category"}
               className="link-navbar-menu"
             >
-              <Typography className="filter-menu-nav">
-                Product's
-              </Typography>
+              <Typography className="filter-menu-nav">Product's</Typography>
             </Link>
             <Link to={""} className="link-navbar-menu">
               <Typography className="filter-menu-nav">New Arrivals</Typography>
@@ -368,7 +376,13 @@ export default function Footer() {
               Your Cart
             </Typography>
             <Grid container xs={12} flexDirection={"column"} gap={1}>
-              {list.length > 0 ? <Box display={"flex"} flexDirection={"column"}>{items}</Box> : <h2>cart is empty</h2>}
+              {list.length > 0 ? (
+                <Box display={"flex"} flexDirection={"column"}>
+                  {items}
+                </Box>
+              ) : (
+                <h2>cart is empty</h2>
+              )}
             </Grid>
           </Grid>
           <Grid
@@ -386,7 +400,7 @@ export default function Footer() {
               justifyContent={"space-between"}
             >
               <Box>
-                <Typography>Subtotal (  itmeS  )</Typography>
+                <Typography>Subtotal ( itmeS )</Typography>
               </Box>
               <Box>$ {totalPrice}</Box>
             </Grid>

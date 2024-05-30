@@ -41,7 +41,7 @@ import CardCategory from "../../Components/CardCategory";
 import { useSelector } from "react-redux";
 
 export default function Home() {
-  const {token} = useSelector(state=>state.auth)
+  const {token} = useSelector((state)=>state.auth)
 
   // Swiper pagination configuration
   const pagination = {
@@ -149,9 +149,7 @@ export default function Home() {
 
   return (
     <>
-      {sliders ? (
-        <Box>
-          <Dialog
+      {token? ([""]) : (<Dialog
             open={openDialog}
             onClose={handleCloseDialog}
             aria-labelledby="alert-dialog-title"
@@ -169,7 +167,9 @@ export default function Home() {
             <DialogActions>
               <Button onClick={handleCloseDialog}>Close</Button>
             </DialogActions>
-          </Dialog>
+          </Dialog>)}
+      {sliders ? (
+        <Box>
           <Swiper
             pagination={pagination}
             modules={[Pagination]}
