@@ -52,7 +52,7 @@ export default function App() {
             path="/search"
             element={<Search/>}
           />
-          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-up" element={token ? <Navigate to={"/dashbord"}/>  : <SignUp />} />
           <Route path="*" element={<NotPage404 />} />
         </Routes>
         {!hideNavbarAndFooter && <Footer />}

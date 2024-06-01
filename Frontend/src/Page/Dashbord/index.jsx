@@ -49,7 +49,7 @@ export default function Dashbord() {
             />
             <Grid container  xs={12} sx={{color:"primary.ws",alignItems:"center",justifyContent:"space-between",py:1}}>
                 <Typography >log out</Typography>
-                <IconButton sx={{color:"primary.ws"}} onClick={()=>dispach(logout())}>
+                <IconButton sx={{color:"primary.ws"}} onClick={()=>dispach(logout())} >
                   <LogoutIcon/>
                 </IconButton>
             </Grid>

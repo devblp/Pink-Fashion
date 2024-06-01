@@ -234,7 +234,7 @@ export default function Footer() {
             <Link to={""} className="link-navbar-menu">
               <Typography className="filter-menu-nav">Shoes & Bags</Typography>
             </Link>
-            <Link to={""} className="link-navbar-menu">
+            <Link className="link-navbar-menu">
               <Button
                 className="filter-menu-nav mega-menu-button"
                 sx={{
