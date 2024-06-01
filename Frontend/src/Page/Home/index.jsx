@@ -968,8 +968,6 @@ export default function Home() {
               <Grid container xs={12} sx={{  justifyContent:"center" ,gap:3}}>
                 
                 {cartCategorys.slice(0, 7)}
-                
-                
               </Grid>
             </Grid>
           </Box>
