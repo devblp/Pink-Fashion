@@ -160,8 +160,7 @@ export default function Home() {
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                If you want to login <br />
-                email: sina@gmail.com password: 123456
+                If you want to login Please SingUp
               </DialogContentText>
             </DialogContent>
             <DialogActions>
@@ -954,7 +953,7 @@ export default function Home() {
             </Swiper>
           </Box>
           <Box>
-            <Grid container xs={12}>
+            <Grid xs={12}>
               <Grid
                 container
                 xs={12}
@@ -966,8 +965,11 @@ export default function Home() {
                   </Typography>
                 </Box>
               </Grid>
-              <Grid container xs={12} sx={{ justifyContent: "center", gap: 3 }}>
+              <Grid container xs={12} sx={{  justifyContent:"center" ,gap:3}}>
+                
                 {cartCategorys.slice(0, 7)}
+                
+                
               </Grid>
             </Grid>
           </Box>
@@ -977,7 +979,7 @@ export default function Home() {
               xs={12}
               sx={{ justifyContent: "center", py: 18, position: "relative" }}
             >
-              <Box sx={{ width: "1600px" }}>
+              <Box sx={{ width: "100%" }}>
                 <Avatar
                   src={imageLearmMore}
                   sx={{

@@ -28,7 +28,7 @@ export default function App() {
     }
   });
   const location = useLocation();
-  const pathsWithoutNavbarAndFooter = ["/dashbord", "/auth","/sign-up"];
+  const pathsWithoutNavbarAndFooter = ["/dashbord", "/auth","/sign-up","/*"];
   const hideNavbarAndFooter = pathsWithoutNavbarAndFooter.includes(location.pathname);
   return (
     <>
@@ -53,7 +53,7 @@ export default function App() {
             element={<Search/>}
           />
           <Route path="/sign-up" element={token ? <Navigate to={"/dashbord"}/>  : <SignUp />} />
-          <Route path="*" element={<NotPage404 />} />
+          <Route path="/*" element={<NotPage404 />} />
         </Routes>
         {!hideNavbarAndFooter && <Footer />}
       </ThemeProvider>

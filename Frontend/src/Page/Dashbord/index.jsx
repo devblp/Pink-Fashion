@@ -19,9 +19,9 @@ export default function Dashbord() {
   
   const dispach = useDispatch()
   return (
-    <Box sx={{bgcolor:"#202020",height:"100vh"}}>
+    <Box sx={{bgcolor:"#202020",height:"100%"}}>
       <Grid container xs={12}>
-        <Grid container xs={2} sx={{flexDirection:"column",p:"60px",gap:10}}>
+        <Grid container xs={2} sx={{flexDirection:"column",p:"47.8px",gap:10}}>
           <Grid xs={12}>
             <Avatar/>
             <IconButton>
@@ -63,10 +63,10 @@ export default function Dashbord() {
             </Grid>
             <Grid container xs={6} alignItems={"center"} p={"0px 90px 0px 0px"} color={"primary.ws"} >
               <IconButton sx={{color:"primary.ws"}}>
-              <Link to={"/"} style={{color:"white"}} ><SearchIcon /></Link>
+              <Link  style={{color:"white"}} ><SearchIcon /></Link>
               </IconButton>
               <IconButton sx={{color:"primary.ws"}}>
-              <Link to={"/"} style={{color:"white"}} ><NotificationsIcon/></Link>
+              <Link  style={{color:"white"}} ><NotificationsIcon/></Link>
               </IconButton>
               <IconButton >
                 <Link to={"/"} style={{color:"white"}} ><HomeIcon/></Link>
@@ -80,7 +80,7 @@ export default function Dashbord() {
               </Box>
             </Grid>
           </Grid>
-          <Grid container xs={9} sx={{bgcolor:"black", height:"80vh" ,width:"151vh", borderRadius:"30px",my:"10px"}}>
+          <Grid container xs={9} sx={{bgcolor:"black", height:"700px" ,width:"95%", borderRadius:"30px",my:"10px"}}>
             <Box >
 
             </Box>

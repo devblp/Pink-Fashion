@@ -87,7 +87,7 @@ export default function SignUp() {
       {token ? <Navigate to={"/dashbord"} /> : (
         <Box>
           <Toast type={toast.type} message={toast.message} />
-          <Grid container spacing={0}>
+          <Grid container>
             <Grid item xs={5}>
               {imgAuth && (
                 <Avatar
@@ -107,7 +107,7 @@ export default function SignUp() {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  gap: 3,
+                  gap: 2,
                   py: 9,
                 }}
               >
