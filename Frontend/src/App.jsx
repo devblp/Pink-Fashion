@@ -10,7 +10,7 @@ import Products from "./Page/Products";
 import NotPage404 from "./Page/NotPage404";
 import Auth from "./Page/Auth";
 import SignUp from "./Page/Auth/SignUp";
-import { Navigate, Route, Routes  } from "react-router-dom";
+import { Navigate, Route, Routes,useLocation   } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Search from "./Page/Search";
@@ -27,10 +27,13 @@ export default function App() {
       },
     }
   });
+  const location = useLocation();
+  const pathsWithoutNavbarAndFooter = ["/dashbord", "/auth","/sign-up","/*"];
+  const hideNavbarAndFooter = pathsWithoutNavbarAndFooter.includes(location.pathname);
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Navbar />
+        {!hideNavbarAndFooter && <Navbar />}
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/abaut" element={<Abaut />} />
@@ -49,10 +52,10 @@ export default function App() {
             path="/search"
             element={<Search/>}
           />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="*" element={<NotPage404 />} />
+          <Route path="/sign-up" element={token ? <Navigate to={"/dashbord"}/>  : <SignUp />} />
+          <Route path="/*" element={<NotPage404 />} />
         </Routes>
-        <Footer />
+        {!hideNavbarAndFooter && <Footer />}
       </ThemeProvider>
     </>
   );

@@ -4,38 +4,40 @@ import {
   TextField,
   Typography,
   FormControl,
-  FormLabel,
-  FormHelperText,
   Grid,
   Avatar,
   Checkbox,
   FormControlLabel,
   IconButton,
-  FormGroup,
   OutlinedInput,
   InputLabel,
   InputAdornment,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+
 import XIcon from "@mui/icons-material/X";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+
 import React, { useEffect, useState } from "react";
-import userFromFields from "../../../Utils/useFromFields";
 import fetchData from "../../../Utils/fetchData";
 import 'react-toastify/dist/ReactToastify.css';
 import Toast from "../../../Components/Toast";
 import { login } from "../../../Sore/Slices/Auth";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 
 export default function Login() {
+  const {user,token,toast} = useSelector((state) => state.auth)
   const [imgAuth, setImgAuth] = useState();
-  const [users, handelCheng] = userFromFields();
-  const [toast, setToast] = useState({ type: "info", message: " " });
   const dispatch = useDispatch()
- 
+  
+  const handelCheng = (e)=>{
+    const {name, value} = e.target
+    dispatch(login({user:{...user,[name]:value},toast:{ type: "info", message: " "}}))
+  }
   useEffect(() => {
     (async () => {
       const res = await fetchData("img-auth-backgruonds?populate=*");
@@ -47,24 +49,26 @@ export default function Login() {
 
   const HandleLogin = async () => {
     try {
-      setToast({ type: "info", message: " " })
-      if (users.password && users.identifier) {
+      dispatch(login({toast:{ type: "info", message: " "}}))
+      if (user.password && user.identifier) {
         const res = await fetchData("auth/local?populate=*" , {
           method: 'POST',
-          body: JSON.stringify(users),
+          body: JSON.stringify(user),
           headers: {
             'Content-Type': 'application/json'
           }
-        } );
+        } )
         if (res.jwt) {
-          setToast({ type: "success", message: "Login Success"})
-          console.log(res);
-          dispatch(login({user:res.user.username,token:res.jwt,avatar:res.user.jwt}))
+          dispatch(login({toast:{ type: "success", message: "Login Success"}}))
+          setInterval(() => {
+            dispatch(login({token:res.jwt}))
+          }, 2000);
+        }else{
+          dispatch(login({toast:{ type: "error", message: "username and password not found"}}))
         }
       }
     } catch (error) {
-      setToast({type:"error",message:error.message})
-      console.log("no");
+      
     }
   };
   
@@ -79,6 +83,7 @@ export default function Login() {
 
   return (
     <Box>
+      <Toast type={toast.type} message={toast.message}/>
       <Grid container spacing={0}>
         <Grid xs={5}>
           <Avatar
@@ -97,9 +102,13 @@ export default function Login() {
               flexDirection: "column",
               alignItems: "center",
               gap: 3,
-              py: 20,
+              py: 10,
             }}
           >
+            <Box sx={{display:"flex",gap:1,alignItems:"center"}}>
+            <KeyboardBackspaceIcon sx={{fontSize:"15px"}}/>
+            <Typography ><Link to={"/"}>back to home</Link></Typography>
+            </Box>
             <Typography variant="h2" textAlign={"center"}>
               LOGIN
             </Typography>
@@ -150,7 +159,7 @@ export default function Login() {
             >
               Login
             </Button>
-            <Toast type={toast.type} message={toast.message}/>
+            
             <FormControlLabel control={<Checkbox />} label="Save account" />
 
             <Box sx={{ width: 300, borderBottom: 1 }} />
