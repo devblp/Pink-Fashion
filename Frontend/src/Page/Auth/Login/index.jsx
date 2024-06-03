@@ -48,8 +48,9 @@ export default function Login() {
   }, []);
 
   const HandleLogin = async () => {
+    console.log(toast)
     try {
-      if (user.password && user.identifier) {
+      if (user.password) {
         const res = await fetchData("auth/local?populate=*" , {
           method: 'POST',
           body: JSON.stringify(user),
@@ -59,12 +60,14 @@ export default function Login() {
         } )
         if (res.jwt) {
           dispatch(login({toast:{ type: "success", message: "Login Success"}}))
-          setInterval(() => {
-            dispatch(login({token:res.jwt}))
+          setTimeout(() => {
+            dispatch(login({ token: res.jwt }));
           }, 2000);
         }else{
           dispatch(login({toast:{ type: "error", message: "username and password not found"}}))
         }
+      }else {
+        dispatch(login({toast:{ type: "error", message: "password is required"}}))
       }
     } catch (error) {
       
