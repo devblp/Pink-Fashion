@@ -91,7 +91,7 @@ export default function SignUp() {
             <Grid item xs={5}>
               {imgAuth && (
                 <Avatar
-                  sx={{ borderRadius: 0, height: "881px", width: "100%" }}
+                  sx={{ borderRadius: 0, height: "100vh", width: "100%" }}
                   src={
                     import.meta.env.VITE_BASE_URL +
                     imgAuth?.imgSigUp?.data?.attributes?.url
@@ -100,7 +100,7 @@ export default function SignUp() {
               )}
             </Grid>
 
-            <Grid item xs={7}>
+            <Grid item xs={7} py={"3%"}>
               <Box
                 component={"form"}
                 sx={{
@@ -108,7 +108,6 @@ export default function SignUp() {
                   flexDirection: "column",
                   alignItems: "center",
                   gap: 2,
-                  py: 9,
                 }}
               >
                 <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
@@ -117,27 +116,27 @@ export default function SignUp() {
                     <Link to={"/"}>back to home</Link>
                   </Typography>
                 </Box>
-                <Typography variant="h2" textAlign={"center"}>
+                <Typography variant="h5" textAlign={"center"}>
                   SignUp
                 </Typography>
                 <Box
-                  sx={{ width: "40ch", p: "20px 0px 20px 0px", borderBottom: 1 }}
+                  sx={{ width: "30%", borderBottom: 1 }}
                 />
                 <TextField
                   label="UserName"
                   type="text"
                   name="username"
                   onChange={handleChange}
-                  sx={{ m: 1, width: "40ch" }}
+                  sx={{ m: 1, width: "40%" }}
                 />
                 <TextField
                   label="Email"
                   type="email"
                   name="email"
                   onChange={handleChange}
-                  sx={{ m: 1, width: "40ch" }}
+                  sx={{ m: 1, width: "40%" }}
                 />
-                <FormControl sx={{ m: 1, width: "40ch" }} variant="outlined">
+                <FormControl sx={{ m: 1, width: "40%" }} variant="outlined">
                   <InputLabel htmlFor="outlined-adornment-password">
                     Password
                   </InputLabel>
@@ -177,7 +176,7 @@ export default function SignUp() {
 
                 <FormControlLabel control={<Checkbox />} label="Save account" />
 
-                <Box sx={{ width: 300, borderBottom: 1 }} />
+                <Box sx={{ width: "30%", borderBottom: 1 }} />
                 <Box component={"div"}>
                   <IconButton>
                     <TelegramIcon />

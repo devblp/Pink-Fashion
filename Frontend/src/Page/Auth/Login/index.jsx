@@ -49,7 +49,6 @@ export default function Login() {
 
   const HandleLogin = async () => {
     try {
-      dispatch(login({toast:{ type: "info", message: " "}}))
       if (user.password && user.identifier) {
         const res = await fetchData("auth/local?populate=*" , {
           method: 'POST',
@@ -87,14 +86,14 @@ export default function Login() {
       <Grid container spacing={0}>
         <Grid xs={5}>
           <Avatar
-            sx={{ borderRadius: 0, height: "881px", width: "100%" }}
+            sx={{ borderRadius: 0, height: "100vh", width: "100%" }}
             src={
               import.meta.env.VITE_BASE_URL +
               imgAuth?.imgLogin?.data?.attributes?.url
             }
           />
         </Grid>
-        <Grid xs={7}>
+        <Grid xs={7} py={"3%"}>
           <Box
             component={"form"}
             sx={{
@@ -102,27 +101,26 @@ export default function Login() {
               flexDirection: "column",
               alignItems: "center",
               gap: 3,
-              py: 10,
             }}
           >
             <Box sx={{display:"flex",gap:1,alignItems:"center"}}>
             <KeyboardBackspaceIcon sx={{fontSize:"15px"}}/>
             <Typography ><Link to={"/"}>back to home</Link></Typography>
             </Box>
-            <Typography variant="h2" textAlign={"center"}>
+            <Typography variant="h5" textAlign={"center"}>
               LOGIN
             </Typography>
             <Box
-              sx={{ width: "40ch", p: "20px 0px 20px 0px", borderBottom: 1 }}
+              sx={{ width: "50%",  borderBottom: 1 }}
             />
             <TextField
               label="UserName"
               type="email"
               name="identifier"
               onChange={handelCheng}
-              sx={{ m: 1, width: "40ch" }}
+              sx={{ m: 1, width: "40%" }}
             />
-            <FormControl sx={{ m: 1, width: "40ch" }} variant="outlined">
+            <FormControl sx={{ m: 1, width: "40%" }} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-password">
                 Password
               </InputLabel>
@@ -162,7 +160,7 @@ export default function Login() {
             
             <FormControlLabel control={<Checkbox />} label="Save account" />
 
-            <Box sx={{ width: 300, borderBottom: 1 }} />
+            <Box sx={{ width: "50%", borderBottom: 1 }} />
             <Box component={"div"}>
               <IconButton>
                 <TelegramIcon />
