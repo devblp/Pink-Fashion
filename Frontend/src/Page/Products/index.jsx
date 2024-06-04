@@ -20,7 +20,7 @@ import CardProducts from "../../Components/CardProducts";
 import SkeletonProduct from "./Skeleton";
 
 export default function Products() {
-  const [products, setProducts] = useState();
+  const [ products, setProducts] = useState();
   const [categorys, setSategorys] = useState();
   const { catgoryId, catgoryName } = useParams();
   const [filters, setFilters] = useState({
@@ -160,7 +160,7 @@ export default function Products() {
       <Grid container xs={12} sx={{ p: 10 }}>
         <Grid xs={3}>
           <Grid container spacing={2} direction="column">
-            <Grid item>
+            <Grid >
               <Accordion expanded>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <FormLabel>Category</FormLabel>
@@ -171,7 +171,7 @@ export default function Products() {
                 </AccordionDetails>
               </Accordion>
             </Grid>
-            <Grid item>
+            <Grid >
               <Accordion expanded>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <FormLabel>Color</FormLabel>
@@ -182,7 +182,7 @@ export default function Products() {
                 </AccordionDetails>
               </Accordion>
             </Grid>
-            <Grid item>
+            <Grid >
               <Accordion expanded>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <FormLabel>Size</FormLabel>
@@ -193,7 +193,7 @@ export default function Products() {
                 </AccordionDetails>
               </Accordion>
             </Grid>
-            <Grid item>
+            <Grid >
               <Button
                 variant="contained"
                 color="primary"
