@@ -820,31 +820,6 @@ export interface ApiBrandImgBrandImg extends Schema.CollectionType {
   };
 }
 
-export interface ApiCardCard extends Schema.CollectionType {
-  collectionName: 'cards';
-  info: {
-    singularName: 'card';
-    pluralName: 'cards';
-    displayName: 'Card';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    image: Attribute.Media;
-    title: Attribute.String;
-    brandName: Attribute.String;
-    current: Attribute.Decimal;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 export interface ApiCategoryCategory extends Schema.CollectionType {
   collectionName: 'categories';
   info: {
@@ -874,37 +849,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiImageProdutsUserImageProdutsUser
-  extends Schema.CollectionType {
-  collectionName: 'image_produts_users';
-  info: {
-    singularName: 'image-produts-user';
-    pluralName: 'image-produts-users';
-    displayName: 'image produts user';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    image: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::image-produts-user.image-produts-user',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::image-produts-user.image-produts-user',
       'oneToOne',
       'admin::user'
     > &
@@ -1037,9 +981,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::brand-img.brand-img': ApiBrandImgBrandImg;
-      'api::card.card': ApiCardCard;
       'api::category.category': ApiCategoryCategory;
-      'api::image-produts-user.image-produts-user': ApiImageProdutsUserImageProdutsUser;
       'api::img-auth-backgruond.img-auth-backgruond': ApiImgAuthBackgruondImgAuthBackgruond;
       'api::product.product': ApiProductProduct;
       'api::slider.slider': ApiSliderSlider;
