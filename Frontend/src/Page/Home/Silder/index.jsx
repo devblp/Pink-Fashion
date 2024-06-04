@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Box, Typography, Button } from "@mui/material";
+import { Box, Button, Typography, Avatar } from '@mui/material';
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import brandss from "../../../img/brandA.png";
+
 import fetchData from "../../../Utils/fetchData";
 
 export default function Slider() {
-  
   // Swiper pagination configuration
   const pagination = {
     clickable: true,
@@ -161,6 +161,7 @@ export default function Slider() {
                     height: 597,
                     borderRadius: 0,
                     position: "absolute",
+                    Button:0,
                     right: "50%",
                     transform: "translate(50%)",
                     bottom: 1,

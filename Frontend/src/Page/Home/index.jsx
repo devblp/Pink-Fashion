@@ -32,7 +32,6 @@ import fetchData from "../../Utils/fetchData";
 import CardCategory from "../../Components/CardCategory";
 import { useSelector } from "react-redux";
 
-
 export default function Home() {
   const { token } = useSelector((state) => state.auth);
 
@@ -63,13 +62,11 @@ export default function Home() {
   // Map categories to CardCategory components
   const cartCategorys =
     cartCategory?.map((e, index) => (
-      <Link to={`products/all-product/all-category`}>
-        <CardCategory
-          key={index}
-          name={e?.attributes?.name}
-          image={e?.attributes?.image?.data?.attributes?.url}
-        />
-      </Link>
+      <CardCategory
+        key={index}
+        name={e?.attributes?.name}
+        image={e?.attributes?.image?.data?.attributes?.url}
+      />
     )) || [];
 
   // Imports:Import necessary modules and components.State
@@ -106,26 +103,23 @@ export default function Home() {
           </DialogActions>
         </Dialog>
       )}
-      <Grid xs={12}>
+      <Grid container xs={12} gap={10}>
+        {/* {slider} */}
         <Grid xs={12}>
-          <Box>
-            <Slider/>
-          </Box>
-          <Grid
-            container
-            xs={12}
-            sx={{ display: "flex", justifyContent: "center" }}
-          >
-            <Box sx={{ py: 3 }}>
-              <Typography fontSize={"19px"} fontWeight={500}>
-                Shop by Category
-              </Typography>
-            </Box>
+          <Slider />
+        </Grid>
+        {/* {Category} */}
+        <Grid container xs={12}>
+          <Grid container xs={12} justifyContent={"center"} sx={{ py: 2 }}>
+            <Typography fontSize={"1.3vw"} fontWeight={500}>
+              Shop by Category
+            </Typography>
           </Grid>
-          <Grid container xs={12} sx={{ justifyContent: "center", gap: 3 }}>
+          <Grid container xs={12} justifyContent={"center"} gap={5}>
             {cartCategorys.slice(0, 7)}
           </Grid>
         </Grid>
+        {/* {slider} */}
         <Grid
           container
           xs={12}
@@ -136,12 +130,11 @@ export default function Home() {
               src={imageLearmMore}
               sx={{
                 width: "100%",
-                height: 301,
+                height: "40vh",
                 borderRadius: 0,
               }}
             />
           </Box>
-
           <Box
             sx={{
               position: "absolute",
@@ -149,29 +142,32 @@ export default function Home() {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              top: "45%",
+              top: "30%",
               color: "primary.ws",
             }}
           >
-            <Typography sx={{ fontSize: 32 }}>
+            <Typography sx={{ fontSize: "2vw" }}>
               We’re on a Mission To Clean Up the Industry
             </Typography>
-            <Typography sx={{ fontSize: 15 }}>
+            <Typography sx={{ fontSize: "1vw" }}>
               Read about our progress in our latest Impact Report.
             </Typography>
             <Button
               sx={{
+                width:"30vh",
+                height:"5vh",
                 bgcolor: "primary.ws",
+                fontSize:"1vw",
                 "&:hover": { bgcolor: "primary.main" },
                 color: "primary.bk",
                 my: 3,
-                px: 10,
               }}
             >
               LEARN MORE
             </Button>
           </Box>
         </Grid>
+        {/* {slider} */}
         <Grid container xs={12} justifyContent={"center"}>
           <Grid container xs={6} justifyContent={"center"}>
             <Box
@@ -193,7 +189,7 @@ export default function Home() {
               <Typography fontSize={"2vh"} py={2}>
                 The best presents for everyone on your list.
               </Typography>
-              <Button>Read More</Button>
+              <Button >Read More</Button>
             </Box>
           </Grid>
           <Grid container xs={6} justifyContent={"center"}>
@@ -220,14 +216,15 @@ export default function Home() {
             </Box>
           </Grid>
         </Grid>
+        {/* {slider} */}
         <Grid
           container
           xs={12}
           sx={{ justifyContent: "center", alignItems: "center" }}
         >
-          <Grid container xs={4} flexDirection={"column"} alignItems={"center"}>
+          <Grid container xs={3} flexDirection={"column"} alignItems={"center"}>
             <Avatar
-              sx={{ width: "8vh", height: "8vh", borderRadius: 0 }}
+              sx={{ width: "7vh", height: "7vh", borderRadius: 0 }}
               src={iconBox}
             />
             <Typography fontSize={"1vw"} fontWeight={500}>
@@ -237,8 +234,8 @@ export default function Home() {
               Enjoy free shipping on U.S. orders over $100.
             </Typography>
           </Grid>
-          <Grid container xs={4} flexDirection={"column"} alignItems={"center"}>
-            <Avatar sx={{ width: "8vh", height: "8vh" }} src={iconMap} />
+          <Grid container xs={3} flexDirection={"column"} alignItems={"center"}>
+            <Avatar sx={{ width: "7vh", height: "7vh" }} src={iconMap} />
             <Typography fontSize={"1vw"} fontWeight={500}>
               Consciously Crafted
             </Typography>
@@ -246,8 +243,8 @@ export default function Home() {
               Designed with you and the planet in mind.
             </Typography>
           </Grid>
-          <Grid container xs={4} flexDirection={"column"} alignItems={"center"}>
-            <Avatar sx={{ width: "8vh", height: "8vh" }} src={iconS} />
+          <Grid container xs={3} flexDirection={"column"} alignItems={"center"}>
+            <Avatar sx={{ width: "7vh", height: "7vh" }} src={iconS} />
             <Typography fontSize={"1vw"} fontWeight={500}>
               Come Say Hi
             </Typography>
@@ -256,45 +253,46 @@ export default function Home() {
             </Typography>
           </Grid>
         </Grid>
+        {/* {} */}
         <Grid
           container
           xs={12}
-          py={15}
           sx={{
             width: "100%",
-            height: "354px",
+            height: "30vh",
             bgcolor: "#E2E2E2",
             position: "relative",
           }}
         >
           <Grid
             container
-            xs={6}
+            xs={9}
             sx={{
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
+              gap:2,
             }}
           >
-            <Typography fontSize={24}>Subscribe To Our Newsletter</Typography>
-            <Typography py={3} color={"#8A8A8A"}>
+            <Typography fontSize={"1.2vw"}>Subscribe To Our Newsletter</Typography>
+            <Typography  color={"#8A8A8A"} fontSize={"0.8vw"}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Scelerisque duis <br /> ultrices sollicitudin aliquam sem.
               Scelerisque duis ultrices sollicitudin
             </Typography>
-            <Button>Subscribe Now</Button>
+            <Button fontSize={"1vw"} >Subscribe Now</Button>
           </Grid>
           <Grid
             container
             xs={6}
             sx={{
               position: "absolute",
-              right: 20,
-              bottom: -30,
+              right: 0,
+              bottom: -20,
               justifyContent: "center",
             }}
           >
-            <Avatar sx={{ width: 394, height: 520 }} src={footerImg} />
+            <Avatar sx={{ width: "20vh", height: "39vh", borderRadius:0 }} src={footerImg} />
           </Grid>
         </Grid>
       </Grid>

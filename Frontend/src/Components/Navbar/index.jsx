@@ -97,10 +97,10 @@ export default function Footer() {
   return (
     <>
       <Box component={"div"} className="navbar">
-        <Grid
+      <Grid
           container
           xs={12}
-          sx={{ bgcolor: "primary.bk", color: "primary.ws", height: 30 }}
+          sx={{ bgcolor: "primary.bk", color: "primary.ws", height: 30 ,display:{xs:"none",md:"flex"}}}
         >
           <Grid xs={7} sx={{ display: "flex", justifyContent: "right" }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -133,7 +133,7 @@ export default function Footer() {
           xs={12}
           sx={{ height: 75, display: "flex", alignItems: "center" }}
         >
-          <Grid xs={4}>
+          <Grid xs={4} sx={{display:{xs:"none",md:"flex"}}}>
             <Box
               sx={{ display: "flex", justifyContent: "center", gap: "20px" }}
             >
@@ -159,7 +159,10 @@ export default function Footer() {
               </Link>
             </Box>
           </Grid>
-          <Grid xs={4}>
+          <Grid xs={4} sx={{display:{xs:"flex",md:"none"}}}>
+            test
+          </Grid>
+          <Grid xs={4}  >
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <Link to={"/"}>
                 <Avatar
@@ -169,7 +172,7 @@ export default function Footer() {
               </Link>
             </Box>
           </Grid>
-          <Grid xs={4}>
+          <Grid xs={4}  >
             <Box
               sx={{ display: "flex", justifyContent: "center", gap: "20px" }}
             >
@@ -198,11 +201,11 @@ export default function Footer() {
         <Grid
           container
           xs={12}
-          sx={{ height: 56, display: "flex", justifyContent: "center" }}
+          sx={{ height: 56, display:{xs:"none",md:"flex"}, justifyContent: "center" }}
         >
           <Box
             sx={{
-              display: "flex",
+              display: {xs:"none",md:"flex"},
               alignItems: "center",
               justifyContent: "center",
               gap: "30px",

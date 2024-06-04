@@ -7,7 +7,7 @@ export default function CardCategory({ name, image }) {
   const url = import.meta.env.VITE_BASE_URL;
   return (
     <>
-      <Grid xs={1.2}>
+      <Grid>
         <Box
           sx={{
             display: "flex",
@@ -17,10 +17,10 @@ export default function CardCategory({ name, image }) {
           }}
         >
           <Avatar
-            sx={{ borderRadius: 0, width: "180px", height: "263px" }}
+            sx={{ borderRadius: 0, width: "20vh", height: "50vh" }}
             src={url + image}
           />
-          <Typography py={"10px"}>{name}</Typography>
+          <Typography py={1} fontSize={"0.9vw"}>{name}</Typography>
         </Box>
       </Grid>
     </>
