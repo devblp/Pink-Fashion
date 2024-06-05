@@ -6,6 +6,7 @@ import {
   Avatar,
   Drawer,
   IconButton,
+  MenuItem,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useState } from "react";
@@ -24,12 +25,15 @@ import LocalMallIcon from "@mui/icons-material/LocalMall";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import SearchIcon from "@mui/icons-material/Search";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import MenuIcon from "@mui/icons-material/Menu";
 import { addItem, clear, removeItem } from "../../Sore/Slices/Cart";
 
 export default function Footer() {
   const url = import.meta.env.VITE_BASE_URL;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const [anchorElTow, setAnchorElTow] = useState(null);
+  const openTow = Boolean(anchorElTow);
 
   const handelOpenMegaMenu = (e) => {
     setAnchorEl(e.currentTarget);
@@ -37,6 +41,12 @@ export default function Footer() {
 
   const handelClosMegaMenu = () => {
     setAnchorEl(null);
+  };
+  const handleClick = (event) => {
+    setAnchorElTow(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorElTow(null);
   };
   // start Cart
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -96,13 +106,18 @@ export default function Footer() {
   };
   return (
     <>
-      <Box component={"div"} className="navbar">
-      <Grid
+      <Grid container xs={12}>
+        <Grid
           container
           xs={12}
-          sx={{ bgcolor: "primary.bk", color: "primary.ws", height: 30 ,display:{xs:"none",md:"flex"}}}
+          sx={{
+            bgcolor: "primary.bk",
+            color: "primary.ws",
+            height: 30,
+            display: { xs: "none", md: "flex" },
+          }}
         >
-          <Grid xs={7} sx={{ display: "flex", justifyContent: "right" }}>
+          <Grid container xs={7} sx={{ justifyContent: "right" }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Typography>Get early access on launches and offers.</Typography>
               <Link to={"/auth"} className="link-navbar link-to">
@@ -128,12 +143,8 @@ export default function Footer() {
             <Typography>USA</Typography>
           </Grid>
         </Grid>
-        <Grid
-          container
-          xs={12}
-          sx={{ height: 75, display: "flex", alignItems: "center" }}
-        >
-          <Grid xs={4} sx={{display:{xs:"none",md:"flex"}}}>
+        <Grid container xs={12} sx={{ height: 75, alignItems: "center" }}>
+          <Grid xs={4} sx={{ display: { xs: "none", md: "flex" }, px: 8 }}>
             <Box
               sx={{ display: "flex", justifyContent: "center", gap: "20px" }}
             >
@@ -159,10 +170,25 @@ export default function Footer() {
               </Link>
             </Box>
           </Grid>
-          <Grid xs={4} sx={{display:{xs:"flex",md:"none"}}}>
-            test
+          <Grid xs={4} sx={{ display: { xs: "flex", md: "none" }, px: 8 }}>
+            <IconButton onClick={handleClick}>
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorElTow}
+              open={openTow}
+              onClose={handleClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem ><Link to={"/products/all-product/all-category"}>Product's</Link></MenuItem>
+              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </Menu>
           </Grid>
-          <Grid xs={4}  >
+          <Grid xs={4}>
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <Link to={"/"}>
                 <Avatar
@@ -172,28 +198,30 @@ export default function Footer() {
               </Link>
             </Box>
           </Grid>
-          <Grid xs={4}  >
+          <Grid xs={4}>
             <Box
               sx={{ display: "flex", justifyContent: "center", gap: "20px" }}
             >
               <Link to={"/search"} className="link-navbar-icon">
-                <IconButton sx={{color:"black"}}><SearchIcon /></IconButton >
+                <IconButton sx={{ color: "black" }}>
+                  <SearchIcon />
+                </IconButton>
               </Link>
               <Link to={"/dashbord"} className="link-navbar-icon">
-                <IconButton sx={{color:"black"}}><PermIdentityIcon /></IconButton>
+                <IconButton sx={{ color: "black" }}>
+                  <PermIdentityIcon />
+                </IconButton>
               </Link>
               <Link onClick={toggleDrawer(true)} className="link-navbar-icon">
-                <IconButton sx={{color:"black"}}>
+                <IconButton sx={{ color: "black" }}>
                   {list.length > 0 ? (
-                  <Badge badgeContent={list.length} color="secondary">
+                    <Badge badgeContent={list.length} color="secondary">
+                      <LocalMallIcon />
+                    </Badge>
+                  ) : (
                     <LocalMallIcon />
-                  </Badge>
-                ) : (
-                  <LocalMallIcon />
-                )}
+                  )}
                 </IconButton>
-
-
               </Link>
             </Box>
           </Grid>
@@ -201,11 +229,15 @@ export default function Footer() {
         <Grid
           container
           xs={12}
-          sx={{ height: 56, display:{xs:"none",md:"flex"}, justifyContent: "center" }}
+          sx={{
+            height: 56,
+            display: { xs: "none", md: "flex" },
+            justifyContent: "center",
+          }}
         >
           <Box
             sx={{
-              display: {xs:"none",md:"flex"},
+              display: { xs: "none", md: "flex" },
               alignItems: "center",
               justifyContent: "center",
               gap: "30px",
@@ -371,7 +403,7 @@ export default function Footer() {
             </Menu>
           </Box>
         </Grid>
-      </Box>
+      </Grid>
       <Drawer open={openDrawer} onClose={toggleDrawer(false)}>
         <Grid container xs={12} px={3}>
           <Grid container xs={12} gap={2}>
