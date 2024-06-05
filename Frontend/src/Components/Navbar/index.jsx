@@ -160,7 +160,7 @@ export default function Footer() {
               >
                 <Typography className="filter-menu-nav">Men</Typography>
               </Link>
-              <Link to={""} className="link-navbar-menu">
+              <Link to={"/about"} className="link-navbar-menu">
                 <Typography className="filter-menu-nav">About</Typography>
               </Link>
               <Link to={""} className="link-navbar-menu">

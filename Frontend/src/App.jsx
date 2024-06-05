@@ -10,6 +10,7 @@ import Products from "./Page/Products";
 import NotPage404 from "./Page/NotPage404";
 import Auth from "./Page/Auth";
 import SignUp from "./Page/Auth/SignUp";
+import Posts from "./Page/Posts"
 import { Navigate, Route, Routes,useLocation   } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -36,7 +37,8 @@ export default function App() {
         {!hideNavbarAndFooter && <Navbar />}
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/abaut" element={<Abaut />} />
+          <Route path="/about" element={<Abaut />} />
+          <Route path="/posts" element={<Posts />}/>
           <Route path="/cart" element={<Cart />} />
           <Route
             path="/dashbord"
