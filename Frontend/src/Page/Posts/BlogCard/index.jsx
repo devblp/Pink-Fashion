@@ -33,7 +33,8 @@ export default function BlogCard() {
         <Card>
           <CardMedia
             component="img"
-            height="140"
+            height="140px"
+            width='50px'
             image={url + e?.attributes?.image?.data[0]?.attributes?.url}
             alt={e?.attributes?.title}
           />

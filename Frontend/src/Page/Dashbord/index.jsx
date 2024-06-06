@@ -10,13 +10,28 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../Sore/Slices/Auth';
+import fetchData from '../../Utils/fetchData';
 
 export default function Dashbord() {
-  
+  const {user,token} = useSelector((state) => state.auth)
+  const [us,setUs] = useState()
+console.log(user);
+console.log(us);
+useEffect(()=>{
+  (async()=>{
+    try {
+      const res = await fetchData("users")
+      setUs(res)
+    } catch (error) {
+      
+    }
+  })()
+},[])
+console.log(token);
   const dispach = useDispatch()
   return (
     <Box sx={{bgcolor:"#202020",height:"100%"}}>

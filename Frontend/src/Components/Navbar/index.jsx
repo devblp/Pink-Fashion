@@ -163,9 +163,9 @@ export default function Footer() {
               <Link to={"/about"} className="link-navbar-menu">
                 <Typography className="filter-menu-nav">About</Typography>
               </Link>
-              <Link to={""} className="link-navbar-menu">
+              <Link to={"/posts"} className="link-navbar-menu">
                 <Typography className="filter-menu-nav">
-                  Everworld Stories
+                  Post's
                 </Typography>
               </Link>
             </Box>

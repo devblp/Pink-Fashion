@@ -22,8 +22,8 @@ export default function index() {
           The Latest
         </Typography>
 
-        <Grid container  >
-          <Grid container xs={12} flexWrap={"nowrap"} gap={5}>
+        <Grid container justifyContent={"center"} >
+          <Grid container xs={5} gap={5}>
             <BlogCard/>
           </Grid>
         </Grid>
@@ -43,14 +43,9 @@ export default function index() {
           Our Progress
         </Typography>
 
-        <Grid container xs={12}>
-          <Grid container xs={12} flexWrap={"nowrap"} gap={5} >
-            <BlogCard
-              title="Carbon Commitment"
-              image="/path_to_carbon_commitment_image.jpg"
-              category="Sustainability"
-              link="/post/carbon-commitment"
-            />
+        <Grid container justifyContent={"center"} >
+          <Grid container xs={5} gap={5}>
+            <BlogCard/>
           </Grid>
         </Grid>
       </Container>

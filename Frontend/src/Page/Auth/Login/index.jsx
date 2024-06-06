@@ -31,6 +31,7 @@ import { useDispatch,useSelector } from "react-redux";
 
 export default function Login() {
   const {user,token,toast} = useSelector((state) => state.auth)
+  console.log(user);
   const [imgAuth, setImgAuth] = useState();
   const dispatch = useDispatch()
   
