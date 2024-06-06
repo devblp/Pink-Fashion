@@ -176,7 +176,7 @@ export default function Footer() {
           </Grid>
         </Grid>
         <Grid container xs={10} sx={{ justifyContent: "center" ,m: "50px 0px 0px 0px"}}>
-          <Typography textAlign={"center"}>
+          <Typography textAlign={"center"} >
             © 2024 All Rights BlP
           </Typography>
         </Grid>
