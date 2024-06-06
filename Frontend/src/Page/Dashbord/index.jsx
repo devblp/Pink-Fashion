@@ -105,3 +105,161 @@ console.log(token);
     </Box>
   )
 }
+
+
+// import React, { useState } from "react";
+// import { Box, Button, Typography, Avatar, useMediaQuery } from "@mui/material";
+// import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+// import { motion } from "framer-motion";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Pagination } from "swiper/modules";
+
+
+// const videoSlider = ["video1.mp4", "video2.mp4", "video3.mp4", "video4.mp4"];
+// const imageSlider = ["image1.png", "image2.png", "image3.png", "image4.png"];
+
+// export default function Slider() {
+//   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("md"));
+
+//   const [video, setVideo] = useState([false, false, false, false]);
+
+//   const toggleVideo = (index) => {
+//     const updatedVideo = [...video];
+//     updatedVideo[index] = !updatedVideo[index];
+//     setVideo(updatedVideo);
+//   };
+
+//   const pagination = {
+//     clickable: true,
+//     renderBullet: function (index, className) {
+//       return '<span class="' + className + '">0' + (index + 1) + "</span>";
+//     },
+//   };
+
+//   const slideContent = (index) => (
+//     <Box sx={{ position: "relative", height: "100%" }}>
+//       {video[index] ? (
+//         <Box>
+//           <video autoPlay loop muted src={videoSlider[index]}></video>
+//           <Button
+//             onClick={() => toggleVideo(index)}
+//             sx={{
+//               color: "white",
+//               position: "absolute",
+//               bottom: "30px",
+//               left: "30px",
+//               ":hover": {
+//                 background: "rgba(0, 0, 0, 0)",
+//               },
+//             }}
+//           >
+//             Watch a Video
+//             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+//               <PlayArrowIcon
+//                 sx={{
+//                   width: "50px",
+//                   height: "50px",
+//                   backgroundColor: "#323232d7",
+//                   borderRadius: "100px",
+//                   ml: "20px",
+//                   boxShadow: "0px 0px 20px 0px #FFAFCF",
+//                 }}
+//               />
+//             </motion.div>
+//           </Button>
+//         </Box>
+//       ) : (
+//         <Box>
+//           <motion.div
+//             initial={{ opacity: 0, x: -1500 }}
+//             animate={{ opacity: 1, x: 1 }}
+//             transition={{ duration: 0.7 }}
+//           >
+//             <Typography
+//               sx={{
+//                 position: "absolute",
+//                 right: isSmallScreen ? "50%" : "50%",
+//                 top: "130px",
+//                 transform: "translateX(50%)",
+//                 fontFamily: "zen tokyo zoo",
+//                 fontSize: isSmallScreen ? "100px" : "280px",
+//               }}
+//             >
+//               FASHION
+//             </Typography>
+//             <Typography
+//               sx={{
+//                 position: "absolute",
+//                 right: isSmallScreen ? "10%" : "10%",
+//                 top: "450px",
+//                 fontFamily: "'MaisonNeueBook', sans-serif",
+//                 fontSize: isSmallScreen ? "16px" : "32px",
+//               }}
+//             >
+//               Discover and Buy
+//             </Typography>
+//           </motion.div>
+//           <motion.div
+//             initial={{ opacity: 0, y: 2000 }}
+//             animate={{ opacity: 1, y: 620 }}
+//             transition={{ duration: 0.7 }}
+//           >
+//             <Avatar
+//               sx={{
+//                 width: isSmallScreen ? 300 : 559,
+//                 height: isSmallScreen ? 300 : 597,
+//                 borderRadius: 0,
+//                 position: "absolute",
+//                 right: "50%",
+//                 transform: "translateX(50%)",
+//                 bottom: 0,
+//               }}
+//               src={imageSlider[index]}
+//             />
+//           </motion.div>
+//           <Button
+//             onClick={() => toggleVideo(index)}
+//             sx={{
+//               color: "white",
+//               position: "absolute",
+//               bottom: "30px",
+//               left: "30px",
+//               ":hover": {
+//                 background: "rgba(0, 0, 0, 0)",
+//               },
+//             }}
+//           >
+//             Watch a Video
+//             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+//               <PlayArrowIcon
+//                 sx={{
+//                   width: "50px",
+//                   height: "50px",
+//                   backgroundColor: "#323232d7",
+//                   borderRadius: "100px",
+//                   ml: "20px",
+//                   boxShadow: "0px 0px 20px 0px #FFAFCF",
+//                 }}
+//               />
+//             </motion.div>
+//           </Button>
+//         </Box>
+//       )}
+//     </Box>
+//   );
+
+//   return (
+//     <Swiper
+//       pagination={pagination}
+//       modules={[Pagination]}
+//       height={"1440px"}
+//       className="slider-swiper"
+//     >
+//       {videoSlider.map((_, index) => (
+//         <SwiperSlide key={index} className={`swiper-slide${index + 1}`}>
+//           {slideContent(index)}
+//         </SwiperSlide>
+//       ))}
+//     </Swiper>
+//   );
+// }

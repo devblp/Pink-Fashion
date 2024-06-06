@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Typography, Avatar } from '@mui/material';
+import { Box, Button, Typography, Avatar , useMediaQuery } from '@mui/material';
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,7 +8,9 @@ import brandss from "../../../img/brandA.png";
 
 import fetchData from "../../../Utils/fetchData";
 
+
 export default function Slider() {
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("md"));
   // Swiper pagination configuration
   const pagination = {
     clickable: true,
@@ -66,10 +68,9 @@ export default function Slider() {
       <Swiper
         pagination={pagination}
         modules={[Pagination]}
-        height={"1440px"}
         className="slider-swiper"
       >
-        <SwiperSlide className="swiper-slide1">
+        <SwiperSlide className="swiper-slide1" >
           {video ? (
             <Box>
               <video
@@ -120,8 +121,8 @@ export default function Slider() {
                 <Typography
                   sx={{
                     position: "absolute",
-                    right: "88%",
-                    top: "178px",
+                    right: isSmallScreen ? "73%" : "81%",
+                    top: isSmallScreen ? 130 : 170,
                     fontFamily: "'MaisonNeueBook', sans-serif",
                   }}
                 >
@@ -133,17 +134,17 @@ export default function Slider() {
                     right: "50%",
                     top: "130px",
                     transform: "translate(50%)",
+                    fontSize: isSmallScreen ? 100 : 230,
                   }}
                   fontFamily="zen tokyo zoo"
-                  fontSize={280}
                 >
                   FASHION
                 </Typography>
                 <Typography
                   sx={{
                     position: "absolute",
-                    right: "10%",
-                    top: "450px",
+                    right: isSmallScreen ? "20%" : "17%",
+                    top: isSmallScreen? 240 :"400px",
                     fontFamily: "'MaisonNeueBook', sans-serif",
                   }}
                 >
@@ -157,8 +158,8 @@ export default function Slider() {
               >
                 <Avatar
                   sx={{
-                    width: 559,
-                    height: 597,
+                    width: isSmallScreen ? 400 : 530,
+                    height: isSmallScreen ? 400 : 530,
                     borderRadius: 0,
                     position: "absolute",
                     Button:0,
@@ -252,11 +253,11 @@ export default function Slider() {
                 <Typography
                   sx={{
                     position: "absolute",
-                    right: "70%",
+                    right: isSmallScreen ? "73%" : "70%",
                     top: "110px",
                     transform: "translate(50%)",
                     fontFamily: "'MaisonNeueBook', sans-serif",
-                    fontSize: "91px",
+                    fontSize: isSmallScreen ? "50px":"91px",
                     fontWeight: "500",
                   }}
                 >
@@ -265,10 +266,10 @@ export default function Slider() {
                 <Typography
                   sx={{
                     position: "absolute",
-                    right: "57.5%",
+                    right: isSmallScreen ? "54%" : "54%",
                     top: "160px",
                     fontFamily: "'MaisonNeueBook', sans-serif",
-                    fontSize: "187PX",
+                    fontSize: isSmallScreen ? "120px":"187px",
                     color: "rgba(255, 255, 255, 0)",
                     WebkitTextStroke: "2px #FFAFCF",
                   }}
@@ -278,33 +279,15 @@ export default function Slider() {
                 <Typography
                   sx={{
                     position: "absolute",
-                    right: "65%",
-                    top: "400px",
+                    right: isSmallScreen ? "62%" :"65%",
+                    top: isSmallScreen ? "330px":"400px",
                     fontFamily: "'MaisonNeueBook', sans-serif",
-                    fontSize: "20px",
+                    fontSize: isSmallScreen ? "18px":"20px",
                     fontWeight: "400",
                   }}
                 >
                   NEW COLLECTION
                 </Typography>
-                <Button
-                  size="md"
-                  sx={{
-                    position: "absolute",
-                    color: "white",
-                    right: "67%",
-                    top: "500px",
-                    backgroundColor: "#323232d7",
-                    borderRadius: "20px",
-                    padding: "10px 20px 10px 20px",
-                    ":hover": {
-                      backgroundColor: "#323232d7",
-                      color: "#FFAFCF",
-                    },
-                  }}
-                >
-                  open shop
-                </Button>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 2000 }}
@@ -741,7 +724,7 @@ export default function Slider() {
         </SwiperSlide>
       </Swiper>
       <Swiper
-        slidesPerView={9}
+        slidesPerView={isSmallScreen ? 4:9}
         spaceBetween={10}
         speed={2000}
         autoplay={{

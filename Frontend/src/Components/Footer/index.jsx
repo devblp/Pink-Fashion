@@ -1,11 +1,20 @@
-import { Box, Button, FormControl, OutlinedInput, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  OutlinedInput,
+  TextField,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
-import SendIcon from '@mui/icons-material/Send';
+import SendIcon from "@mui/icons-material/Send";
 
 export default function Footer() {
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("md"));
   return (
     <>
       <Grid
@@ -13,7 +22,17 @@ export default function Footer() {
         xs={12}
         sx={{ bgcolor: "#F5F4F4", height: 400, justifyContent: "center" }}
       >
-        <Grid container xs={10} sx={{ height: 280, py: 10 }}>
+        <Grid
+          container
+          xs={12}
+          sx={{
+            gap: isSmallScreen ? 3 : 3,
+            height: 280,
+            py: 10,
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
           <Grid xs={2}>
             <Typography
               fontSize={"17px"}
@@ -115,38 +134,51 @@ export default function Footer() {
               </Typography>
             </Box>
           </Grid>
-          <Grid xs={3}>
-            <FormControl>
-              <TextField
-                id="outlined-basic"
-                label="Email"
-                name="email"
-                sx={{
-                  backgroundColor: "white",
-                  borderRadius: 0,
-                  width: 300,
-                  position: "relative",
-                }}
-              />
-              <Button sx={{ position: "absolute", right:0, bottom:0, bgcolor:"primary.bk", size:"large" , p:"16px" , ":hover":{bgcolor:"primary.bk"}}}>
-                <SendIcon />
-              </Button>
-            </FormControl>
+        </Grid>
+        <Grid
+          container
+          xs={12}
+          sx={{
+            height: 80,
+            p: "50px 0px 0px 0px",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Grid
+            container
+            xs={12}
+            sx={{ justifyContent: "center", alignItems: "center" }}
+          >
+            <Typography fontSize={13} px={1}>
+              <Link className="links-footer">Privacy Policy</Link>
+            </Typography>
+            <Typography fontSize={13} px={1}>
+              <Link className="links-footer">Terms of Service</Link>
+            </Typography>
+            <Typography fontSize={13} px={1}>
+              <Link className="links-footer">
+                Do Not Sell or Share My Personal Information
+              </Link>
+            </Typography>
+            <Typography fontSize={13} px={1}>
+              <Link className="links-footer">CS Supply Chain Transparency</Link>
+            </Typography>
+            <Typography fontSize={13} px={1}>
+              <Link className="links-footer">Vendor Code of Conduct</Link>
+            </Typography>
+            <Typography fontSize={13} px={1}>
+              <Link className="links-footer">Sitemap Pages</Link>
+            </Typography>
+            <Typography fontSize={13} px={1}>
+              <Link className="links-footer">Sitemap Products</Link>
+            </Typography>
           </Grid>
         </Grid>
-        <Grid container xs={10} sx={{ height: 80,p:"30px 0px 0px 0px" ,justifyContent:"center",alignItems:"center"}}>
-              <Grid container xs={10}>
-                <Typography fontSize={13} px={1}><Link className="links-footer">Privacy Policy</Link></Typography>
-                <Typography fontSize={13} px={1}><Link className="links-footer">Terms of Service</Link></Typography>
-                <Typography fontSize={13} px={1}><Link className="links-footer">Do Not Sell or Share My Personal Information</Link></Typography>
-                <Typography fontSize={13} px={1}><Link className="links-footer">CS Supply Chain Transparency</Link></Typography>
-                <Typography fontSize={13} px={1}><Link className="links-footer">Vendor Code of Conduct</Link></Typography>
-                <Typography fontSize={13} px={1}><Link className="links-footer">Sitemap Pages</Link></Typography>
-                <Typography fontSize={13} px={1}><Link className="links-footer">Sitemap Products</Link></Typography>
-              </Grid>
-              <Grid container xs={10} sx={{justifyContent:"center"}}>
-                <Typography textAlign={"center"} sx={{p:"30px 0px 0px 0px"}}>© 2024 All Rights BlP</Typography>
-              </Grid>
+        <Grid container xs={10} sx={{ justifyContent: "center" ,m: "50px 0px 0px 0px"}}>
+          <Typography textAlign={"center"}>
+            © 2024 All Rights BlP
+          </Typography>
         </Grid>
       </Grid>
     </>
